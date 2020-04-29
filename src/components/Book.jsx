@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,7 +16,8 @@ class Book extends React.Component{
     }
 
     render(){
-        return (<Card className={this.props.clases.card}>
+        return (
+        <Card className={this.props.clases.card}>
             <CardMedia
                 className={this.props.clases.cardMedia}
                 image="https://source.unsplash.com/random"
@@ -24,10 +25,10 @@ class Book extends React.Component{
             />
             <CardContent className={this.props.clases.cardContent}>
             <Typography gutterBottom variant="h5" component="h2">
-                {this.props.card.titulo}
+                {this.props.book.name}
             </Typography>
             <Typography>
-                {this.props.card.descripcion}
+                {this.props.book.email}
             </Typography>
             </CardContent>
             <CardActions>

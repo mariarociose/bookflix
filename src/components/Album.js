@@ -80,9 +80,6 @@ const cards = [
 ];
 
 
-function userStyles(props){
-  return useStyles();
-}
 
 
 class Album extends React.Component{
@@ -108,7 +105,7 @@ render(){
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon className={this.state.classes.icon} />
+          <CameraIcon className={this.classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
             Album layout
           </Typography>
@@ -116,7 +113,7 @@ render(){
       </AppBar>
       <main>
         {/* Hero unit */}
-        <div className={this.state.classes.heroContent}>
+        <div className={this.classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Album layout
@@ -126,7 +123,7 @@ render(){
               Make it short and sweet, but not too short so folks don&apos;t simply skip over it
               entirely.
             </Typography>
-            <div className={this.state.classes.heroButtons}>
+            <div className={this.classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -142,7 +139,7 @@ render(){
             </div>
           </Container>
         </div>
-        <Container className={this.state.classes.cardGrid} maxWidth="md">
+        <Container className={this.classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
@@ -154,7 +151,7 @@ render(){
         </Container>
       </main>
       {/* Footer */}
-      <footer className={this.state.classes.footer}>
+      <footer className={this.classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>

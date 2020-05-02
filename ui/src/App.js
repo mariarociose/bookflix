@@ -10,7 +10,8 @@ import Detail from "./components/Detail";
 function App() {
   return (
     <div className="App">
-          <Route exact path="/" component={AlbumContainer}></Route>
+          <Route exact path="/home" component={AlbumContainer}></Route>
+          <Route exact path="/homeAdmin" component={AlbumContainer}></Route>
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/detail/:id" component={Detail}></Route>
     </div>

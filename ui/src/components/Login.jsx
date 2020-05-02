@@ -2,14 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "../css/login.css";
 import Cookie from "js-cookie";
+
+
+
 class Login extends React.Component{
 
     constructor(props){
         super(props);
 
         this.state = {
-            email : "",
-            password : "",
+            
             mensaje : ""
         }
 
@@ -20,10 +22,9 @@ class Login extends React.Component{
         
         e.preventDefault();
         
-        let data = new FormData();
-        data.append("email",this.state.email);
-        data.append("password",this.state.password);
-        
+        let data = new FormData(e.target)
+        let userType = e.target.userType.value;
+        console.log(userType);
         fetch("http://localhost:4000/autenticar",{
             method: "POST",
             body: data
@@ -31,10 +32,16 @@ class Login extends React.Component{
         .then((res) => (res.json()))
         .then((data) => {
             console.log(data);
+            
             this.setState({mensaje: data.mensaje})
             Cookie.set("token",data.token);
-            
-        })
+            if(Cookie.get("token")!= null)
+                Cookie.set("user", data.user);
+                if(userType == "1")
+                    this.props.history.push("/home");
+                else
+                    this.props.history.push("/homeAdmin");
+                })  
         .catch((err) => (console.log(err)))
         
     }
@@ -52,16 +59,26 @@ class Login extends React.Component{
     
     }
 
+    
+
 
     render(){
-        let token = <p> {Cookie.get("token")}</p>
+        
+
+
+
         let mensaje = <p>{this.state.mensaje}</p>
         return(
             <div className="container">
                 
                 <div className="formContainer">
                     <form onSubmit={this.handleSubmit}>
-                        {token}
+                        <p>¿Que tipo de usuario es?</p>
+                        <label > Usuario</label>
+                        <input required  type="radio" name="userType" value="1" checked={true}/>
+                        <label > Admin</label>    
+                        <input required type="radio" name="userType" value="2"/>
+                        <br></br>
                         <label >
                             Email: 
                             <input className="input" required minLength = "6" type="email" name="email" id="userInput" onChange={this.handleChange}/>

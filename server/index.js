@@ -58,18 +58,26 @@ app.get('/usuarios', function(req,res){
 
 app.post("/autenticar",(req,res) => {
     console.log(req.body);
-    let query = "SELECT * FROM usuarios WHERE email='"+req.body.email+"' AND password='"+ req.body.password+"'";
-    
+    let query = "SELECT * FROM ";
+    let commonQuery = "WHERE email='"+req.body.email+"' AND password='"+ req.body.password+"'";
+    if(req.body.userType == 1)
+        query += "usuarios "
+    else
+        query += "administradores "
+
+    query += commonQuery;
+    console.log(query);    
     connection.query(query, (err,rows,fields) => {
 
         if(err){
             console.log(err);
+            res.status(500);
             return;
         }
 
         
         let response = rows;
-        console.log(response);
+       
 
         if(response[0] != undefined){
             
@@ -84,7 +92,8 @@ app.post("/autenticar",(req,res) => {
             res.json(
                 {
                     mensaje: "Autenticacion correcta",
-                    token : token
+                    token : token,
+                    user: response[0]
                 }
     
             );
@@ -92,7 +101,8 @@ app.post("/autenticar",(req,res) => {
         } else {
             console.log("no")
             res.json({mensaje: "Usuario o contraseña incorrecto",
-                      token: null });
+                      token: null, 
+                      user: null  });
             
         }
 

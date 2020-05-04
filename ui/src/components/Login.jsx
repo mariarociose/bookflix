@@ -11,8 +11,8 @@ class Login extends React.Component{
         super(props);
 
         this.state = {
-            
-            mensaje : ""
+            datos: {}
+           
         }
 
            
@@ -23,7 +23,7 @@ class Login extends React.Component{
         e.preventDefault();
         
         let data = new FormData(e.target)
-        let userType = e.target.userType.value;
+        var userType = e.target.userType.value;
         console.log(userType);
         fetch("http://localhost:4000/autenticar",{
             method: "POST",
@@ -31,17 +31,24 @@ class Login extends React.Component{
         })
         .then((res) => (res.json()))
         .then((data) => {
-            console.log(data);
             
-            this.setState({mensaje: data.mensaje})
-            Cookie.set("token",data.token);
-            if(Cookie.get("token")!= null)
-                Cookie.set("user", data.user);
-                if(userType == "1")
-                    this.props.history.push("/home");
-                else
-                    this.props.history.push("/homeAdmin");
-                })  
+            this.setState({datos:data}, () => (console.log(this.state.datos)))
+        }) 
+        .then(() => {
+
+            if(this.state.datos != undefined){
+                console.log("pase1");
+                if(this.state.datos.user != null){
+                console.log("pase2");
+                    Cookie.set("user", this.state.datos.user);
+                    Cookie.set("token",this.state.datos.token);
+                    if(userType == "1")
+                        this.props.history.push("/home");
+                    else
+                        this.props.history.push("/homeAdmin");
+            }}})
+            
+                 
         .catch((err) => (console.log(err)))
         
     }
@@ -67,7 +74,7 @@ class Login extends React.Component{
 
 
 
-        let mensaje = <p>{this.state.mensaje}</p>
+        let mensaje = <p>{this.state.datos.mensaje} </p>
         return(
             <div className="container">
                 

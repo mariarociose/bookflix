@@ -2,7 +2,7 @@ import React from 'react';
 import {Router,Link} from "react-router-dom";
 import './App.css';
 import AlbumContainer from "./components/AlbumContainer";
-import Login from "./components/Login";
+import Login from "./components/loginComponent/Login";
 import {Route} from "react-router-dom"
 import Detail from "./components/Detail";
 

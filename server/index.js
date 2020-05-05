@@ -92,17 +92,18 @@ app.post("/autenticar",(req,res) => {
             res.json(
                 {
                     mensaje: "Autenticacion correcta",
-                    token : token,
-                    user: response[0]
+                    user: response[0],
+                    userType: req.body.userType
                 }
     
             );
                 
         } else {
             console.log("no")
-            res.json({mensaje: "Usuario o contraseña incorrecto",
-                      token: null, 
-                      user: null  });
+            res.json({
+                mensaje: "Usuario o contraseña incorrecto",
+                user: null  
+                    });
             
         }
 

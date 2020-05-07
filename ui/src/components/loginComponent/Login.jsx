@@ -34,7 +34,8 @@ class Login extends React.Component{
         
         if(this.state.datos != undefined){
             if(this.state.datos.user != null){
-                Cookie.set("user", this.state.datos.user);
+                Cookie.set("token",this.state.datos.token);
+                Cookie.set("userType",this.state.datos.userType);
                 if(this.state.datos.userType == "1")
                     this.props.history.push("/home");
                 else

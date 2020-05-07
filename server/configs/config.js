@@ -1,3 +1,4 @@
 module.exports = {
-    llave: 'millaveultrasecreta123'
+    llaveUser: 'llaveDelUser',
+    llaveAdmin: 'llaveDelAdmin'
 }

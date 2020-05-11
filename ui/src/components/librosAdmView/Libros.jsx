@@ -14,11 +14,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import CommonDisplay from "../CommonDisplay";
 
 
 
-
-class Libros extends React.Component{
+class Libros extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -40,10 +40,12 @@ class Libros extends React.Component{
         })
     )
 
-          render(){
+          renderContent(){
 
                     return(
 
+                      <div>
+                      <h1>Listado de libros </h1>
                       <table className="table table-bordered">
         <thead>
           <tr>
@@ -55,10 +57,11 @@ class Libros extends React.Component{
           </tr>
         </thead>
         <tbody>
-        
+
 
         </tbody>
         </table>
+        </div>
     )
 }}
 

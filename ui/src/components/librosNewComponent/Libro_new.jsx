@@ -14,8 +14,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import CommonDisplay from "../CommonDisplay";
 
-class Libro_new extends React.Component{
+
+class Libro_new extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -25,27 +27,33 @@ class Libro_new extends React.Component{
     }
 
 
-    render(){
+    renderContent(){
 
               return(
 
+              <div>
+                <header>
+                </header>
 
+                <body>
                 <div className="loginbox">
                       <h1> Alta de libro </h1>
-                    <form >
-                        <p><label > Titulo * </label></p>
-                        <input required  name="titulo"/>
+                    <form allign='center' >
+                        <p><label > Titulo * </label>
+                        <input allign='center' required  name="titulo"/>
 
-
+                        </p>
+                        <br/>
                         <p>
                         <label> Isbn * </label>
-                        <input required  name="isbn"/>
+                        <input allign='center' required maxLength="13" minLength="13" name="isbn"/>
                         </p>
-
+                        <br/>
                         <p>
                         <label>Vencimiento * </label>
-                        <input required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
+                        <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
                         </p>
+                        <br/>
 
                         <p>Autor *
                           <select>
@@ -54,25 +62,38 @@ class Libro_new extends React.Component{
                           </select>
 
                         </p>
-                        <p>Genero * </p>
+                        <br/>
+
+                        <p>Genero *
                         <select>
                             <option value="genero1">Genero1</option>
                             <option value="genero2">Genero2</option>
                         </select>
-                        <p>Editorial * </p>
+                        </p>
+                        <br/>
+                        <p>Editorial *
                         <select>
                             <option value="editorial1">editorial1</option>
                             <option value="editorial2">editorial2</option>
                         </select>
-                        <p> Imagen </p>
+                        </p>
+                        <br/>
+                        <p> Imagen
+                        <input type='file'/>
 
+                        </p>
+                        <br/>
+                        <input type="reset" value="Cancelar"/>
                         <input type="submit" value="Guardar"/>
-                        <input type="Cancel" value="Cancelar"/>
+
+                        <br/>
                     </form>
                 </div>
 
 
 
+</body>
+</div>
 )
 }}
 export default Libro_new;

@@ -34,6 +34,16 @@ app.use("/autenticar",autenticar);
 var libros = require("./routes/libros");
 app.use("/libros",libros);
 
+var autores = require("./routes/autores")
+app.use("/autores",autores);
+
+var generos = require ("./routes/generos")
+app.use("/generos",generos);
+
+var editoriales = require ("./routes/editoriales")
+app.use("/editoriales",editoriales);
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

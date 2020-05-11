@@ -1,8 +1,8 @@
 import Album from "./Album";
 import React from "react";
 import ReactDOM from "react-dom";
-
-class AlbumContainer extends React.Component{
+import CommonDisplay from "./CommonDisplay";
+class AlbumContainer extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -30,13 +30,10 @@ class AlbumContainer extends React.Component{
 
     }
     
-
-    render(){
-
-        return(<Album books={this.state.books}></Album>)
-
-
-    }
+    renderContent = () =>(
+        <h1>SOY La sublclase</h1>
+    )
+    
 
 }
 

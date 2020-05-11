@@ -1,0 +1,53 @@
+
+header p{
+    font-weight: bold;
+}
+
+header li, a, button{
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: darkgray;
+}
+
+.navLink{
+    list-style: none;
+
+}
+
+.navLink li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navLink li a{
+    transition: all 0.3s ease 0s;
+}
+
+.navLink li a:hover{
+    color: #fb2525;
+}
+
+header button{
+    padding: 9px 25px;
+    background-color: rgba(251, 37, 37, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-weight: bold;
+}
+
+header button:hover{
+    background-color: rgba(251, 37, 37, 0.8);
+}

@@ -3,7 +3,7 @@ body{
     padding: 0;
     background: url(../../img//bookBackground.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: left;
     font-family: sans-serif;
 }
 

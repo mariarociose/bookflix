@@ -17,7 +17,7 @@ class Login extends React.Component{
 
 
     getData = (form) => (
-
+        
         fetch("http://localhost:4000/autenticar",{
             method: "POST",
             body: new FormData(form)
@@ -29,6 +29,7 @@ class Login extends React.Component{
     
     )
 
+    
 
     redirect = () => {
         

@@ -4,11 +4,10 @@ var db  = require("./configs/db");
 var multer = require("multer");
 var upload = multer();
 
-
 //para poder hacer peticiones entre localhost. Esto se llama cross origin
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access-token");
     next();
 });
 
@@ -42,6 +41,10 @@ app.use("/generos",generos);
 
 var editoriales = require ("./routes/editoriales")
 app.use("/editoriales",editoriales);
+
+var novedadesAdmin = require("./routes/novedadesAdmin");
+app.use("/novsAdmin",novedadesAdmin);
+
 
 
 app.listen(4000, () => (

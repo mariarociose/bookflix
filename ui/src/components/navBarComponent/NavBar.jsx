@@ -19,8 +19,9 @@ class NavBar extends React.Component{
     deleteCookiesAndRedirectToHome = () => {
 
         deleteAllCookies();
+        this.setState({buttonText: "Iniciar Sesion", redirectFunction: this.redirectToLoginForm})
         this.props.history.push("/");
-        this.setState({buttonText: "Iniciar Sesion"})
+        
 
     }
 
@@ -53,7 +54,7 @@ class NavBar extends React.Component{
                         <li><a href="#">Contenido</a></li>
                     </ul>
                 </nav>
-                <a href="" className="cta"><button onClick={this.state.redirectFunction}>{this.state.buttonText}</button></a>
+                <button className="cta" onClick={this.state.redirectFunction}>{this.state.buttonText}</button>
             </header>
         )
     }

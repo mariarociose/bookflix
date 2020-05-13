@@ -15,6 +15,16 @@ class Login extends React.Component{
         }
     }
 
+    componentDidMount(){
+
+        if(Cookie.get("token") != null){
+            this.props.history.push("/");
+        }
+
+
+
+    }
+
 
     getData = (form) => (
         
@@ -37,6 +47,7 @@ class Login extends React.Component{
             if(this.state.datos.user != null){
                 Cookie.set("token",this.state.datos.token);
                 Cookie.set("userType",this.state.datos.userType);
+                Cookie.set("userId",this.state.datos.user.id_usuario);
                 if(this.state.datos.userType == "1")
                     this.props.history.push("/home");
                 else

@@ -20,9 +20,6 @@ class Login extends React.Component{
         if(Cookie.get("token") != null){
             this.props.history.push("/");
         }
-
-
-
     }
 
 

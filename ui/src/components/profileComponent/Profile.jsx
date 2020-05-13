@@ -13,13 +13,29 @@ class Profile extends React.Component{
           user : ""
       }
     }
+
+    componentDidMount (){
+        this.getData(Cookie.get("userId").toString());
+    }
+
+    getData = (userId) => (
+    
+      fetch("http://localhost:4000/profileData",{ 
+          method: "POST",
+          body: userId 
+      })
+      .then((res) => (res.json()))
+      .then((data) => {
+          this.setState({datos:data}, () => (console.log(this.state.datos)))
+      })
+      .catch((error)=>(console.log(error)))
+    )
+
     
     render(){
-        let user = Cookie.get("user");
-        //de la cookie lo sacas en formato json(string largo)
-        //hay que pasarlo a un objeto js
-        user = JSON.parse( user );
-        return (
+      let user = this.state.datos;
+      user = JSON.parse( user );
+      return (
           <div className="container">
             <div className="profilebox">
              <h1>Mis datos</h1>
@@ -30,16 +46,16 @@ class Profile extends React.Component{
                     <p>E-mail</p>
                 </div>
                 <div className="midato">
-                    <p>{user.nombre}</p>
                     <p>{user.apellido}</p>
                     <p>{user.email}</p>
-                </div>
+                    <p>{user.nombre}</p>
+                </div>                
               </div>
-              <a href="./editprofile"> Editar Perfil</a>
             </div>
           </div>
-          );
-        }
+          )
+
+    }  
 }
 
 export default Profile;

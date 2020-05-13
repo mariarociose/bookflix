@@ -16,23 +16,15 @@ class Editprofile extends React.Component{
 
     }
 
-    getData = (form) => (
-
-      fetch("http://localhost:4000/autenticar",{ 
+    getData = () => (
+      fetch("http://localhost:4000/profileData",{ 
           method: "POST",
-          body: new FormData(form) 
-          //mandar por get
-          // el get es implicito 
-          // si haces
-          // llavecita ? 
+          body: userId 
       })
       .then((res) => (res.json()))
       .then((data) => {
           this.setState({datos:data}, () => (console.log(this.state.datos)))
-          // me traigo los datos 
-          //{datos:data} this.state.nombreparametro.campo
       })
-  
   )
 
 
@@ -69,10 +61,10 @@ class Editprofile extends React.Component{
 
     
     render(){
-        let user = Cookie.get("user");
+        let userId = Cookie.get("userId");
         //de la cookie lo sacas en formato json(string largo)
         //hay que pasarlo a un objeto js
-        user = JSON.parse( user );
+        userId = JSON.parse( userId );
         let mensaje = <p>{this.state.datos.mensaje} </p>
         return (
           <div className="container">

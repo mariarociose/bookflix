@@ -45,6 +45,8 @@ app.use("/editoriales",editoriales);
 var novedadesAdmin = require("./routes/novedadesAdmin");
 app.use("/novsAdmin",novedadesAdmin);
 
+var profileData = require("./routes/profileData")
+app.use("/profileData",profileData);
 
 
 app.listen(4000, () => (

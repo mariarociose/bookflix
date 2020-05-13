@@ -1,0 +1,44 @@
+.profilebox{
+    width: 320px;
+    height: 480px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    font-size: 19px;
+}
+
+.datos{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.tipodato{
+    padding-right: 10%;
+
+}
+.midato{
+    padding-left: 10%;
+}
+
+.h1{
+    margin:0;
+    padding: 0 0 0px;
+    text-align: center;
+    font-size: 22px;
+}
+.button{
+    align-content: flex-end;
+    color: blue;
+    
+}
+
+.editperfilbox input[type="firstname"], input[type="lastname"], input[type="mail"]input[type="pass"]{
+        width: 100%;
+        margin-top: 20px;
+    }

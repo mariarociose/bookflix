@@ -16,54 +16,93 @@ import Paper from '@material-ui/core/Paper';
 
 import CommonDisplay from "../CommonDisplay";
 
-
+import Libro from "../libroComponent/Libro";
+import "./libros.css"
 
 class Libros extends CommonDisplay{
 
     constructor(props){
         super(props);
         this.state = {
-            datos: []
+            libros: [],
+            mensaje: ""
         }
     }
 
+    componentDidMount(){
 
-    getData = (form) => (
 
         fetch("http://localhost:4000/libros",{
-            method: "POST",
-            body: new FormData(form)
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "access-token": Cookie.get("token").toString()
+
+            }
         })
         .then((res) => (res.json()))
-        .then((data) => {
-            this.setState({datos:data}, () => (console.log(this.state.datos)))
-        })
-    )
+        .then((libros) => (this.setState({libros: libros.datos,
+            mensaje: libros.mensaje},() => (console.log(this.state)))))
+        .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado"})))
+    }
 
-          renderContent(){
-
-                    return(
-
-                      <div>
-                      <h1>Listado de libros </h1>
-                      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th className="text-center">#</th>
-            <th className="text-center">Titulo</th>
-            <th className="text-center">Editorial</th>
-            <th className="text-center">Autor</th>
-            <th className="text-center">Genero</th>
-          </tr>
-        </thead>
-        <tbody>
+    renderContent = () => {
 
 
-        </tbody>
-        </table>
-        </div>
-    )
-}}
+            let titulos = [];
+            titulos = this.state.libros.map((libro) => (
+                    //El map es como el collect de pharo
+                    <tr> <td>{libro.isbn} </td>
+                    <td>{libro.titulo}  </td>
+                    <td> {libro.nombre} {libro.apellido} </td>
+                    <td> {libro.desc_editorial}</td>
+                    <td> {libro.desc_genero} </td>
+
+                                            <td  class='select'>
+                        <a  class='button' href='#'>
+                          Ver detalle
+                        </a>
+                      </td></tr>
+                ));
+
+
+
+            return(
+
+
+                <div>
+
+                  <h1>Listado de libros </h1>
+
+                  <main>
+
+                  <table  class="table table-bordered table-hover" >
+
+                        <thead>
+
+                          <tr>
+                          <th data-title>ISBN</th>
+                          <th className="text-center">Titulo</th>
+                          <th className="text-center">Autor</th>
+                          <th className="text-center">Editorial</th>
+                          <th className="text-center">Genero</th>
+                          <th allign ="center"></th>
+
+                          </tr>
+                          </thead>
+                          <tbody>
+
+                          {titulos}
+
+                          </tbody>
+                      </table>
+                      </main>
+                </div>
+
+              )
+
+  }
+}
 
 
 export default Libros;

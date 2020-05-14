@@ -46,14 +46,22 @@ class Libros extends CommonDisplay{
         .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado"})))
     }
 
+    redirectNew = () => {
+
+
+                this.props.history.push("/libro_new");
+
+    }
+
+
     renderContent = () => {
 
 
             let titulos = [];
             titulos = this.state.libros.map((libro) => (
                     //El map es como el collect de pharo
-                    <tr> <td>{libro.isbn} </td>
-                    <td>{libro.titulo}  </td>
+                    <tr> <td data-title= 'ISBN'>{libro.isbn} </td>
+                    <td >{libro.titulo}  </td>
                     <td> {libro.nombre} {libro.apellido} </td>
                     <td> {libro.desc_editorial}</td>
                     <td> {libro.desc_genero} </td>
@@ -69,19 +77,27 @@ class Libros extends CommonDisplay{
 
             return(
 
+              <html>
 
-                <div>
+
+
+              <body>
+
 
                   <h1>Listado de libros </h1>
 
                   <main>
-
+                  <div class='Nuevo'>
+                      <a  class='button' href='#' onClick={this.redirectNew}>
+                      Agregar nuevo libro
+                      </a>
+                      </div>
                   <table  class="table table-bordered table-hover" >
 
                         <thead>
 
                           <tr>
-                          <th data-title>ISBN</th>
+                          <th >ISBN</th>
                           <th className="text-center">Titulo</th>
                           <th className="text-center">Autor</th>
                           <th className="text-center">Editorial</th>
@@ -96,8 +112,15 @@ class Libros extends CommonDisplay{
 
                           </tbody>
                       </table>
+
+
+
+
                       </main>
-                </div>
+
+                </body>
+
+                </html>
 
               )
 

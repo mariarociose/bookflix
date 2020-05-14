@@ -21,7 +21,7 @@ class NavBar extends React.Component{
         deleteAllCookies();
         this.setState({buttonText: "Iniciar Sesion", redirectFunction: this.redirectToLoginForm})
         this.props.history.push("/");
-        
+
 
     }
 
@@ -29,12 +29,14 @@ class NavBar extends React.Component{
         this.props.history.push("/login");
     }
 
-
+    redirectToLibrosAdmView = () => {
+        this.props.history.push("/libros");
+    }
 
     componentDidMount(){
         if(Cookie.get("token") != null){
             this.setState({buttonText : "Cerrar Sesion", redirectFunction: this.deleteCookiesAndRedirectToHome})
-            
+
         }else{
             this.setState({buttonText: "Iniciar Sesion", redirectFunction: this.redirectToLoginForm});
         }
@@ -43,16 +45,20 @@ class NavBar extends React.Component{
 //Los a anchor se deben reemplazar luego por links de React router.
 //Son un mero placeholder
     render(){
-        
-        
+
+
         return(
-            
+
             <header>
                 <p>Bookflix</p>
                 <nav>
                     <ul className="navLink">
                         <li><a href="#">Contenido</a></li>
+                        <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
                     </ul>
+
+
+
                 </nav>
                 <button className="cta" onClick={this.state.redirectFunction}>{this.state.buttonText}</button>
             </header>

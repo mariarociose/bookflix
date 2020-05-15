@@ -26,6 +26,43 @@ class Libro_new extends CommonDisplay{
         }
     }
 
+    getData = (form) => (
+
+        fetch("http://localhost:4000/autores",{
+            method: "POST",
+            body: new FormData(form)
+        })
+        .then((res) => (res.json()))
+        .then((data) => {
+            this.setState({autores:data}, () => (console.log(this.state.datos)))
+        })
+    )
+
+    getData = (form) => (
+
+        fetch("http://localhost:4000/editoriales",{
+            method: "POST",
+            body: new FormData(form)
+        })
+        .then((res) => (res.json()))
+        .then((data) => {
+            this.setState({editoriales:data}, () => (console.log(this.state.datos)))
+        })
+    )
+
+    getData = (form) => (
+
+        fetch("http://localhost:4000/generos",{
+            method: "POST",
+            body: new FormData(form)
+        })
+        .then((res) => (res.json()))
+        .then((data) => {
+            this.setState({generos:data}, () => (console.log(this.state.datos)))
+        })
+    )
+
+
 
     renderContent(){
 
@@ -66,8 +103,7 @@ class Libro_new extends CommonDisplay{
 
                         <p>Genero *
                         <select>
-                            <option value="genero1">Genero1</option>
-                            <option value="genero2">Genero2</option>
+
                         </select>
                         </p>
                         <br/>

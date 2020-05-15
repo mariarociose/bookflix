@@ -19,6 +19,7 @@ class NovedadesContainer extends CommonDisplay{
     componentDidMount(){
         
         
+        
         fetch("http://localhost:4000/novsAdmin",{
             method:"GET",
             headers:{

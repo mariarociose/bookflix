@@ -47,7 +47,7 @@ class Libros extends CommonDisplay{
                 if(libros.datos.length == 0) libros.mensaje = "no hay libros";
                 this.setState({libros: libros.datos,
                 mensaje: libros.mensaje,granted: true});
-                
+
             })
             .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado",granted: false})))
         }else this.setState({mensaje: "Acceso denegado"})
@@ -81,6 +81,8 @@ class Libros extends CommonDisplay{
                         </td></tr>
                     ))
             };
+
+
             if(this.state.granted){
             var listado = (<main>
                 <div class='Nuevo'>
@@ -109,19 +111,10 @@ class Libros extends CommonDisplay{
                         </tbody>
                     </table>
 
-
-
-
                     </main>)
             }else listado = null;
 
             return(
-
-              
-
-
-
-              
 
                 <div>
                   <h1> {this.state.mensaje}</h1>

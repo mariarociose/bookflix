@@ -15,7 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import CommonDisplay from "../CommonDisplay";
-
+import "./libro_create.css"
 
 class Libro_new extends CommonDisplay{
 
@@ -73,58 +73,74 @@ class Libro_new extends CommonDisplay{
                 </header>
 
                 <body>
-                <div className="loginbox">
+                <div className="create_form">
                       <h1> Alta de libro </h1>
                     <form allign='center' >
-                        <p><label > Titulo * </label>
-                        <input allign='center' required  name="titulo"/>
 
-                        </p>
-                        <br/>
-                        <p>
-                        <label> Isbn * </label>
-                        <input allign='center' required maxLength="13" minLength="13" name="isbn"/>
-                        </p>
-                        <br/>
-                        <p>
-                        <label>Vencimiento * </label>
+                      <fieldset>
+
+
+                        <label for="titulo">Titulo:</label>
+                        <input type="text" id="titulo"  required  name="titulo"/>
+
+
+                        <label for="isbn"> Isbn:</label>
+                        <input type="text"  required maxLength="13" minLength="13" name="isbn"/>
+
+                        <label for="vencimiento">Vencimiento:</label>
                         <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
-                        </p>
-                        <br/>
 
-                        <p>Autor *
-                          <select>
+                        </fieldset>
+                        <fieldset>
+
+                        <label for="autor">Autor:</label>
+                          <select id="autor" name="autor">
                             <option value="autor1">Autor1</option>
                             <option value="autor2">Autor2</option>
                           </select>
 
-                        </p>
-                        <br/>
-
-                        <p>Genero *
-                        <select>
-
+                        <label for="autor">Genero:</label>
+                        <select id="genero" name="genero">
+                        <option value="autor1">Autor1</option>
+                        <option value="autor2">Autor2</option>
                         </select>
-                        </p>
-                        <br/>
-                        <p>Editorial *
-                        <select>
+                        <label for="editorial">Editorial:</label>
+                        <select id="editorial" name="editorial">
                             <option value="editorial1">editorial1</option>
                             <option value="editorial2">editorial2</option>
                         </select>
-                        </p>
-                        <br/>
-                        <p> Imagen
-                        <input type='file'/>
 
-                        </p>
-                        <br/>
-                        <input type="reset" value="Cancelar"/>
-                        <input type="submit" value="Guardar"/>
+                        </fieldset>
+                        <fieldset>
+                        <label for="imagen_portada" class="custom-file-upload">
+                          Imagen Portada:
+                        </label>
+                        <input id="imagen_portada" type="file"/>
 
-                        <br/>
+
+                        </fieldset>
+
+
+
+                        <button type="submit" value="Guardar" class="saveButton">
+                        Guardar
+                        </button>
+                        <button type="reset" value="Cancelar" class="resetButton">
+                        Cancelar
+                        </button>
+
+
                     </form>
+
+
+
+
+
+
+
+
                 </div>
+
 
 
 

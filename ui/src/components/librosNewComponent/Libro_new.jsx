@@ -69,15 +69,14 @@ class Libro_new extends CommonDisplay{
               return(
 
               <div>
-                <header>
-                </header>
+
 
                 <body>
                 <div className="create_form">
                       <h1> Alta de libro </h1>
-                    <form allign='center' >
+                    <form className="book_form" allign='center' >
 
-                      <fieldset>
+                      <fieldset className="create_field">
 
 
                         <label for="titulo">Titulo:</label>

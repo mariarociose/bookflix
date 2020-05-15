@@ -59,7 +59,12 @@ class Libros extends CommonDisplay{
                 this.props.history.push("/libro_new");
 
     }
+    redirectDetail = () => {
 
+                //Cookie.set("id_libro",libro.id_libro);
+                this.props.history.push("/libro_detail");
+
+    }
 
     renderContent = () => {
 
@@ -75,7 +80,7 @@ class Libros extends CommonDisplay{
                         <td> {libro.desc_genero} </td>
 
                                                 <td  class='select'>
-                            <a  class='button' href='#'>
+                            <a  class='button' href='#' onClick={this.redirectDetail}>
                             Ver detalle
                             </a>
                         </td></tr>

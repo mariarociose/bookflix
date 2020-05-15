@@ -12,40 +12,47 @@ class NovedadesContainer extends CommonDisplay{
 
         this.state = {
             novedades: [],
-            mensaje: ""
+            mensaje: "Acceso denegado"
         }
     }
 
     componentDidMount(){
         
-        
-        
+        if(Cookie.get("token") != null)
+            fetch("http://localhost:4000/novsAdmin",{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                    "access-token": Cookie.get("token").toString()
 
-
-        fetch("http://localhost:4000/novsAdmin",{
-            method:"GET",
-            headers:{
-                "Content-Type": "application/json",
-                "access-token": Cookie.get("token").toString()
-
-            }
-        })
-        .then((res) => (res.json()))
-        .then((novedades) => (this.setState({novedades: novedades.datos,
-            mensaje: novedades.mensaje},() => (console.log(this.state)))))
-        .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado"})))
+                }
+            })
+            .then((res) => (res.json()))
+            .then((novedades) => {
+                if(novedades.datos.length == 0){
+                    novedades.mensaje = "No hay novedades";
+                    
+                }
+                
+                this.setState({novedades: novedades.datos,
+                mensaje: novedades.mensaje});
+                
+            })
+            
+            .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado"})))
     }
 
 
 
     renderContent = () => {
-
-        let news = [];
-        if(this.state.novedades != undefined){
-                news = this.state.novedades.map((novedad) => (
-                //El map es como el collect de pharo
-                <Novedad new={novedad}></Novedad>
-            ));
+        if(Cookie.get("token") != null){
+            var news = [];
+            if(this.state.novedades != undefined){
+                    news = this.state.novedades.map((novedad) => (
+                    //El map es como el collect de pharo
+                    <Novedad new={novedad}></Novedad>
+                ));
+            }
         }
         return(
             <div>

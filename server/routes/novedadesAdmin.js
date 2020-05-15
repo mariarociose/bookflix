@@ -4,7 +4,7 @@ var db = require("../configs/db");
 var connection = db.connection;
 var protectedAdminRoute = require("../middlewares/protectedAdminRoute");
 
-router.get("/", function(req,res){
+router.get("/",protectedAdminRoute, function(req,res){
 
     let query = "select * from novedades";
     connection.query(query,function(err,rows,fields){

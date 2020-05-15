@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CommonDisplay from "../CommonDisplay";
-import Novedad from "../novedadComponent/NovedadComponent";
-import "./novedadesContainer.css";
+
 import Cookie from "js-cookie";
 
 class NovedadesContainer extends CommonDisplay{
@@ -12,13 +11,14 @@ class NovedadesContainer extends CommonDisplay{
 
         this.state = {
             novedades: [],
-            mensaje: "Acceso denegado"
+            mensaje: "",
+            granted : false
         }
     }
 
     componentDidMount(){
         
-        if(Cookie.get("token") != null)
+        if(Cookie.get("token") != null){
             fetch("http://localhost:4000/novsAdmin",{
                 method:"GET",
                 headers:{
@@ -35,36 +35,69 @@ class NovedadesContainer extends CommonDisplay{
                 }
                 
                 this.setState({novedades: novedades.datos,
-                mensaje: novedades.mensaje});
+                mensaje: novedades.mensaje,granted: true});
                 
             })
             
-            .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado"})))
+            .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado",granted:false})))
+        }else this.setState({mensaje: "Acceso denegado"})
     }
 
 
 
     renderContent = () => {
-        if(Cookie.get("token") != null){
+        
             var news = [];
             if(this.state.novedades != undefined){
                     news = this.state.novedades.map((novedad) => (
-                    //El map es como el collect de pharo
-                    <Novedad new={novedad}></Novedad>
+                    
+                        <tr>
+                            <td>{novedad.titulo}</td>
+                            <td>{novedad.descripcion}</td>
+                            <td><a href="">Ver novedad</a></td>
+                        </tr>
                 ));
+            
             }
-        }
-        return(
+        
+        if(this.state.granted){
+                var tabla = (
+                <main>
+                    <div class='Nuevo'>
+                        <a  class='button' href='#'>
+                        Agregar Novedad
+                        </a>
+                        </div>
+                        <table  class="table table-bordered table-hover" >
+
+                        <thead>
+
+                            <tr>
+                            <th className="text-center">Titulo</th>
+                            <th className="text-center">Descripcion</th>
+                            <th allign ="center"></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {news}
+
+                            </tbody>
+                        </table>
+
+                </main>
+
+            )
+        }else tabla = null;
+        
+            return(
             <div>
                 <h1>{this.state.mensaje}</h1>
-                <div className="container-news">
-
-                    {news}
-                </div>
+                {tabla}
             </div>
         )
     }
-
 
 }
 

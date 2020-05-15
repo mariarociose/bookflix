@@ -25,25 +25,32 @@ class Libros extends CommonDisplay{
         super(props);
         this.state = {
             libros: [],
-            mensaje: ""
+            mensaje: "",
+            granted: false
         }
     }
 
     componentDidMount(){
 
+        if(Cookie.get("token")!= null){
+            fetch("http://localhost:4000/libros",{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                    "access-token": Cookie.get("token").toString()
 
-        fetch("http://localhost:4000/libros",{
-            method:"GET",
-            headers:{
-                "Content-Type": "application/json",
-                "access-token": Cookie.get("token").toString()
-
-            }
-        })
-        .then((res) => (res.json()))
-        .then((libros) => (this.setState({libros: libros.datos,
-            mensaje: libros.mensaje},() => (console.log(this.state)))))
-        .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado"})))
+                }
+            })
+            .then((res) => (res.json()))
+            .then((libros) => {
+                console.log(libros)
+                if(libros.datos.length == 0) libros.mensaje = "no hay libros";
+                this.setState({libros: libros.datos,
+                mensaje: libros.mensaje,granted: true});
+                
+            })
+            .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado",granted: false})))
+        }else this.setState({mensaje: "Acceso denegado"})
     }
 
     redirectNew = () => {
@@ -58,70 +65,70 @@ class Libros extends CommonDisplay{
 
 
             let titulos = [];
-            titulos = this.state.libros.map((libro) => (
-                    //El map es como el collect de pharo
-                    <tr> <td data-title= 'ISBN'>{libro.isbn} </td>
-                    <td >{libro.titulo}  </td>
-                    <td> {libro.nombre} {libro.apellido} </td>
-                    <td> {libro.desc_editorial}</td>
-                    <td> {libro.desc_genero} </td>
+            if(this.state.libros != undefined){
+                titulos = this.state.libros.map((libro) => (
+                        //El map es como el collect de pharo
+                        <tr> <td data-title= 'ISBN'>{libro.isbn} </td>
+                        <td >{libro.titulo}  </td>
+                        <td> {libro.nombre} {libro.apellido} </td>
+                        <td> {libro.desc_editorial}</td>
+                        <td> {libro.desc_genero} </td>
 
-                                            <td  class='select'>
-                        <a  class='button' href='#'>
-                          Ver detalle
-                        </a>
-                      </td></tr>
-                ));
+                                                <td  class='select'>
+                            <a  class='button' href='#'>
+                            Ver detalle
+                            </a>
+                        </td></tr>
+                    ))
+            };
+            if(this.state.granted){
+            var listado = (<main>
+                <div class='Nuevo'>
+                    <a  class='button' href='#' onClick={this.redirectNew}>
+                    Agregar nuevo libro
+                    </a>
+                    </div>
+                <table  class="table table-bordered table-hover" >
+
+                      <thead>
+
+                        <tr>
+                        <th >ISBN</th>
+                        <th className="text-center">Titulo</th>
+                        <th className="text-center">Autor</th>
+                        <th className="text-center">Editorial</th>
+                        <th className="text-center">Genero</th>
+                        <th allign ="center"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {titulos}
+
+                        </tbody>
+                    </table>
 
 
+
+
+                    </main>)
+            }else listado = null;
 
             return(
 
-              <html>
+              
 
 
 
-              <body>
+              
 
+                <div>
+                  <h1> {this.state.mensaje}</h1>
 
-                  <h1>Listado de libros </h1>
+                  {listado}
 
-                  <main>
-                  <div class='Nuevo'>
-                      <a  class='button' href='#' onClick={this.redirectNew}>
-                      Agregar nuevo libro
-                      </a>
-                      </div>
-                  <table  class="table table-bordered table-hover" >
-
-                        <thead>
-
-                          <tr>
-                          <th >ISBN</th>
-                          <th className="text-center">Titulo</th>
-                          <th className="text-center">Autor</th>
-                          <th className="text-center">Editorial</th>
-                          <th className="text-center">Genero</th>
-                          <th allign ="center"></th>
-
-                          </tr>
-                          </thead>
-                          <tbody>
-
-                          {titulos}
-
-                          </tbody>
-                      </table>
-
-
-
-
-                      </main>
-
-                </body>
-
-                </html>
-
+                </div>
               )
 
   }

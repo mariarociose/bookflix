@@ -12,7 +12,7 @@ import Libro_new from  "./components/librosNewComponent/Libro_new";
 import NovedadesContainer from "./components/novedadesContainerComponent/NovedadesContainer";
 import Profile from "./components/profileComponent/Profile";
 import DetalleNovedad from "./components/detalleNovedad/DetalleNovedad";
-
+import Libro_detail from "./components/libroViewDetail/Libro_detail"
 function App() {
   return (
     <div className="App">
@@ -28,7 +28,7 @@ function App() {
             <Route exact path="/novedadesAdmin" component={NovedadesContainer}></Route>
             <Route exact path="/detalleNovedad" component= {DetalleNovedad}></Route>
             <Route exact path="/profile" component={Profile}></Route>
-            <Route exact path="/libro_detail/:id" component={Libro_detail}></Route>
+            <Route exact path="/libro_detail" component={Libro_detail}></Route>
           </Switch>
     </div>
   );

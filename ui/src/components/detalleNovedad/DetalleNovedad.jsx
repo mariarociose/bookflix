@@ -13,21 +13,21 @@ class DetalleNovedad extends CommonDisplay{
             descripcion: "",
             header: ""
         }
-    
+
     }
 
     componentDidMount(){
         let {titulo,descripcion} = this.props.location.state;
         this.setState({titulo,descripcion,header: titulo})
     }
-    
+
 
     handleChange = (e) => (
         this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
     )
 
-    renderContent(){ 
-        
+    renderContent(){
+
         return(
         <div>
             <form action="">

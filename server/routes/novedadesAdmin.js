@@ -15,7 +15,7 @@ router.get("/",protectedAdminRoute, function(req,res){
             return;
         }
 
-        res.json({datos: rows,mensaje:"Novedades"});
+        res.json({datos: rows,mensaje:"Listado de novedades"});
 
     })
 

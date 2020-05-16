@@ -29,6 +29,11 @@ class NavBar extends React.Component{
         this.props.history.push("/login");
     }
 
+    
+    redirectToProfile = () => {
+        this.props.history.push("/profile");
+    }
+
     redirectToLibrosAdmView = () => {
         this.props.history.push("/libros");
     }
@@ -69,7 +74,7 @@ class NavBar extends React.Component{
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
-                botonMisDatos = <li><a href="#" onClick={this.redirectToNovedadesAdmVie}>Mis Datos</a></li>
+                botonMisDatos = <li><a href="#" onClick={this.redirectToProfile}>Mis Datos</a></li>
             }
         }
 

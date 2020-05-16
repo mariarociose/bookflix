@@ -11,6 +11,7 @@ import Libros from "./components/librosAdmView/Libros";
 import Libro_new from  "./components/librosNewComponent/Libro_new";
 import NovedadesContainer from "./components/novedadesContainerComponent/NovedadesContainer";
 import Profile from "./components/profileComponent/Profile";
+import Editprofile from "./components/profileComponent/Editprofile";
 import DetalleNovedad from "./components/detalleNovedad/DetalleNovedad";
 import Libro_detail from "./components/libroViewDetail/Libro_detail"
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route exact path="/detalleNovedad" component= {DetalleNovedad}></Route>
             <Route exact path="/profile" component={Profile}></Route>
             <Route exact path="/libro_detail" component={Libro_detail}></Route>
+            <Route exact path="/editprofile" component={Editprofile}></Route>
           </Switch>
     </div>
   );

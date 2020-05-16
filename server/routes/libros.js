@@ -9,7 +9,9 @@ var connection = db.connection;
 router.get('/',protectedAdminRoute, function(req,res){
 
     var query =
-    "Select * from libros inner join generos on (libros.id_genero = generos.id_genero) inner join autores on libros.id_autor = autores.id_autor inner join editoriales on libros.id_editorial = editoriales.id_editorial";
+    "Select * from libros inner join generos on (libros.id_genero = generos.id_genero) \
+    inner join autores on libros.id_autor = autores.id_autor  \
+    inner join editoriales on libros.id_editorial = editoriales.id_editorial";
     console.log('tratando de hacer fetch');
     connection.query(query, function(err,rows,fields){
     if(err){

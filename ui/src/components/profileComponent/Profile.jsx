@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "./profile.css";
 import Cookie from "js-cookie";
 
+import CommonDisplay from "../CommonDisplay";
 
-
-class Profile extends React.Component{
+class Profile extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -19,10 +19,10 @@ class Profile extends React.Component{
     }
 
     getData = (userId) => (
-    
-      fetch("http://localhost:4000/profileData",{ 
+
+      fetch("http://localhost:4000/profileData",{
           method: "POST",
-          body: userId 
+          body: userId
       })
       .then((res) => (res.json()))
       .then((data) => {
@@ -31,7 +31,7 @@ class Profile extends React.Component{
       .catch((error)=>(console.log(error)))
     )
 
-    
+
     render(){
       let user = this.state.datos;
       user = JSON.parse( user );
@@ -49,13 +49,13 @@ class Profile extends React.Component{
                     <p>{user.apellido}</p>
                     <p>{user.email}</p>
                     <p>{user.nombre}</p>
-                </div>                
+                </div>
               </div>
             </div>
           </div>
           )
 
-    }  
+    }
 }
 
 export default Profile;

@@ -16,7 +16,7 @@
 .datos{
     display: flex;
     justify-content: flex-start;
-    
+
 }
 
 .tipodato{
@@ -36,7 +36,7 @@
 .button{
     align-content: flex-end;
     color: blue;
-    
+
 }
 
 .editperfilbox input[type="firstname"], input[type="lastname"], input[type="mail"]input[type="pass"]{

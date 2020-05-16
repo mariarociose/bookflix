@@ -47,7 +47,7 @@ class Libros extends CommonDisplay{
                 if(libros.datos.length == 0) libros.mensaje = "no hay libros";
                 this.setState({libros: libros.datos,
                 mensaje: libros.mensaje,granted: true});
-                
+
             })
             .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado",granted: false})))
         }else this.setState({mensaje: "Acceso denegado"})
@@ -59,7 +59,12 @@ class Libros extends CommonDisplay{
                 this.props.history.push("/libro_new");
 
     }
+    redirectDetail = () => {
 
+                //Cookie.set("id_libro",libro.id_libro);
+                this.props.history.push("/libro_detail");
+
+    }
 
     renderContent = () => {
 
@@ -75,12 +80,14 @@ class Libros extends CommonDisplay{
                         <td> {libro.desc_genero} </td>
 
                                                 <td  class='select'>
-                            <a  class='button' href='#'>
+                            <a  class='button' href='#' onClick={this.redirectDetail}>
                             Ver detalle
                             </a>
                         </td></tr>
                     ))
             };
+
+
             if(this.state.granted){
             var listado = (<main>
                 <div class='Nuevo'>
@@ -109,19 +116,10 @@ class Libros extends CommonDisplay{
                         </tbody>
                     </table>
 
-
-
-
                     </main>)
             }else listado = null;
 
             return(
-
-              
-
-
-
-              
 
                 <div>
                   <h1> {this.state.mensaje}</h1>

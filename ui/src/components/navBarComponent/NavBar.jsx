@@ -37,6 +37,16 @@ class NavBar extends React.Component{
         this.props.history.push("/novedadesAdmin")
     }
 
+    redirectToHome = () => {
+      if(Cookie.get("token") != null){
+          if(Cookie.get("userType") == 2)
+                  this.props.history.push("/homeAdmin")
+          else {
+              this.props.history.push("/home")
+          }
+        }
+    }
+
     componentDidMount(){
         if(Cookie.get("token") != null){
             this.setState({buttonText : "Cerrar Sesion", redirectFunction: this.deleteCookiesAndRedirectToHome})
@@ -51,6 +61,7 @@ class NavBar extends React.Component{
     render(){
         let botonDeLibros;
         let botonDeNovedades;
+        let botonMisDatos;
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
@@ -58,6 +69,7 @@ class NavBar extends React.Component{
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
+                botonMisDatos = <li><a href="#" onClick={this.redirectToNovedadesAdmVie}>Mis Datos</a></li>
             }
         }
 
@@ -67,9 +79,10 @@ class NavBar extends React.Component{
                 <p>Bookflix</p>
                 <nav>
                     <ul className="navLink">
-                        <li><a href="#">Contenido</a></li>
+                        <li><a href="#" onClick= {this.redirectToHome}>Inicio</a></li>
                         {botonDeLibros}
                         {botonDeNovedades}
+                        {botonMisDatos}
                     </ul>
 
 

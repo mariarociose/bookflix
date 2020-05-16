@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CommonDisplay from "../CommonDisplay";
-import Novedad from "../novedadComponent/NovedadComponent";
-import "./novedadesContainer.css";
+import {Link, Route, Switch} from "react-router-dom";
 import Cookie from "js-cookie";
 
 class NovedadesContainer extends CommonDisplay{
@@ -12,48 +11,106 @@ class NovedadesContainer extends CommonDisplay{
 
         this.state = {
             novedades: [],
-            mensaje: ""
+            mensaje: "",
+            granted : false
         }
     }
 
     componentDidMount(){
         
-        
-        fetch("http://localhost:4000/novsAdmin",{
-            method:"GET",
-            headers:{
-                "Content-Type": "application/json",
-                "access-token": Cookie.get("token").toString()
+        if(Cookie.get("token") != null){
+            fetch("http://localhost:4000/novsAdmin",{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                    "access-token": Cookie.get("token").toString()
+
+                }
+            })
+            .then((res) => (res.json()))
+            .then((novedades) => {
+                if(novedades.datos.length == 0){
+                    novedades.mensaje = "No hay novedades";
+                    
+                }
                 
-            }
-        })
-        .then((res) => (res.json()))
-        .then((novedades) => (this.setState({novedades: novedades.datos,
-            mensaje: novedades.mensaje},() => (console.log(this.state)))))
-        .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado"})))  
+                this.setState({novedades: novedades.datos,
+                mensaje: novedades.mensaje,granted: true},() => (console.log(this.state.novedades)));
+                
+            })
+            
+            .catch(() => (this.setState({novedades:[],mensaje: "Acceso denegado",granted:false})))
+        }else this.setState({mensaje: "Acceso denegado"})
     }
 
-    renderContent = () => {
+    
+
+    renderContent(){
+        console.log(this.state.novedades)
+            var news = [];
+            if(this.state.novedades != undefined){
+                    
+                    news = this.state.novedades.map((novedad) => (
+                        
+                        <tr key={novedad.id_novedad}>
+                            <td>{novedad.titulo}</td>
+                            <td>{novedad.descripcion}</td>
+                            <td><Link rep to={{
+                                pathname: `/detalleNovedad`,
+                                state:{
+                                    titulo: novedad.titulo,
+                                    descripcion: novedad.descripcion
+                                }
+                            }}>Ver Detalle</Link></td>
+                            
+                        </tr>)
+                        
+                );
+                
+            }
         
-        let news = [];
-        if(this.state.novedades != undefined){
-                news = this.state.novedades.map((novedad) => (
-                //El map es como el collect de pharo
-                <Novedad new={novedad}></Novedad>
-            ));
-        }
-        return(
+        if(this.state.granted){
+                var tabla = (
+                    
+                <main>
+                   
+                    <div class='Nuevo'>
+                        <a  class='button' href='#'>
+                        Agregar Novedad
+                        </a>
+                        </div>
+                        <table  class="table table-bordered table-hover" >
+
+                        <thead>
+
+                            <tr>
+                            <th className="text-center">Titulo</th>
+                            <th className="text-center">Descripcion</th>
+                            <th allign ="center"></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {news}
+
+                            </tbody>
+                        </table>
+
+                </main>
+
+            )
+        }else tabla = null;
+        
+            return(
             <div>
                 <h1>{this.state.mensaje}</h1>
-                <div className="container-news">
-                    
-                    {news}
-                </div>
+                {tabla}
+
             </div>
         )
     }
-
-
+    
 }
 
 export default NovedadesContainer;

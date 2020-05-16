@@ -16,54 +16,121 @@ import Paper from '@material-ui/core/Paper';
 
 import CommonDisplay from "../CommonDisplay";
 
-
+import Libro from "../libroComponent/Libro";
+import "./libros.css"
 
 class Libros extends CommonDisplay{
 
     constructor(props){
         super(props);
         this.state = {
-            datos: []
+            libros: [],
+            mensaje: "",
+            granted: false
         }
     }
 
+    componentDidMount(){
 
-    getData = (form) => (
+        if(Cookie.get("token")!= null){
+            fetch("http://localhost:4000/libros",{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                    "access-token": Cookie.get("token").toString()
 
-        fetch("http://localhost:4000/libros",{
-            method: "POST",
-            body: new FormData(form)
-        })
-        .then((res) => (res.json()))
-        .then((data) => {
-            this.setState({datos:data}, () => (console.log(this.state.datos)))
-        })
-    )
+                }
+            })
+            .then((res) => (res.json()))
+            .then((libros) => {
+                console.log(libros)
+                if(libros.datos.length == 0) libros.mensaje = "no hay libros";
+                this.setState({libros: libros.datos,
+                mensaje: libros.mensaje,granted: true});
 
-          renderContent(){
+            })
+            .catch(() => (this.setState({libros:[],mensaje: "Acceso denegado",granted: false})))
+        }else this.setState({mensaje: "Acceso denegado"})
+    }
 
-                    return(
-
-                      <div>
-                      <h1>Listado de libros </h1>
-                      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th className="text-center">#</th>
-            <th className="text-center">Titulo</th>
-            <th className="text-center">Editorial</th>
-            <th className="text-center">Autor</th>
-            <th className="text-center">Genero</th>
-          </tr>
-        </thead>
-        <tbody>
+    redirectNew = () => {
 
 
-        </tbody>
-        </table>
-        </div>
-    )
-}}
+                this.props.history.push("/libro_new");
+
+    }
+    redirectDetail = () => {
+
+                //Cookie.set("id_libro",libro.id_libro);
+                this.props.history.push("/libro_detail");
+
+    }
+
+    renderContent = () => {
+
+
+            let titulos = [];
+            if(this.state.libros != undefined){
+                titulos = this.state.libros.map((libro) => (
+                        //El map es como el collect de pharo
+                        <tr> <td data-title= 'ISBN'>{libro.isbn} </td>
+                        <td >{libro.titulo}  </td>
+                        <td> {libro.nombre} {libro.apellido} </td>
+                        <td> {libro.desc_editorial}</td>
+                        <td> {libro.desc_genero} </td>
+
+                                                <td  class='select'>
+                            <a  class='button' href='#' onClick={this.redirectDetail}>
+                            Ver detalle
+                            </a>
+                        </td></tr>
+                    ))
+            };
+
+
+            if(this.state.granted){
+            var listado = (<main>
+                <div class='Nuevo'>
+                    <a  class='button' href='#' onClick={this.redirectNew}>
+                    Agregar nuevo libro
+                    </a>
+                    </div>
+                <table  class="table table-bordered table-hover" >
+
+                      <thead>
+
+                        <tr>
+                        <th >ISBN</th>
+                        <th className="text-center">Titulo</th>
+                        <th className="text-center">Autor</th>
+                        <th className="text-center">Editorial</th>
+                        <th className="text-center">Genero</th>
+                        <th allign ="center"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {titulos}
+
+                        </tbody>
+                    </table>
+
+                    </main>)
+            }else listado = null;
+
+            return(
+
+                <div>
+                  <h1> {this.state.mensaje}</h1>
+
+                  {listado}
+
+                </div>
+              )
+
+  }
+}
 
 
 export default Libros;

@@ -15,6 +15,7 @@ class AlbumContainer extends CommonDisplay{
 
     componentDidMount(){
 
+
         fetch("https://jsonplaceholder.typicode.com/users")
         .then(
           (response) => (response.json())
@@ -32,6 +33,7 @@ class AlbumContainer extends CommonDisplay{
     
     renderContent = () =>(
         <h1>SOY La sublclase</h1>
+         
     )
     
 

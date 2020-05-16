@@ -8,14 +8,14 @@ router.get("/",protectedAdminRoute, function(req,res){
 
     let query = "select * from novedades";
     connection.query(query,function(err,rows,fields){
-        
-        
+
+
         if(err){
             res.status(500).send("Hubo un error")
             return;
         }
 
-        res.json({datos: rows,mensaje:"Novedades"});
+        res.json({datos: rows,mensaje:"Listado de novedades"});
 
     })
 

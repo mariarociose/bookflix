@@ -14,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import CommonDisplay from "../CommonDisplay";
 import "./profile.css"
 
-class Profile extends CommonDisplay{
+class Editprofile extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -86,4 +86,4 @@ class Profile extends CommonDisplay{
 </div>
 )
 }}
-export default Profile;
+export default Editprofile;

@@ -14,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import CommonDisplay from "../CommonDisplay";
 import "./profile.css"
 
-class Profile extends CommonDisplay{
+class Editprofile extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -49,9 +49,9 @@ class Profile extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
-    handleSubmit = () => {
+    handleEdit = () => {
         this.props.history.push("/editprofile");
-    }
+        }
 
     renderContent = () => {
 
@@ -61,21 +61,24 @@ class Profile extends CommonDisplay{
                
 
                 <div className="create_form">
-                      <h1> Mi perfil </h1>
+                      <h1> Mi perfil</h1>
+                      <form onSubmit={this.handleEdit} className="book_form" allign='center' >
+                  <fieldset className="create_field"> 
+                      <h3>Nombre</h3>
+                      <p>{this.state.user.nombre}</p> 
 
-                    <form className="book_form" allign='center' onSubmit={this.handleSubmit} >
-                        <fieldset className="create_field">
-                            <h3>Nombre</h3>
-                            <p> {this.state.user.nombre} </p>
-                            <h3>Apellido</h3>
-                            <p> {this.state.user.apellido} </p>    
-                            <h3>Contraseña</h3>
-                            <p> {this.state.user.password} </p>
-                            <h3>Email</h3>
-                            <p> {this.state.user.email} </p>
-                            <button  type="submit" value="editarPerfil" class="editButton">
-                            EditarPerfil
-                            </button>
+                      <h3>Apellido</h3>
+                      <p>{this.state.user.apellido}</p> 
+
+                      <h3>Contraseña</h3>
+                      <p>{this.state.user.password}</p> 
+
+                      <h3>Email</h3>
+                      <p>{this.state.user.email}</p> 
+
+                      <button type="submit" value="Guardar" class="saveButton">
+                      Editar Perfil
+                      </button>
                         </fieldset>
                     </form>
                 </div>
@@ -83,4 +86,4 @@ class Profile extends CommonDisplay{
 </div>
 )
 }}
-export default Profile;
+export default Editprofile;

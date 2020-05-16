@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CommonDisplay from "../CommonDisplay";
-
+import {Link, Route, Switch} from "react-router-dom";
 import Cookie from "js-cookie";
 
 class NovedadesContainer extends CommonDisplay{
@@ -35,7 +35,7 @@ class NovedadesContainer extends CommonDisplay{
                 }
                 
                 this.setState({novedades: novedades.datos,
-                mensaje: novedades.mensaje,granted: true});
+                mensaje: novedades.mensaje,granted: true},() => (console.log(this.state.novedades)));
                 
             })
             
@@ -43,26 +43,37 @@ class NovedadesContainer extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
+    
 
-
-    renderContent = () => {
-        
+    renderContent(){
+        console.log(this.state.novedades)
             var news = [];
             if(this.state.novedades != undefined){
-                    news = this.state.novedades.map((novedad) => (
                     
-                        <tr>
+                    news = this.state.novedades.map((novedad) => (
+                        
+                        <tr key={novedad.id_novedad}>
                             <td>{novedad.titulo}</td>
                             <td>{novedad.descripcion}</td>
-                            <td><a href="">Ver novedad</a></td>
-                        </tr>
-                ));
-            
+                            <td><Link rep to={{
+                                pathname: `/detalleNovedad`,
+                                state:{
+                                    titulo: novedad.titulo,
+                                    descripcion: novedad.descripcion
+                                }
+                            }}>Ver Detalle</Link></td>
+                            
+                        </tr>)
+                        
+                );
+                
             }
         
         if(this.state.granted){
                 var tabla = (
+                    
                 <main>
+                   
                     <div class='Nuevo'>
                         <a  class='button' href='#'>
                         Agregar Novedad
@@ -95,10 +106,11 @@ class NovedadesContainer extends CommonDisplay{
             <div>
                 <h1>{this.state.mensaje}</h1>
                 {tabla}
+
             </div>
         )
     }
-
+    
 }
 
 export default NovedadesContainer;

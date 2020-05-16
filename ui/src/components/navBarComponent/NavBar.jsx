@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Cookie from "js-cookie";
 import {deleteAllCookies} from "../../js/functions";
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import "./navbar.css";
 
 class NavBar extends React.Component{
@@ -65,8 +65,7 @@ class NavBar extends React.Component{
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
-                botonDeNovedades = <li><a href="#" onClick={this.redirectToNovedadesAdmView}>Novedades</a></li>
-                botonMisDatos = null
+                botonDeNovedades = <li><Link to="/novedadesAdmin">Novedades</Link></li>
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null

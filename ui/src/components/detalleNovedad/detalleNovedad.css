@@ -1,0 +1,32 @@
+.detalleNovedad{
+    
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.detalleNovedad form{
+    height: 400px;
+    background-color: lightseagreen;
+    width: 300px;
+    margin: 0 auto;
+
+}
+.detalleNovedad form, .detalleNovedad h1, .detalleNovedad label{
+    display: block;
+}
+
+.detalleNovedad form input[type="button"], .detalleNovedad form input[type="text"], .detalleNovedad form input[type="submit"]{
+
+    height: 30px;
+    
+}
+
+.detalleNovedad form input[type="button"], .detalleNovedad form input[type="submit"]{
+    width: 100px;
+    display: block;
+    margin-left: 100px;
+    margin-top: 20px
+    
+    
+}

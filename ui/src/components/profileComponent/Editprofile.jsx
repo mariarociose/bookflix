@@ -21,6 +21,11 @@ class Editprofile extends CommonDisplay{
         this.state = {
           user: {},
           userId: "",
+          nombre: "",
+          apellido:"",
+          email:"",
+          password:"",
+          password2:"",
           editing: false
         }
     }
@@ -51,7 +56,7 @@ class Editprofile extends CommonDisplay{
     }
 
     handleChange = (e) => (
-        this.setState({[e.target.user.name]: e.target.user.value},()=>(console.log(this.state)))
+        this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
     )
    
     handleClick = (e) => {
@@ -61,11 +66,11 @@ class Editprofile extends CommonDisplay{
     handleSubmit = (e) => {
         e.preventDefault();
         let formData = new FormData();
-        formData.append("nombre",e.target.user.nombre.value);
-        formData.append("lastname",e.target.user.lastname.value);
-        formData.append("email",e.target.user.email.value);
-        formData.append("password",e.target.user.password.value);
-        formData.append("password",e.target.user.password.value);
+        formData.append("nombre",e.target.nombre.value);
+        formData.append("lastname",e.target.lastname.value);
+        formData.append("email",e.target.email.value);
+        formData.append("password",e.target.password.value);
+        formData.append("password",e.target.password2.value);
 
         fetch("http://localhost:4000/profileData",{
             method:"POST",
@@ -105,16 +110,31 @@ class Editprofile extends CommonDisplay{
                       <h1> Editar mi perfil</h1>
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                         <fieldset className="create_field"> 
+
                         <label htmlFor="nombre">Nombre</label>
-                            <input required disabled={!this.state.editing} type="text" name="nombre" id="" value={this.state.user.nombre} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="text" 
+                            placeholder={this.state.user.nombre}
+                            name="nombre" id="" value={this.state.nombre} onChange={this.handleChange}/>
+                            
                             <label htmlFor="lastname"> Apellido: </label>
-                            <input required disabled={!this.state.editing} type="text" name="lastnombre" id="" value={this.state.user.apellido} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="text" 
+                            placeholder={this.state.user.nombre}
+                            name="apellido" id="" value={this.state.apellido} onChange={this.handleChange}/>
+                            
                             <label htmlFor="email"> Email:</label>
-                            <input required disabled={!this.state.editing} type="text" name="email" id="" value={this.state.user.email} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.apellido}
+                             name="email" id="" value={this.state.email} onChange={this.handleChange}/>
+                            
                             <label htmlFor="password"> Constraseña:</label>
-                            <input required disabled={!this.state.editing} type="text" name="password" id="" value={this.state.user.password} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.email}
+                             name="password" id="" value={this.state.password} onChange={this.handleChange}/>
+                            
                             <label htmlFor="password2"> Repetir Constraseña:</label>
-                            <input required disabled={!this.state.editing} type="text" name="password2" id="" value={this.state.user.password} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.password}
+                             name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
                             {buttons}
 
 

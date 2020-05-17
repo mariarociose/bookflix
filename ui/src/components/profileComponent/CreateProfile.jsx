@@ -6,15 +6,37 @@ import AvatarLogo from "../../img/avatar.png";
 import CommonDisplay from "../CommonDisplay";
 
 
-class AutorCreate extends CommonDisplay{
+class CreateProfile extends CommonDisplay{
       constructor(props){
           super(props);
           console.log(this.props)
           this.state = {
-              datos: {}
+              datos: "",
+              numero: ""
           }
+
+          this.handleChange = this.handleChange.bind(this);
+
       }
-      componentDidMount(){}
+      componentDidMount(){
+      
+      }
+      
+
+      handleChange(e) {
+        console.log("LAPPPUTTTTTTTTTTTTTAAAAAAAA")
+        const entrada=e.target.card.value;
+        let cant=0;
+        for(let x=0; x<entrada.length;x++)
+          if (entrada[x]==='0' || entrada[x]==='1')
+            cant++;
+        if (cant===entrada.length)
+          this.setState( {
+            numero: entrada
+          })
+        }
+      
+
       getData = (form) => (
 
           fetch("http://localhost:4000/createProfile",{
@@ -31,6 +53,8 @@ class AutorCreate extends CommonDisplay{
                   this.props.history.push("/login");
                 }
       handleSubmit = (e) => {
+                  
+                    alert('A name was submitted: ' );
 
                     e.preventDefault();
                     this.getData(e.target)
@@ -51,20 +75,29 @@ class AutorCreate extends CommonDisplay{
                 <form className="book_form" allign='center'  onSubmit={this.handleSubmit}>
 
                   <fieldset className="create_field">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre"  required  name="nombre"/> 
+                            <label htmlFor="nombre">Nombre</label>
+                            <input required minLength = "4"  type="text" id="nombre"  name="nombre"/> 
                             
-                            <label for="lastname"> Apellido: </label>
-                            <input type="text" id="apellido"  required name="apellido" />
+                            <label htmlFor="lastname"> Apellido: </label>
+                            <input required minLength = "4" type="text" id="apellido" name="apellido" />
                             
-                            <label for="email"> Email:</label>
-                            <input type="text" id="email"  required name="email" />
+                            <label htmlFor="email"> Email:</label>
+                            <input required minLength = "6" type="text" id="email" name="email" />
+
+                            <label htmlFor="card"> Tarjeta</label>
+                            <input required minLength = "16" maxLength = "16" 
+                            type="text" id="card" name="card" 
+                            value={this.state.numero} onChange={this.handleChange}
+                            />
+
+                            <label for="cardCod"> Código Tarjeta</label>
+                            <input required minLength = "3" maxLength = "3" type="text" id="cardCod" name="cardCod" />
                             
                             <label for="password"> Constraseña:</label>
-                            <input type="text" id="password"  required name="password" />
+                            <input required minLength = "6" type="password" id="password" name="password" />
                             
                             <label for="password2"> Repetir Constraseña:</label>
-                            <input type="text" id="password2"  required name="password2" />
+                            <input required minLength = "6" type="password" id="password2" name="password2" />
 
                     </fieldset>
 
@@ -90,4 +123,4 @@ class AutorCreate extends CommonDisplay{
 
 
 }
-export default AutorCreate;
+export default CreateProfile;

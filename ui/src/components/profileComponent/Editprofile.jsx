@@ -49,6 +49,19 @@ class Editprofile extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
+    handleCancel = () => {
+        this.props.history.push("/profile");
+        }
+
+    handleEdit = () => {
+        this.props.history.push("/editprofile");
+       }
+
+    handleChange = (e) => (
+        this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
+    )
+
+
 
     renderContent = () => {
 
@@ -59,24 +72,28 @@ class Editprofile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Editar mi perfil</h1>
-                    <form className="book_form" allign='center' >
+                    <form className="book_form" allign='center' onSubmit={this.handleEdit}>
                         <fieldset className="create_field"> 
-                            <label for="titulo">Nombre:</label>
-                            <input type="text" value={this.state.user.nombre} id="nombre"  required  name="nombre"/>
-
-                            <label for="lastname"> Apellido:</label>
-                            <input type="text" value={this.state.user.apellido} required maxLength="13" minLength="13" name="lastname"/>
-
-                            <label for="password"> Constraseña:</label>
-                            <input type="text" value={this.state.user.password} required maxLength="13" minLength="13" name="pasword"/>
-
-                            <label for="card"> Email:</label>
-                            <input type="text" value={this.state.user.email} required maxLength="13" minLength="13" name="card"/>
-
-                            <button type="submit" value="Guardar" class="saveButton">
+                            <label for="titulo">Nombre:
+                            <input type="text" value={this.state.user.nombre} id="nombre"  
+                            onChange={this.handleChange} required  name="nombre"/>
+                            </label>
+                            <label for="lastname"> Apellido:
+                            <input type="text" value={this.state.user.apellido} 
+                            onChange={this.handleChange} required maxLength="13" minLength="13" name="lastname"/>
+                            </label>
+                            <label for="password"> Constraseña:
+                            <input type="text" value={this.state.user.password} 
+                            onChange={this.handleChange} required maxLength="13" minLength="13" name="pasword"/>
+                            </label>
+                            <label for="card"> Email:
+                            <input type="text" value={this.state.user.email} 
+                            onChange={this.handleChange} required maxLength="13" minLength="13" name="card"/>
+                            </label>
+                            <button value="Guardar" class="saveButton">
                             Guardar
                             </button>
-                            <button type="reset" value="Cancelar" class="resetButton">
+                            <button onClick={this.handleCancel} value="Cancelar" class="resetButton">
                             Cancelar
                             </button>
                         </fieldset>

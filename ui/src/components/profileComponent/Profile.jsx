@@ -49,10 +49,12 @@ class Editprofile extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
-    handleEdit = () => {
+    handleGo = () => {
         this.props.history.push("/editprofile");
         }
 
+
+    
     renderContent = () => {
 
               return(
@@ -62,7 +64,7 @@ class Editprofile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Mi perfil</h1>
-                      <form onSubmit={this.handleEdit} className="book_form" allign='center' >
+                      <form onSubmit={this.handleGo} className="book_form" allign='center' >
                   <fieldset className="create_field"> 
                       <h3>Nombre</h3>
                       <p>{this.state.user.nombre}</p> 

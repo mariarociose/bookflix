@@ -25,12 +25,55 @@ class Libro_new extends CommonDisplay{
           autores:[],
           editoriales:[],
           generos:[],
-          mensaje: "",
+          datos:{},
           granted : false
         }
     }
 
+    getData = (form) => (
+
+        fetch("http://localhost:4000/libro_insert",{
+            method: "POST",
+            body: new FormData(form)
+        }
+
+      )
+        .then((res) => (res.json()))
+        .then((data) => {
+            this.setState({datos:data}, () => (console.log(this.state.datos)))
+        })
+
+    )
+
+    redirectOnCreatead = () => {
+
+
+                this.props.history.push("/libro_new");
+              }
+
+    handleSubmit = (e) => {
+
+
+                            e.preventDefault();
+                            console.log(e.target)
+                            this.getData(e.target)
+                             //retorna Promise, las promises las manejamos con then. Fetch tmb retorna promise
+                            .then(() => {
+
+                                this.redirectOnCreatead()
+
+                            })
+
+                            e.target.reset();
+
+                        }
+
+
+
     componentDidMount(){
+
+
+
 
         if(Cookie.get("token")!= null){
             fetch("http://localhost:4000/autores",{
@@ -44,7 +87,7 @@ class Libro_new extends CommonDisplay{
             .then((res) => (res.json()))
             .then((autores) => {
                 console.log(autores)
-                console.log(autores.dato)
+
                 if(autores.length == 0) autores.mensaje = "No hay Autores";
                 this.setState({autores: autores,
                 mensaje: autores.mensaje,granted: true});
@@ -103,7 +146,7 @@ class Libro_new extends CommonDisplay{
     renderContent = () => {
 
 
-
+                  let mensaje = <p>{this.state.datos.mensaje} </p>
 
                   let autores_select = [];
                   console.log(this.state.autores);
@@ -138,7 +181,8 @@ class Libro_new extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Alta de libro </h1>
-                    <form className="book_form" allign='center' >
+                        {mensaje}
+                    <form className="book_form" allign='center' onSubmit={this.handleSubmit} >
 
                       <fieldset className="create_field">
 
@@ -151,7 +195,7 @@ class Libro_new extends CommonDisplay{
                         <input type="text"  required maxLength="13" minLength="13" name="isbn"/>
 
                         <label for="vencimiento">Vencimiento:</label>
-                        <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
+                        <input type='date' required name="fecha_vencimiento" id="fecha_vencimiento"/>
 
                         </fieldset>
                         <fieldset className="create_field">
@@ -177,7 +221,7 @@ class Libro_new extends CommonDisplay{
                         <label for="imagen_portada" class="custom-file-upload">
                           Imagen Portada:
                         </label>
-                        <input id="imagen_portada" type="file"/>
+                        <input id="portada_img" name="portada_img" type="file"/>
 
 
                         </fieldset>

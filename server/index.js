@@ -60,6 +60,9 @@ app.use("/genero_insert",genero);
 var autor = require("./routes/autor_insert")
 app.use("/autor_insert",autor);
 
+var libro_new = require ("./routes/libro_insert")
+app.use("/libro_insert",libro_new);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

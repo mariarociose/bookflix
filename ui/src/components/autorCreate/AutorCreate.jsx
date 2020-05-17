@@ -39,7 +39,7 @@ class AutorCreate extends CommonDisplay{
       redirectOnCreatead = () => {
 
 
-                  this.props.history.push("/libros");
+                  this.props.history.push("/createautor");
                 }
 
 
@@ -63,12 +63,13 @@ class AutorCreate extends CommonDisplay{
 
 
       renderContent = () => {
-
+        let mensaje = <p>{this.state.datos.mensaje} </p>
         return(
 
           <div>
             <div className="create_form">
                   <h1> Alta de Autor </h1>
+                  {mensaje}
                 <form className="book_form" allign='center'  onSubmit={this.handleSubmit}>
 
                   <fieldset className="create_field">

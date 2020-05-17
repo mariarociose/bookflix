@@ -15,10 +15,31 @@ router.post('/',(req,res) => {
     console.log(query)
     connection.query(query, function(err,result){
     if(err){
-        res.status(500).send('Hubo un error');
-        return;
-    }
+      if(err.errno==500){
+          res.status(500).send('Hubo un error');
+          // 1062 es el codigo de error de mysql para duplicate entry
+          return;
+        }
+      if(err.errno==1062){
+        // 1062 es el codigo de error de mysql para duplicate entry
+          console.log('Duplicado');
+          res.json(
+              {
+                  mensaje: "La editorial ya se encuentra en el sistema"
+              }
+            )
+
+          }
+
+  }
+  else{
+    res.json(
+        {
+            mensaje: "Editorial cargada con exito"
+        }
+      )
         console.log('nuevo elemento insertado');
+      }
     });
 })
 

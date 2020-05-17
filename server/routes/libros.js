@@ -6,7 +6,7 @@ var config = require("../configs/config");
 var protectedAdminRoute = require("../middlewares/protectedAdminRoute");
 var connection = db.connection;
 
-router.get('/',protectedAdminRoute, function(req,res){
+router.get('/', function(req,res){
 
     var query =
     "Select * from libros inner join generos on (libros.id_genero = generos.id_genero) \

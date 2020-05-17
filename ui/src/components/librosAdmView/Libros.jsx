@@ -81,17 +81,13 @@ class Libros extends CommonDisplay{
                         <td> {libro.nombre} {libro.apellido} </td>
                         <td> {libro.desc_editorial}</td>
                         <td> {libro.desc_genero} </td>
-                        <td  class='select'>
-                            <a  class='button' href='#' onClick={this.redirectDetail}>
-                            Ver detalle
-                            </a>
-                        </td>
-                        <td><Link rep to={{
+                        <td><Link class='button' rep to={{
                             pathname: `/libro_detail`,
                             state:{
-                                id_libro: libro.id_libro,
+                                id_libro:libro.id_libro
                             }
                         }}>Ver Detalle</Link></td>
+
                         </tr>
                     ))
             };

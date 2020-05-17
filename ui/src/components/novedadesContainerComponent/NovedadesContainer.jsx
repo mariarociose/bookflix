@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CommonDisplay from "../CommonDisplay";
-import {Link, Route, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Cookie from "js-cookie";
 
 class NovedadesContainer extends CommonDisplay{
@@ -55,9 +55,10 @@ class NovedadesContainer extends CommonDisplay{
                         <tr key={novedad.id_novedad}>
                             <td>{novedad.titulo}</td>
                             <td>{novedad.descripcion}</td>
-                            <td><Link rep to={{
+                            <td><Link className="button" rep to={{
                                 pathname: `/detalleNovedad`,
                                 state:{
+                                    id: novedad.id_novedad,
                                     titulo: novedad.titulo,
                                     descripcion: novedad.descripcion
                                 }
@@ -74,12 +75,12 @@ class NovedadesContainer extends CommonDisplay{
                     
                 <main>
                    
-                    <div class='Nuevo'>
-                        <a  class='button' href='#'>
+                    <div className='Nuevo'>
+                        <a  className='button' href='#'>
                         Agregar Novedad
                         </a>
                         </div>
-                        <table  class="table table-bordered table-hover" >
+                        <table  className="table table-bordered table-hover" >
 
                         <thead>
 

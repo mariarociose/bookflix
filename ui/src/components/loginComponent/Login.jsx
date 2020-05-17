@@ -76,7 +76,7 @@ class Login extends React.Component{
                 <h1 >Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label > Usuario</label>
-                    <input required  type="radio" name="userType" value="1" checked={true}/>
+                    <input required  type="radio" name="userType" value="1"/>
                     <label > Admin</label>    
                     <input required type="radio" name="userType" value="2"/>
                     <p>Email</p>

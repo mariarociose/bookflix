@@ -19,10 +19,13 @@ import CommonDisplay from "../CommonDisplay";
 import Libro from "../libroComponent/Libro";
 import "./libros.css"
 
+import {Link, Route, Switch} from "react-router-dom";
+
 class Libros extends CommonDisplay{
 
     constructor(props){
         super(props);
+        console.log(this.props)
         this.state = {
             libros: [],
             mensaje: "",
@@ -73,17 +76,19 @@ class Libros extends CommonDisplay{
             if(this.state.libros != undefined){
                 titulos = this.state.libros.map((libro) => (
                         //El map es como el collect de pharo
-                        <tr> <td data-title= 'ISBN'>{libro.isbn} </td>
+                        <tr> <td data-title= 'ISBN' key={libro.id_libro}>{libro.isbn} </td>
                         <td >{libro.titulo}  </td>
                         <td> {libro.nombre} {libro.apellido} </td>
                         <td> {libro.desc_editorial}</td>
                         <td> {libro.desc_genero} </td>
+                        <td><Link class='button' rep to={{
+                            pathname: `/libro_detail`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Ver Detalle</Link></td>
 
-                                                <td  class='select'>
-                            <a  class='button' href='#' onClick={this.redirectDetail}>
-                            Ver detalle
-                            </a>
-                        </td></tr>
+                        </tr>
                     ))
             };
 

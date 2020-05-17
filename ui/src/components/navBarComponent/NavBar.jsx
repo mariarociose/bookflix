@@ -29,7 +29,7 @@ class NavBar extends React.Component{
         this.props.history.push("/login");
     }
 
-    
+
     redirectToProfile = () => {
         this.props.history.push("/profile");
     }
@@ -40,6 +40,18 @@ class NavBar extends React.Component{
 
     redirectToNovedadesAdmView = () => {
         this.props.history.push("/novedadesAdmin")
+    }
+
+    redirectToCreateAutorView = () => {
+        this.props.history.push("/createAutor")
+    }
+
+    redirectToCreateGeneroView = () => {
+        this.props.history.push("/createGenero")
+    }
+
+    redirectToCreateEditorialView = () => {
+        this.props.history.push("/createEditorial")
     }
 
     redirectToHome = () => {
@@ -67,10 +79,16 @@ class NavBar extends React.Component{
         let botonDeLibros;
         let botonDeNovedades;
         let botonMisDatos;
+        let botonCreateAutor;
+        let botonCreateGenero;
+        let botonCreateEditorial;
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
                 botonDeNovedades = <li><Link to="/novedadesAdmin">Novedades</Link></li>
+                botonCreateAutor = <li><a href="#" onClick={this.redirectToCreateAutorView}>Autor</a></li>
+                botonCreateGenero =<li><a href="#" onClick={this.redirectToCreateGeneroView}>Genero</a></li>
+                botonCreateEditorial = <li><a href="#" onClick={this.redirectToCreateEditorialView}>Editorial</a></li>
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
@@ -87,6 +105,9 @@ class NavBar extends React.Component{
                         <li><a href="#" onClick= {this.redirectToHome}>Inicio</a></li>
                         {botonDeLibros}
                         {botonDeNovedades}
+                        {botonCreateAutor}
+                        {botonCreateGenero}
+                        {botonCreateEditorial}
                         {botonMisDatos}
                     </ul>
 

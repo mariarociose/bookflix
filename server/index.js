@@ -51,6 +51,15 @@ app.use("/profileData",profileData);
 var libro = require("./routes/libro_by_id")
 app.use("/libro_by_id",libro);
 
+var editorial = require("./routes/editorial_insert")
+app.use("/editorial_insert",editorial);
+
+var genero = require("./routes/genero_insert")
+app.use("/genero_insert",genero);
+
+var autor = require("./routes/autor_insert")
+app.use("/autor_insert",autor);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

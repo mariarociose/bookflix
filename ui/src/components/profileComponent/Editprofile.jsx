@@ -20,10 +20,16 @@ class Editprofile extends CommonDisplay{
         super(props);
         this.state = {
           user: {},
-          userId: ""
+          userId: "",
+          nombre: "",
+          apellido:"",
+          email:"",
+          password:"",
+          password2:"",
+          editing: false
         }
     }
-    
+
     async componentDidMount(){
         if(Cookie.get("userType") == "1"){
             if(Cookie.get("userId")!= null){
@@ -49,8 +55,51 @@ class Editprofile extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
+    handleChange = (e) => (
+        this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
+    )
+   
+    handleClick = (e) => {
+       this.setState({editing: !this.state.editing})
+    }
+   
+    handleSubmit = (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append("nombre",e.target.nombre.value);
+        formData.append("lastname",e.target.lastname.value);
+        formData.append("email",e.target.email.value);
+        formData.append("password",e.target.password.value);
+        formData.append("password",e.target.password2.value);
+
+        fetch("http://localhost:4000/profileData",{
+            method:"POST",
+            body: formData
+        })
+        .then((res) => (res.json()))
+        .then((data) => (this.setState({editing: false})))
+        .catch((err) => (console.log(err)))
+   
+    }
+
+    handleCancel = () => {
+        this.props.history.push("/profile");
+        }
 
     renderContent = () => {
+        console.log(this.state)
+        let buttons;
+   
+        if(!this.state.editing){
+            buttons = <input type="button" value="Actualizar"class="editButton" id="update" onClick={this.handleClick}></input>
+        }else{
+            buttons = (
+            <div>
+                <input type="submit" value="Aceptar" class="saveButton" id="accept"></input>
+                <input type="button" value="Cancelar" class="resetButton" id="cancel" onClick={this.handleCancel}></input>
+            </div>
+            )
+        }
 
               return(
 
@@ -59,26 +108,36 @@ class Editprofile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Editar mi perfil</h1>
-                    <form className="book_form" allign='center' >
+                    <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                         <fieldset className="create_field"> 
-                            <label for="titulo">Nombre:</label>
-                            <input type="text" value={this.state.user.nombre} id="nombre"  required  name="nombre"/>
 
-                            <label for="lastname"> Apellido:</label>
-                            <input type="text" value={this.state.user.apellido} required maxLength="13" minLength="13" name="lastname"/>
+                        <label htmlFor="nombre">Nombre</label>
+                            <input required disabled={!this.state.editing} type="text" 
+                            placeholder={this.state.user.nombre}
+                            name="nombre" id="" value={this.state.nombre} onChange={this.handleChange}/>
+                            
+                            <label htmlFor="lastname"> Apellido: </label>
+                            <input required disabled={!this.state.editing} type="text" 
+                            placeholder={this.state.user.nombre}
+                            name="apellido" id="" value={this.state.apellido} onChange={this.handleChange}/>
+                            
+                            <label htmlFor="email"> Email:</label>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.apellido}
+                             name="email" id="" value={this.state.email} onChange={this.handleChange}/>
+                            
+                            <label htmlFor="password"> Constraseña:</label>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.email}
+                             name="password" id="" value={this.state.password} onChange={this.handleChange}/>
+                            
+                            <label htmlFor="password2"> Repetir Constraseña:</label>
+                            <input required disabled={!this.state.editing} type="text"
+                            placeholder={this.state.user.password}
+                             name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
+                            {buttons}
 
-                            <label for="password"> Constraseña:</label>
-                            <input type="text" value={this.state.user.password} required maxLength="13" minLength="13" name="pasword"/>
 
-                            <label for="card"> Email:</label>
-                            <input type="text" value={this.state.user.email} required maxLength="13" minLength="13" name="card"/>
-
-                            <button type="submit" value="Guardar" class="saveButton">
-                            Guardar
-                            </button>
-                            <button type="reset" value="Cancelar" class="resetButton">
-                            Cancelar
-                            </button>
                         </fieldset>
                     </form>
                 </div>

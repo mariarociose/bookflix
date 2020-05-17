@@ -17,12 +17,12 @@ import Libro_detail from "./components/libroViewDetail/Libro_detail";
 import EditorialCreate from "./components/editorialCreate/EditorialCreate";
 import GeneroCreate from "./components/generoCreate/GeneroCreate";
 import AutorCreate from "./components/autorCreate/AutorCreate";
+import CreateProfile from "./components/profileComponent/CreateProfile";
 
 function App() {
   return (
     <div className="App">
           <Switch>
-
             <Route exact path="/" component={StartComponent}></Route>
             <Route exact path="/home" component={AlbumContainer}></Route>
             <Route exact path="/homeAdmin" component={AlbumContainer}></Route>
@@ -35,6 +35,7 @@ function App() {
             <Route exact path="/profile" component={Profile}></Route>
             <Route exact path="/libro_detail" component={Libro_detail}></Route>
             <Route exact path="/editprofile" component={Editprofile}></Route>
+            <Route exact path="/createprofile" component={CreateProfile}></Route>
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>

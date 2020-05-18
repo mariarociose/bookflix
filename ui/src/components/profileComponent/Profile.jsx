@@ -57,7 +57,7 @@ class Editprofile extends CommonDisplay{
                             .then((data) => {
                                 this.setState({tipo:data}, () => (console.log(this.state)))
                         })
-                        console.log(this.state.tipo[0])
+                        console.log(this.state.tipo.descripcion)
                         console.log("probando tipo tarjeta")
 
             
@@ -110,7 +110,7 @@ class Editprofile extends CommonDisplay{
                       <p>{this.state.user.tarjeta_ccv}</p>
 
                       <h3>Tipo tarjeta</h3>
-                      <p>{this.state.tipo[0]}</p>
+                      <p>{this.state.tipo.descripcion}</p>
 
                       <h3>Vencimiento tarjeta</h3>
                       <p>{this.state.user.tarjeta_fecha_vencimiento}</p>

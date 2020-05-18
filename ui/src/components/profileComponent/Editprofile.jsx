@@ -108,7 +108,7 @@ class Editprofile extends CommonDisplay{
         formData.append("cardCod",e.target.cardCod.value);
         formData.append("cardId",e.target.cardCod.value);
         formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
-        formData.append("tipo",e.target.vencimiento.value);
+        formData.append("tipo",e.target.tipo.value);
 
             if(this.state.password === this.state.password2){
                 fetch("http://localhost:4000/editProfile",{
@@ -180,20 +180,20 @@ class Editprofile extends CommonDisplay{
                              name="email" id="" value={this.state.email} onChange={this.handleChange}/>
                             
                             <label htmlFor="password"> Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" type="text"
+                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="text"
                              name="password" id="" value={this.state.password} onChange={this.handleChange}/>
                             
                             <label htmlFor="password2"> Repetir Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" type="text"
+                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="text"
                              name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
                             
 
                             <label htmlFor="card"> Titular tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "5" maxLength = "5" type="text" 
+                            <input required disabled={!this.state.editing} minLength = "5" maxLength = "8" type="text" 
                             name="titular" id="card" value={this.state.titular} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "8" maxLength = "12" type="number" 
+                            <input required disabled={!this.state.editing} minLength = "8" maxLength = "8" type="number" 
                             name="dni" id="card" value={this.state.dni} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> Numero tarjeta</label>

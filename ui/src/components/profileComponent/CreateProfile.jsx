@@ -30,7 +30,6 @@ class CreateProfile extends CommonDisplay{
           cardCod:"",
           vencimiento:"",
           tarjetas:[],
-          user: {}
         }
     }
 
@@ -72,8 +71,8 @@ class CreateProfile extends CommonDisplay{
             formData.append("dni",e.target.dni.value);
             formData.append("cardCod",e.target.cardCod.value);
             formData.append("cardId",e.target.cardCod.value);
-            formData.append("vencimiento",e.target.vencimiento.value);
-            formData.append("tipo",e.target.vencimiento.value);
+            formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
+            formData.append("tipo",e.target.tipo.value);
 
             if(this.state.password === this.state.password2){
                 fetch("http://localhost:4000/createProfile",{
@@ -142,7 +141,7 @@ class CreateProfile extends CommonDisplay{
                             <input required minLength = "6" type="password" id="password2" name="password2" />
 
                             <label htmlFor="card"> Titular tarjeta</label>
-                            <input required minLength = "16" maxLength = "16" type="text" id="card" name="card" />
+                            <input required minLength = "4" maxLength = "16" type="text" id="card" name="card" />
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
                             <input required minLength = "8" maxLength = "8" type="number" id="card" name="card" />
@@ -153,8 +152,8 @@ class CreateProfile extends CommonDisplay{
                             <label for="cardCod"> Código Tarjeta</label>
                             <input required minLength = "3" maxLength = "3" type="number" id="cardCod" name="cardCod" />
 
-                            <label for="tarjeta">Tipo tarjeta</label>
-                                <select id="tarjeta" name="tarjeta">
+                            <label for="tipo">Tipo tarjeta</label>
+                                <select id="tipo" name="tipo">
                                     {tarjetas_select}
                                 </select> 
 

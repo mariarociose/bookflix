@@ -7,7 +7,6 @@ var connection = db.connection;
 
     router.post("/",function(req,res){
         console.log(req);
-        console.log("NUEVA PRUEBA");
         console.log(req.body.id);
         //UPDATE contacts SET last_name = ‘pepe’ WHERE id = 1; 
         let query = `UPDATE usuarios SET nombre='${req.body.nombre}', apellido='${req.body.apellido}', password='${req.body.password}', email='${req.body.email}'WHERE id_usuario='${req.body.id}'`;

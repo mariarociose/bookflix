@@ -16,6 +16,29 @@ class NovedadesContainer extends CommonDisplay{
         }
     }
 
+    deleteNew = (novedad) => {
+        let array = this.state.novedades;
+        let index = array.indexOf(novedad);
+        array.splice(index,1)
+        if(array.length == 0){
+            this.setState({novedades: array,mensaje: "No hay novedades"})
+        }else
+            this.setState({novedades: array})
+    }
+
+    handleDelete = (novedad) => {
+        let form = new FormData;
+        form.append("id", novedad.id_novedad);
+        fetch("http://localhost:4000/novsAdmin",{
+            method: "DELETE",
+            body: form
+        })
+        .then(() => {
+            this.deleteNew(novedad);
+        })
+        .catch((err) => (console.log(err)))
+    }
+
     componentDidMount(){
         
         if(Cookie.get("token") != null){
@@ -43,6 +66,7 @@ class NovedadesContainer extends CommonDisplay{
         }else this.setState({mensaje: "Acceso denegado"})
     }
 
+
     
 
     renderContent(){
@@ -55,32 +79,25 @@ class NovedadesContainer extends CommonDisplay{
                         <tr key={novedad.id_novedad}>
                             <td>{novedad.titulo}</td>
                             <td>{novedad.descripcion}</td>
-                            <td><Link className="button" rep to={{
+                            <td><Link className="button mr-10" rep to={{
                                 pathname: `/detalleNovedad`,
                                 state:{
                                     id: novedad.id_novedad,
                                     titulo: novedad.titulo,
                                     descripcion: novedad.descripcion
                                 }
-                            }}>Ver Detalle</Link></td>
+                            }}>Ver Detalle</Link>
+                            <input onClick={() => this.handleDelete(novedad)} className="button" type="button" value="Eliminar"/>
+                            </td>
                             
                         </tr>)
                         
                 );
                 
             }
-        
-        if(this.state.granted){
-                var tabla = (
-                    
-                <main>
-                   
-                    <div className='Nuevo'>
-                        <a  className='button' href='#'>
-                        Agregar Novedad
-                        </a>
-                        </div>
-                        <table  className="table table-bordered table-hover" >
+        let table = null;
+        if(this.state.novedades.length != 0){
+            table = ( <table  className="table table-bordered table-hover" >
 
                         <thead>
 
@@ -96,7 +113,19 @@ class NovedadesContainer extends CommonDisplay{
                             {news}
 
                             </tbody>
-                        </table>
+                        </table>)
+        }    
+        
+        if(this.state.granted){
+                var tabla = (
+                    
+                <main>
+                   
+                    <div className='Nuevo'>
+                        <Link className="button" to="/altaNovedad">Agregar Novedad</Link>
+                        
+                        </div>
+                        {table}
 
                 </main>
 

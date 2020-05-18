@@ -8,6 +8,7 @@ var upload = multer();
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access-token");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
     next();
 });
 
@@ -44,6 +45,9 @@ app.use("/editoriales",editoriales);
 
 var novedadesAdmin = require("./routes/novedadesAdmin");
 app.use("/novsAdmin",novedadesAdmin);
+
+var novedadesUser = require("./routes/novsUser");
+app.use("/novsUser",novedadesUser);
 
 var profileData = require("./routes/profileData")
 app.use("/profileData",profileData);

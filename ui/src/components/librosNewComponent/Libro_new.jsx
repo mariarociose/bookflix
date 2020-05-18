@@ -218,7 +218,7 @@ class Libro_new extends CommonDisplay{
 
                         </fieldset>
                         <fieldset className="create_field">
-                        <label for="imagen_portada" class="custom-file-upload">
+                        <label for="portada_img" class="custom-file-upload">
                           Imagen Portada:
                         </label>
                         <input id="portada_img" name="portada_img" type="file"/>

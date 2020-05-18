@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CommonDisplay from "../CommonDisplay";
 import Libro from "../libroComponent/Libro";
+import "./libroViewDetail.css";
 
 class Libro_detail extends CommonDisplay{
 
@@ -17,13 +18,22 @@ class Libro_detail extends CommonDisplay{
         super(props);
         console.log(this.props)
         this.state = {
-          id_libro: "",
+
           libro:{},
           autores:[],
           editoriales:[],
           generos:[],
           mensaje: "",
-          header : ""
+          header : "",
+          id_libro: "",
+          isbn:"",
+          titulo:"",
+          id_autor:"",
+          id_editorial:"",
+          id_genero:"",
+          portada_img:"",
+
+          editing: false
         }
     }
 
@@ -82,9 +92,30 @@ class Libro_detail extends CommonDisplay{
 
 }
 
+handleChange = (e) => (
+    this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
+)
+
+handleClick = (e) => {
+   this.setState({editing: !this.state.editing})
+}
 
       renderContent(){
         console.log(this.state)
+
+
+        let buttons;
+
+        if(!this.state.editing){
+            buttons = <input type="button" value="Actualizar" id="updateButton"  class="updateButton" onClick={this.handleClick}></input>
+        }else{
+            buttons = (
+            <div>
+                <input type="submit" value="Aceptar" id="saveButton" class="saveButton"></input>
+                <input type="button" value="Cancelar" id="resetButton" class="resetButton" onClick={this.handleClick}></input>
+            </div>
+            )
+        }
 
           let autores_select = [];
           console.log(this.state.autores);
@@ -117,7 +148,7 @@ class Libro_detail extends CommonDisplay{
 
 
                       <label for="titulo">Titulo:</label>
-                      <input type="text" id="titulo"  required  name="titulo" value= {this.state.libro.titulo}/>
+                      <input type="text" id="titulo"  required disabled={!this.state.editing} name="titulo" value= {this.state.libro.titulo} onChange={this.handleChange}/>
 
 
                       <label for="isbn"> Isbn:</label>
@@ -156,14 +187,7 @@ class Libro_detail extends CommonDisplay{
 
                       </fieldset>
 
-
-
-                      <button type="submit" value="Guardar" class="saveButton">
-                      Guardar
-                      </button>
-                      <button type="reset" value="Cancelar" class="resetButton">
-                      Cancelar
-                      </button>
+                      {buttons}
 
 
                   </form>

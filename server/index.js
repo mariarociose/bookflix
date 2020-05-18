@@ -52,6 +52,9 @@ app.use("/novsUser",novedadesUser);
 var profileData = require("./routes/profileData")
 app.use("/profileData",profileData);
 
+var tipoTarjeta = require("./routes/tipoTarjeta")
+app.use("/tipoTarjeta",tipoTarjeta);
+
 var tiposTarjeta = require("./routes/tiposTarjeta")
 app.use("/tiposTarjeta",tiposTarjeta);
 

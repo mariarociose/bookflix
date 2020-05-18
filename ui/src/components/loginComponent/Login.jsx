@@ -66,6 +66,10 @@ class Login extends React.Component{
 
     }
 
+    handleClick = () => {
+        this.props.history.push("/createProfile");
+        }
+
     render(){
 
 
@@ -86,7 +90,7 @@ class Login extends React.Component{
                     <input required minLength = "6" maxLength = "8" type="password" name="password" id="userPassword"/>
                     {mensaje}
                     <input type="submit" value="Iniciar Sesion"/>
-                    <a href=""> ¿No tiene cuenta?</a>
+                    <input type="button" value="¿No tiene cuenta?"class="editButton" id="update" onClick={this.handleClick}></input>
                 </form>
             </div>
 

@@ -19,12 +19,12 @@ import AutorCreate from "./components/autorCreate/AutorCreate";
 import AltaNovedad from "./components/altaNovedad/AltaNovedad";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
+import CreateProfile from "./components/profileComponent/CreateProfile";
 
 function App() {
   return (
     <div className="App">
           <Switch>
-
             <Route exact path="/" component={StartComponent}></Route>
             <Route exact path="/home" component={UserHome}></Route>
             <Route exact path="/homeAdmin" component={AdminHome}></Route>
@@ -38,6 +38,7 @@ function App() {
             <Route exact path="/profile" component={Profile}></Route>
             <Route exact path="/libro_detail" component={Libro_detail}></Route>
             <Route exact path="/editprofile" component={Editprofile}></Route>
+            <Route exact path="/createprofile" component={CreateProfile}></Route>
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>

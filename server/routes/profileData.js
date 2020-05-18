@@ -19,28 +19,6 @@ router.get('/', function(req,res){
             res.status(200).send(rows[0]);
         });
     })
-
-
-
-    router.post("/",function(req,res){
-        console.log(req);
-        let query = `update novedades set nombre=
-        '${req.body.user.nombre}', 
-        descripcion='${req.body.user.apellido}', 
-        descripcion='${req.body.user.password}',
-        descripcion='${req.body.user.email}'WHERE id_usuario = ${req.body.userId}`;
-
-        connection.query(query,function(err,rows,fields){
-            if(err){
-                console.log(err)
-                res.status(500).send("Hubo un error")
-                return;
-            }
-            console.log(rows);
-            res.json({newData: rows[0], mensaje:"Se actualizo correctamente"});
-        })
-    
-    })
     
     module.exports = router;
         

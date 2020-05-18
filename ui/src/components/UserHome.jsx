@@ -7,11 +7,11 @@ class AlbumContainer extends CommonDisplay{
 
     constructor(props){
         super(props);
-    
+
         this.state = {
             news: []
         }
-    
+
     }
 
     componentDidMount(){
@@ -19,10 +19,10 @@ class AlbumContainer extends CommonDisplay{
         fetch("http://localhost:4000/novsUser")
         .then((res) => (res.json()))
         .then((data) => (this.setState({news: data},() => (console.log(this.state)))));
-   
+
 
     }
-    
+
     renderContent(){
         let news = this.state.news.map((nov) => (
             <Novedad nov={nov}></Novedad>
@@ -33,7 +33,7 @@ class AlbumContainer extends CommonDisplay{
             </div>
         )
     }
-    
+
 
 }
 

@@ -26,24 +26,20 @@ class Libro_new extends CommonDisplay{
           editoriales:[],
           generos:[],
           datos:{},
+          libro:{},
+          id_libro:"",
+          isbn:"",
+          titulo:"",
+          fecha_vencimiento:"",
+          autor:"",
+          genero:"",
+          editorial:"",
+          portada_img:"",
           granted : false
         }
     }
 
-    getData = (form) => (
 
-        fetch("http://localhost:4000/libro_insert",{
-            method: "POST",
-            body: new FormData(form)
-        }
-
-      )
-        .then((res) => (res.json()))
-        .then((data) => {
-            this.setState({datos:data}, () => (console.log(this.state.datos)))
-        })
-
-    )
 
     redirectOnCreatead = () => {
 
@@ -55,20 +51,43 @@ class Libro_new extends CommonDisplay{
 
 
                             e.preventDefault();
-                            console.log(e.target)
-                            this.getData(e.target)
-                             //retorna Promise, las promises las manejamos con then. Fetch tmb retorna promise
-                            .then(() => {
 
-                                this.redirectOnCreatead()
+                            let formData = new FormData();
 
-                            })
+                                formData.append("isbn",e.target.isbn.value);
+                                formData.append("titulo",e.target.titulo.value);
+                                formData.append("fecha_vencimiento",e.target.fecha_vencimiento.value);
+                                formData.append("autor",e.target.autor.value);
+                                formData.append("genero",e.target.genero.value);
+                                formData.append("editorial",e.target.editorial.value);
+                                formData.append("portada_img",e.target.portada_img.value);
 
-                            e.target.reset();
 
+                            fetch("http://localhost:4000/libro_insert",{
+                                    method: "POST",
+                                    body: formData
+                                    })
+                                    .then((res) => (res.json()))
+                                    .then((data) => (this.setState({libro:data})))
+                                    .catch((err) => (console.log(err)))
+
+                            this.props.history.push("/libro_new");
                         }
 
+  handleSubmit2 = (e) => {
+                            e.preventDefault();
+                            let formData = new FormData(e.target);
+                            fetch("http://localhost:4000/libro_insert",{
+                                method: "POST",
+                                body : formData
+                              })
+                                .then((res) => (res.json()))
+                                .then((data) => (this.setState({libro:data})))
+                                .catch((err) => (console.log(err)))
 
+                        this.props.history.push("/libro_new");
+
+                        }
 
     componentDidMount(){
 
@@ -134,7 +153,7 @@ class Libro_new extends CommonDisplay{
             .then((editoriales) => {
                 console.log(editoriales)
 
-                if(editoriales.length == 0) editoriales.mensaje = "No hay Generos";
+                if(editoriales.length == 0) editoriales.mensaje = "No hay Editoriales";
                 this.setState({editoriales: editoriales,
                 mensaje: editoriales.mensaje,granted: true});
 
@@ -146,7 +165,7 @@ class Libro_new extends CommonDisplay{
     renderContent = () => {
 
 
-                  let mensaje = <p>{this.state.datos.mensaje} </p>
+              let mensaje = <p>{this.state.libro.mensaje} </p>
 
                   let autores_select = [];
                   console.log(this.state.autores);
@@ -192,7 +211,7 @@ class Libro_new extends CommonDisplay{
 
 
                         <label for="isbn"> Isbn:</label>
-                        <input type="text"  required maxLength="13" minLength="13" name="isbn"/>
+                        <input type="text"  required maxLength="13" minLength="13" id="isbn" name="isbn"/>
 
                         <label for="vencimiento">Vencimiento:</label>
                         <input type='date' required name="fecha_vencimiento" id="fecha_vencimiento"/>

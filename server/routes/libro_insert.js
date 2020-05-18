@@ -10,8 +10,8 @@ router.post('/',(req,res) => {
 
   console.log(req.body);
 
-  var query = "insert into libros SET isbn=('"+req.body.isbn+"'),titulo=('"+req.body.titulo+"'),fecha_vencimiento=('"+req.body.fecha_vencimiento+"'),portada_img=('"+req.body.portada_img+"'),id_autor=('"+req.body.autor+"'),id_editorial=('"+req.body.editorial+"'),id_genero=('"+req.body.genero+"')";
-
+//  var query = "insert into libros SET isbn=('"+req.body.isbn+"'),titulo=('"+req.body.titulo+"'),fecha_vencimiento=('"+req.body.fecha_vencimiento+"'),portada_img=('"+req.body.portada_img+"'),id_autor=('"+req.body.autor+"'),id_editorial=('"+req.body.editorial+"'),id_genero=('"+req.body.genero+"')";
+  var query = `insert into libros SET isbn='${req.body.isbn}',titulo=('${req.body.titulo}'),fecha_vencimiento=('${req.body.fecha_vencimiento}'),portada_img=('${req.body.portada_img}'),id_autor=('${req.body.autor}'),id_editorial=('${req.body.editorial}'),id_genero=('${req.body.genero}')`;
   console.log('insertando nuevo elemento');
   console.log(query)
 

@@ -4,8 +4,8 @@ function Novedad(props){
 
     return(
        <div className="novedad">
-            <p>{props.new.titulo}</p>
-            <p>{props.new.descripcion}</p>
+            <p>{props.nov.titulo}</p>
+            <p>{props.nov.descripcion}</p>
         </div>
     )   
 }

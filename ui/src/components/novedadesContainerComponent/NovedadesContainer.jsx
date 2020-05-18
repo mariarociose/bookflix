@@ -30,7 +30,7 @@ class NovedadesContainer extends CommonDisplay{
         let form = new FormData;
         form.append("id", novedad.id_novedad);
         fetch("http://localhost:4000/novsAdmin",{
-            method: "PUT",
+            method: "DELETE",
             body: form
         })
         .then(() => {
@@ -122,9 +122,7 @@ class NovedadesContainer extends CommonDisplay{
                 <main>
                    
                     <div className='Nuevo'>
-                        <a  className='button' href='#'>
-                        Agregar Novedad
-                        </a>
+                        <Link className="button" to="/altaNovedad">Agregar Novedad</Link>
                         
                         </div>
                         {table}

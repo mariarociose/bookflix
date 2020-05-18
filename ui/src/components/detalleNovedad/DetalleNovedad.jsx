@@ -38,7 +38,7 @@ class DetalleNovedad extends CommonDisplay{
      formData.append("id",this.props.location.state.id);
      formData.append("descripcion",e.target.descripcion.value);
      fetch("http://localhost:4000/novsAdmin",{
-         method:"POST",
+         method:"PUT",
          body: formData
      })
      .then((res) => (res.json()))

@@ -21,7 +21,7 @@ router.get("/",protectedAdminRoute, function(req,res){
 
 } )
 
-router.post("/",function(req,res){
+router.put("/",function(req,res){
     console.log(req);
     let query = `update novedades set titulo='${req.body.titulo}', descripcion='${req.body.descripcion}' WHERE id_novedad = ${req.body.id}`;
     connection.query(query,function(err,rows,fields){
@@ -36,7 +36,7 @@ router.post("/",function(req,res){
 
 })
 
-router.put("/",function(req,res){
+router.delete("/",function(req,res){
     console.log(req.body);
     let query = `update novedades set habilitado = 0 WHERE id_novedad=${req.body.id}`;
     connection.query(query,function(err,rows,fields){
@@ -50,6 +50,22 @@ router.put("/",function(req,res){
 
     })
 
+
+})
+
+router.post("/",function(req,res){
+
+    console.log(req.body);
+    let query = `insert into novedades (titulo, descripcion, habilitado) values ("${req.body.titulo}","${req.body.descripcion}",1)`
+    connection.query(query,function(err,rows,fields){
+        if(err){
+            console.log(err);
+            res.status(500).send("Hubo un error");
+            return;
+        }
+        console.log(rows);
+        res.json(rows);
+    })
 
 })
 

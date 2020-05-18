@@ -20,7 +20,8 @@ class Editprofile extends CommonDisplay{
         super(props);
         this.state = {
           user: {},
-          userId: ""
+          userId: "",
+          tipo:[]
         }
     }
     
@@ -42,12 +43,30 @@ class Editprofile extends CommonDisplay{
                     .then((res) => (res.json()))
                     .then((data) => {
                         this.setState({user:data}, () => (console.log(this.state)))
-                })
-                }
+                    })
+                
+            
+                fetch((`http://localhost:4000/tipoTarjeta?tipoId=${this.state.user.tarjeta_tipo_id}`),{
+                            method:"GET",
+                            headers:{
+                                "Content-Type": "application/json",
+                                "access-token": Cookie.get("token").toString()
+                                }
+                            })
+                            .then((res) => (res.json()))
+                            .then((data) => {
+                                this.setState({tipo:data}, () => (console.log(this.state)))
+                        })
+                        console.log(this.state.tipo[0])
+                        console.log("probando tipo tarjeta")
+
+            
+            }
             else
             this.props.history.push("/homeAdmin");
         }else this.setState({mensaje: "Acceso denegado"})
     }
+
 
     handleGo = () => {
         this.props.history.push("/editprofile");
@@ -76,9 +95,28 @@ class Editprofile extends CommonDisplay{
                       <p>{this.state.user.password}</p> 
 
                       <h3>Email</h3>
-                      <p>{this.state.user.email}</p> 
+                      <p>{this.state.user.email}</p>
 
-                      <button type="submit" value="Guardar" class="saveButton">
+                      <h3>Titular tarjeta</h3>
+                      <p>{this.state.user.tarjeta_titular}</p>
+
+                      <h3>DNI Titular tarjeta</h3>
+                      <p>{this.state.user.tarjeta_dni}</p>
+
+                      <h3>Numero tarjeta</h3>
+                      <p>{this.state.user.tarjeta_numero}</p>
+
+                      <h3>Código tarjeta</h3>
+                      <p>{this.state.user.tarjeta_ccv}</p>
+
+                      <h3>Tipo tarjeta</h3>
+                      <p>{this.state.tipo[0]}</p>
+
+                      <h3>Vencimiento tarjeta</h3>
+                      <p>{this.state.user.tarjeta_fecha_vencimiento}</p>
+                            
+            
+                  <button type="submit" value="Guardar" class="saveButton">
                       Editar Perfil
                       </button>
                         </fieldset>

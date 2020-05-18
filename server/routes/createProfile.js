@@ -8,8 +8,10 @@ var connection = db.connection;
 router.post('/',(req,res) => {
 
     console.log(req.body);
+    //var query = "INSERT INTO editoriales SET desc_editorial='prueba'";
 
-    let query = `INSERT INTO usuarios SET nombre='${req.body.nombre}', apellido='${req.body.apellido}', password='${req.body.password}', email='${req.body.email}`;
+
+    let query = `INSERT INTO usuarios SET nombre='${req.body.nombre}', apellido='${req.body.apellido}', password='${req.body.password}', email='${req.body.email}, tarjeta_titular='${req.body.titular}', tarjeta_dni='${req.body.dni}', tarjeta_numero='${req.body.cardId}', tarjeta_ccv='${req.body.cardCod}', tarjeta_tipo_id='${req.body.tipo}', tarjeta_fecha_vencimiento='${req.body.Fecha_vencimiento}'`; 
 
     console.log('insertando nuevo elemento');
     console.log(query)
@@ -18,7 +20,7 @@ router.post('/',(req,res) => {
         res.status(500).send('Hubo un error');
         return;
     }
-        console.log('nuevo elemento insertado');
+        console.log('nuevo usuario insertado');
     });
 })
 

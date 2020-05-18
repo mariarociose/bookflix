@@ -25,12 +25,74 @@ class Libro_new extends CommonDisplay{
           autores:[],
           editoriales:[],
           generos:[],
-          mensaje: "",
+          datos:{},
+          libro:{},
+          id_libro:"",
+          isbn:"",
+          titulo:"",
+          fecha_vencimiento:"",
+          autor:"",
+          genero:"",
+          editorial:"",
+          portada_img:"",
           granted : false
         }
     }
 
+
+
+    redirectOnCreatead = () => {
+
+
+                this.props.history.push("/libro_new");
+              }
+
+    handleSubmit = (e) => {
+
+
+                            e.preventDefault();
+
+                            let formData = new FormData();
+
+                                formData.append("isbn",e.target.isbn.value);
+                                formData.append("titulo",e.target.titulo.value);
+                                formData.append("fecha_vencimiento",e.target.fecha_vencimiento.value);
+                                formData.append("autor",e.target.autor.value);
+                                formData.append("genero",e.target.genero.value);
+                                formData.append("editorial",e.target.editorial.value);
+                                formData.append("portada_img",e.target.portada_img.value);
+
+
+                            fetch("http://localhost:4000/libro_insert",{
+                                    method: "POST",
+                                    body: formData
+                                    })
+                                    .then((res) => (res.json()))
+                                    .then((data) => (this.setState({libro:data})))
+                                    .catch((err) => (console.log(err)))
+
+                            this.props.history.push("/libro_new");
+                        }
+
+  handleSubmit2 = (e) => {
+                            e.preventDefault();
+                            let formData = new FormData(e.target);
+                            fetch("http://localhost:4000/libro_insert",{
+                                method: "POST",
+                                body : formData
+                              })
+                                .then((res) => (res.json()))
+                                .then((data) => (this.setState({libro:data})))
+                                .catch((err) => (console.log(err)))
+
+                        this.props.history.push("/libro_new");
+
+                        }
+
     componentDidMount(){
+
+
+
 
         if(Cookie.get("token")!= null){
             fetch("http://localhost:4000/autores",{
@@ -44,7 +106,7 @@ class Libro_new extends CommonDisplay{
             .then((res) => (res.json()))
             .then((autores) => {
                 console.log(autores)
-                console.log(autores.dato)
+
                 if(autores.length == 0) autores.mensaje = "No hay Autores";
                 this.setState({autores: autores,
                 mensaje: autores.mensaje,granted: true});
@@ -91,7 +153,7 @@ class Libro_new extends CommonDisplay{
             .then((editoriales) => {
                 console.log(editoriales)
 
-                if(editoriales.length == 0) editoriales.mensaje = "No hay Generos";
+                if(editoriales.length == 0) editoriales.mensaje = "No hay Editoriales";
                 this.setState({editoriales: editoriales,
                 mensaje: editoriales.mensaje,granted: true});
 
@@ -103,7 +165,7 @@ class Libro_new extends CommonDisplay{
     renderContent = () => {
 
 
-
+              let mensaje = <p>{this.state.libro.mensaje} </p>
 
                   let autores_select = [];
                   console.log(this.state.autores);
@@ -138,7 +200,8 @@ class Libro_new extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Alta de libro </h1>
-                    <form className="book_form" allign='center' >
+                        {mensaje}
+                    <form className="book_form" allign='center' onSubmit={this.handleSubmit} >
 
                       <fieldset className="create_field">
 
@@ -148,10 +211,10 @@ class Libro_new extends CommonDisplay{
 
 
                         <label for="isbn"> Isbn:</label>
-                        <input type="text"  required maxLength="13" minLength="13" name="isbn"/>
+                        <input type="text"  required maxLength="13" minLength="13" id="isbn" name="isbn"/>
 
                         <label for="vencimiento">Vencimiento:</label>
-                        <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
+                        <input type='date' required name="fecha_vencimiento" id="fecha_vencimiento"/>
 
                         </fieldset>
                         <fieldset className="create_field">
@@ -174,10 +237,10 @@ class Libro_new extends CommonDisplay{
 
                         </fieldset>
                         <fieldset className="create_field">
-                        <label for="imagen_portada" class="custom-file-upload">
+                        <label for="portada_img" class="custom-file-upload">
                           Imagen Portada:
                         </label>
-                        <input id="imagen_portada" type="file"/>
+                        <input id="portada_img" name="portada_img" type="file"/>
 
 
                         </fieldset>

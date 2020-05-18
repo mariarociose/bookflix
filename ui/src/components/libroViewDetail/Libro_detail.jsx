@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CommonDisplay from "../CommonDisplay";
 import Libro from "../libroComponent/Libro";
+import "./libroViewDetail.css";
 
 class Libro_detail extends CommonDisplay{
 
@@ -17,10 +18,26 @@ class Libro_detail extends CommonDisplay{
         super(props);
         console.log(this.props)
         this.state = {
-          id_libro: "",
+
           libro:{},
+          autores:[],
+          editoriales:[],
+          generos:[],
           mensaje: "",
-          header : ""
+          header : "",
+          id_libro: "",
+          isbn:"",
+          titulo:"",
+          fecha_vencimiento:"",
+          autor:"",
+          editorial:"",
+          genero:"",
+          id_autor:"",
+          id_editorial:"",
+          id_genero:"",
+          portada_img:"",
+          fec_vencimiento:"",
+          editing: false
         }
     }
 
@@ -42,61 +59,127 @@ class Libro_detail extends CommonDisplay{
                     })
                     .then((res) => (res.json()))
                     .then((data) => {
-                        console.log(data)
-                        this.setState({libro:data}, () => (console.log(this.state)))
+                        this.setState({libro:data,isbn:data.isbn,titulo:data.titulo,
+                        fec_vencimiento:data.fec_vencimiento,fecha_vencimiento:data.fecha_vencimiento,autor:data.id_autor, editorial:data.id_editorial, genero: data.id_genero, portada_img: data.portada_img},
+                        () => (console.log(this.state)))
 
                 })
               }
           else
           this.props.history.push("/homeAdmin");
+            //////////////////////////RECUPERO AUTORES
+
+          if(Cookie.get("token")!= null){
+              fetch("http://localhost:4000/autores",{
+                  method:"GET",
+                  headers:{
+                      "Content-Type": "application/json",
+                      "access-token": Cookie.get("token").toString()
+
+                  }
+              })
+              .then((res) => (res.json()))
+              .then((autores) => {
+                  console.log(autores)
+                  console.log(autores.dato)
+                  if(autores.length == 0) autores.mensaje = "No hay Autores";
+                  this.setState({autores: autores,
+                  mensaje: autores.mensaje,granted: true});
+
+              })
+              .catch(() => (this.setState({autores:[],mensaje: "Acceso denegado",granted: false})))
+          }else this.setState({mensaje: "Acceso denegado"})
+
+            /////////////////////////RECUPERO generos
+
+
 
 
 }
 
+handleChange = (e) => (
+    this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
+)
+
+handleClick = (e) => {
+   this.setState({editing: !this.state.editing})
+}
 
       renderContent(){
         console.log(this.state)
 
 
+        let buttons;
+
+        if(!this.state.editing){
+            buttons = <input type="button" value="Actualizar" id="updateButton"  class="updateButton" onClick={this.handleClick}></input>
+        }else{
+            buttons = (
+            <div>
+                <input type="submit" value="Aceptar" id="saveButton" class="saveButton"></input>
+                <input type="button" value="Cancelar" id="resetButton" class="resetButton" onClick={this.handleClick}></input>
+            </div>
+            )
+        }
+
+          let autores_select = [];
+          console.log(this.state.autores);
+          autores_select = this.state.autores.map((autor) => (
+                  //El map es como el collect de pharo
+
+
+
+                //  if (this.state.libro.id_autor = autor.id_autor){
+                //      <option selected key={autor.id_autor} value={autor.id_autor}>  {autor.nombre} {autor.apellido} </option>
+                //  }else{
+                    <option key={autor.id_autor} value={autor.id_autor}>  {autor.nombre} {autor.apellido} </option>
+                  //}
+
+          ))
+
+
+
+
         return(
           <div>
-            <p>Detalle de Libro</p>
-              <h1>Novedad: {this.state.libro.apellido}</h1>
+            <h1>Detalle de Libro</h1>
+              <h1>{this.state.libro.titulo}</h1>
 
               <div className="create_form">
-                    <h1> Detalle de libro </h1>
+
                   <form className="book_form" allign='center' >
 
                     <fieldset className="create_field">
 
 
                       <label for="titulo">Titulo:</label>
-                      <input type="text" id="titulo"  required  name="titulo" value= {this.state.libro.titulo}/>
+                      <input type="text" id="titulo"  required disabled={!this.state.editing} name="titulo" value= {this.state.titulo} onChange={this.handleChange}/>
 
 
                       <label for="isbn"> Isbn:</label>
-                      <input type="text"  required maxLength="13" minLength="13" name="isbn" value= {this.state.libro.isbn}/>
+                      <input type="text"  required maxLength="13" minLength="13" required disabled={!this.state.editing} name="isbn" value= {this.state.isbn} onChange={this.handleChange}/>
 
                       <label for="vencimiento">Vencimiento:</label>
-                      <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento" value= {this.state.libro.fecha_vencimiento}/>
+                      <input type='date' required required disabled={!this.state.editing} name="Fecha_vencimiento" id="Fecha_vencimiento" value= {this.state.fec_vencimiento} onChange={this.handleChange}/>
 
                       </fieldset>
                       <fieldset className="create_field">
-
                       <label for="autor">Autor:</label>
-                        <select id="autor" name="autor">
-
+                        <select id="autor" name="autor" required disabled={!this.state.editing} >
+                        //  <option value="{this.state.libro.id_autor}" selected disabled hidden>Choose here</option>
+                          <option selected disabled key={this.state.id_autor} value={this.state.id_autor}>  {this.state.nombre} {this.state.apellido} </option>
                         </select>
 
                       <label for="autor">Genero:</label>
-                      <select id="genero" name="genero">
-
+                      <select id="genero" name="genero" required disabled={!this.state.editing}>
+                      <option selected disabled key={this.state.id_genero} value={this.state.id_genero}>  {this.state.desc_genero} </option>
 
                       </select>
 
                       <label for="editorial">Editorial:</label>
-                      <select id="editorial" name="editorial">
 
+                      <select id="editorial" name="editorial" required disabled={!this.state.editing}>
+                      <option selected disabled key={this.state.id_editorial} value={this.state.id_editorial}> {this.state.desc_editorial} </option>
                       </select>
 
                       </fieldset>
@@ -104,19 +187,12 @@ class Libro_detail extends CommonDisplay{
                       <label for="imagen_portada" class="custom-file-upload">
                         Imagen Portada:
                       </label>
-                      <input id="imagen_portada" type="file"/>
+                      <input id="imagen_portada" type="file" required disabled={!this.state.editing} />
 
 
                       </fieldset>
 
-
-
-                      <button type="submit" value="Guardar" class="saveButton">
-                      Guardar
-                      </button>
-                      <button type="reset" value="Cancelar" class="resetButton">
-                      Cancelar
-                      </button>
+                      {buttons}
 
 
                   </form>
@@ -134,8 +210,7 @@ class Libro_detail extends CommonDisplay{
 
 
 
-)
-}}
+
 
           </div>
 

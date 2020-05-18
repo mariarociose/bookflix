@@ -14,12 +14,36 @@ router.post('/',(req,res) => {
     console.log('insertando nuevo elemento');
     console.log(query)
     connection.query(query, function(err,result){
-    if(err){
+      if(err){
+    if(err.errno==500){
         res.status(500).send('Hubo un error');
+        // 1062 es el codigo de error de mysql para duplicate entry
         return;
+      }
+    if(err.errno==1062){
+      // 1062 es el codigo de error de mysql para duplicate entry
+        console.log('Duplicado');
+        res.json(
+            {
+                mensaje: "El genero ya se encuentra en el sistema"
+            }
+          )
+
     }
-        console.log('nuevo elemento insertado');
-    });
+
+    }
+    else{
+
+    console.log('nuevo elemento insertado');
+    res.json(
+        {
+            mensaje: "Genero cargado con exito"
+        }
+      )
+    }
+  }
+)
 })
+
 
 module.exports = router;

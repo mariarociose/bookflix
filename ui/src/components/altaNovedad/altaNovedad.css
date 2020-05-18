@@ -1,0 +1,22 @@
+.altaNovedadContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%
+}
+
+.altaNovedadContainer form{
+    background-color: lightseagreen;
+    width: 350px;
+    height: 400px;
+    padding: 100px
+}
+
+.altaNovedadContainer form input[type="text"], .altaNovedadContainer form input[type="submit"]{
+    height: 30px;
+    width: 150px;
+}
+
+.altaNovedadContainer form input[type="submit"]{
+    margin-top: 20px;
+}

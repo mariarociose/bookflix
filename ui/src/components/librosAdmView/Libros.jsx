@@ -46,8 +46,8 @@ class Libros extends CommonDisplay{
             })
             .then((res) => (res.json()))
             .then((libros) => {
-                console.log(libros)
-                if(libros.datos.length == 0) libros.mensaje = "no hay libros";
+
+                if(libros.datos.length == 0) libros.mensaje = "No hay libros";
                 this.setState({libros: libros.datos,
                 mensaje: libros.mensaje,granted: true});
 
@@ -71,7 +71,7 @@ class Libros extends CommonDisplay{
 
     renderContent = () => {
 
-
+            let table = null;
             let titulos = [];
             if(this.state.libros != undefined){
                 titulos = this.state.libros.map((libro) => (
@@ -92,15 +92,8 @@ class Libros extends CommonDisplay{
                     ))
             };
 
-
-            if(this.state.granted){
-            var listado = (<main>
-                <div class='Nuevo'>
-                    <a  class='button' href='#' onClick={this.redirectNew}>
-                    Agregar nuevo libro
-                    </a>
-                    </div>
-                <table  class="table table-bordered table-hover" >
+            if(this.state.libros.length != 0){
+              table =    <table  class="table table-bordered table-hover" >
 
                       <thead>
 
@@ -121,20 +114,32 @@ class Libros extends CommonDisplay{
                         </tbody>
                     </table>
 
-                    </main>)
-            }else listado = null;
+                  }
+            if(this.state.granted){
 
-            return(
+                var tabla = (<main>
+                    <div class='Nuevo'>
+                        <a  class='button' href='#' onClick={this.redirectNew}>
+                        Agregar nuevo libro
+                        </a>
+                    </div>
+                    {table}
 
-                <div>
-                  <h1> {this.state.mensaje}</h1>
 
-                  {listado}
+                </main>)
+              }else tabla = null;
 
-                </div>
-              )
+                return(
 
-  }
+                    <div>
+                      <h1> {this.state.mensaje}</h1>
+
+                      {tabla}
+                      
+                    </div>
+                  )
+
+      }
 }
 
 

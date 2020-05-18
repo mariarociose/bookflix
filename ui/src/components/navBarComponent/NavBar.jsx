@@ -82,6 +82,7 @@ class NavBar extends React.Component{
         let botonCreateAutor;
         let botonCreateGenero;
         let botonCreateEditorial;
+
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
@@ -115,7 +116,13 @@ class NavBar extends React.Component{
 
                 </nav>
                 <button className="cta" onClick={this.state.redirectFunction}>{this.state.buttonText}</button>
+
+
+
+
             </header>
+
+
         )
     }
 

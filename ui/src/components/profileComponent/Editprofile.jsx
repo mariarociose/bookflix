@@ -26,6 +26,7 @@ class Editprofile extends CommonDisplay{
           email:"",
           password:"",
           password2:"",
+          id:"",
           editing: false
         }
     }
@@ -47,7 +48,9 @@ class Editprofile extends CommonDisplay{
                     })
                     .then((res) => (res.json()))
                     .then((data) => {
-                        this.setState({user:data}, () => (console.log(this.state)))
+                        this.setState({user:data,nombre:data.nombre,apellido:data.apellido,
+                        email:data.email,password:data.password, password2:data.password, id: data.id_usuario},
+                        () => (console.log(this.state)))
                 })
                 }
             else
@@ -58,28 +61,39 @@ class Editprofile extends CommonDisplay{
     handleChange = (e) => (
         this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
     )
+
    
     handleClick = (e) => {
        this.setState({editing: !this.state.editing})
     }
    
     handleSubmit = (e) => {
+        console.log("HOOOOLA MAAAAAATI")
         e.preventDefault();
         let formData = new FormData();
         formData.append("nombre",e.target.nombre.value);
-        formData.append("lastname",e.target.lastname.value);
+        formData.append("apellido",e.target.apellido.value);
         formData.append("email",e.target.email.value);
         formData.append("password",e.target.password.value);
-        formData.append("password",e.target.password2.value);
+        formData.append("password2",e.target.password2.value);
+        formData.append("id",this.state.id);
 
-        fetch("http://localhost:4000/profileData",{
-            method:"POST",
-            body: formData
-        })
-        .then((res) => (res.json()))
-        .then((data) => (this.setState({editing: false})))
-        .catch((err) => (console.log(err)))
-   
+            if(this.state.password === this.state.password2){
+                fetch("http://localhost:4000/editProfile",{
+                method:"POST",
+                body: formData
+                })
+
+                .then((res) => (res.json()))
+                .then((data) => (this.setState({editing: false})))
+                .catch((err) => (console.log(err)))
+
+                this.props.history.push("/profile");
+            }
+            else 
+                this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})        
+
+
     }
 
     handleCancel = () => {
@@ -113,30 +127,24 @@ class Editprofile extends CommonDisplay{
 
                         <label htmlFor="nombre">Nombre</label>
                             <input required disabled={!this.state.editing} type="text" 
-                            placeholder={this.state.user.nombre}
                             name="nombre" id="" value={this.state.nombre} onChange={this.handleChange}/>
                             
-                            <label htmlFor="lastname"> Apellido: </label>
+                            <label htmlFor="apellido"> Apellido: </label>
                             <input required disabled={!this.state.editing} type="text" 
-                            placeholder={this.state.user.nombre}
                             name="apellido" id="" value={this.state.apellido} onChange={this.handleChange}/>
                             
                             <label htmlFor="email"> Email:</label>
                             <input required disabled={!this.state.editing} type="text"
-                            placeholder={this.state.user.apellido}
                              name="email" id="" value={this.state.email} onChange={this.handleChange}/>
                             
                             <label htmlFor="password"> Constraseña:</label>
                             <input required disabled={!this.state.editing} type="text"
-                            placeholder={this.state.user.email}
                              name="password" id="" value={this.state.password} onChange={this.handleChange}/>
                             
                             <label htmlFor="password2"> Repetir Constraseña:</label>
                             <input required disabled={!this.state.editing} type="text"
-                            placeholder={this.state.user.password}
                              name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
                             {buttons}
-
 
                         </fieldset>
                     </form>

@@ -48,6 +48,10 @@ app.use("/novsAdmin",novedadesAdmin);
 var profileData = require("./routes/profileData")
 app.use("/profileData",profileData);
 
+var editProfile = require("./routes/editProfile")
+app.use("/editProfile",editProfile);
+
+
 var libro = require("./routes/libro_by_id")
 app.use("/libro_by_id",libro);
 

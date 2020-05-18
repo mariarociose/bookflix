@@ -9,7 +9,7 @@ router.post('/',(req,res) => {
 
     console.log(req.body);
 
-    let query = `INSERT INTO usuarios SET nombre='${req.body.nombre}', apellido='${req.body.apellido}', password='${req.body.password}', email='${req.body.email}`;
+    let query = `INSERT INTO tarjetas SET nombre_titular='${req.body.titular}', fecha_vencimiento='${req.body.vencimiento}', codigo_seguridad='${req.body.cardCod}', id_tarjeta='${req.body.cardId}`;
 
     console.log('insertando nuevo elemento');
     console.log(query)

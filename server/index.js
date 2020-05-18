@@ -48,6 +48,9 @@ app.use("/novsAdmin",novedadesAdmin);
 var profileData = require("./routes/profileData")
 app.use("/profileData",profileData);
 
+var tiposTarjeta = require("./routes/tiposTarjeta")
+app.use("/tiposTarjeta",tiposTarjeta);
+
 var editProfile = require("./routes/editProfile")
 app.use("/editProfile",editProfile);
 

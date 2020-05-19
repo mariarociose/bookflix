@@ -226,10 +226,7 @@ handleClick = (e) => {
 
                       </fieldset>
                       <fieldset className="create_field">
-                      <label for="imagen_portada" class="custom-file-upload">
-                        Imagen Portada:
-                      </label>
-                      <input id="imagen_portada" type="file" disabled={!this.state.editing} />
+
 
 
                       </fieldset>

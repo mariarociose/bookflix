@@ -37,6 +37,10 @@ class Libro_detail extends CommonDisplay{
           id_genero:"",
           portada_img:"",
           fec_vencimiento:"",
+          desc_editorial:"",
+          desc_genero:"",
+          nombre_autor:"",
+          apellido_autor:"",
           editing: false
         }
     }
@@ -44,7 +48,7 @@ class Libro_detail extends CommonDisplay{
     componentDidMount(){
 
           if(Cookie.get("userId")!= null){
-              
+
                 let id_libro = this.props.location.state.id_libro
                 id_libro = JSON.parse(id_libro)
                 this.setState({id_libro:id_libro})
@@ -59,7 +63,7 @@ class Libro_detail extends CommonDisplay{
                     })
                     .then((res) => (res.json()))
                     .then((data) => {
-                        this.setState({libro:data,isbn:data.isbn,titulo:data.titulo,
+                        this.setState({apellido_autor:data.apellido,nombre_autor:data.nombre,desc_genero:data.desc_genero,desc_editorial:data.desc_editorial,libro:data,isbn:data.isbn,titulo:data.titulo,
                         fec_vencimiento:data.fec_vencimiento,fecha_vencimiento:data.fecha_vencimiento,autor:data.id_autor, editorial:data.id_editorial, genero: data.id_genero, portada_img: data.portada_img},
                         () => (console.log(this.state)))
 
@@ -99,11 +103,11 @@ class Libro_detail extends CommonDisplay{
           mensaje: editoriales.mensaje,granted: true}, console.log(this.state));
           })
          }
-          
+
 
 
 handleSubmit = (e) => {
-  
+
   let formData = new FormData(e.target);
   formData.append("id",this.state.id_libro)
 
@@ -148,7 +152,7 @@ handleClick = (e) => {
           console.log(this.state.autores);
           autores_select = this.state.autores.map((autor) => (
                   //El map es como el collect de pharo
-                
+
 
 
                 //  if (this.state.libro.id_autor = autor.id_autor){
@@ -168,17 +172,17 @@ handleClick = (e) => {
               <option key={editorial.genero} value={editorial.id_editorial}> {editorial.desc_editorial} </option>
             ))
 
-            
+
             /*
             let convertedImage = btoa(String.fromCharCode(...new Uint8Array(this.state.portada_img.data)))
             console.log("Converted : " + convertedImage)
             let imgSrc = "data:image/jpg;base64,"+convertedImage;
-            */            
+            */
 
             return(
           <div>
             <h1>Detalle de Libro</h1>
-            
+
               <h1>{this.state.libro.titulo}</h1>
 
               <div className="create_form">
@@ -187,7 +191,7 @@ handleClick = (e) => {
 
                     <fieldset className="create_field">
 
-                      
+
                       <label for="titulo">Titulo:</label>
                       <input type="text" id="titulo"  required disabled={!this.state.editing} name="titulo" value= {this.state.titulo} onChange={this.handleChange}/>
 
@@ -202,9 +206,9 @@ handleClick = (e) => {
                       <fieldset className="create_field">
                       <label for="autor">Autor:</label>
                         <select id="autor" name="autor" required disabled={!this.state.editing} >
-                        <option selected disabled key={this.state.id_autor} value={this.state.id_autor}>  {this.state.nombre} {this.state.apellido} </option>
+                        <option selected disabled key={this.state.id_autor} value={this.state.id_autor}>  {this.state.nombre_autor} {this.state.apellido_autor} </option>
                         {autores_select}
-                          
+
                         </select>
 
                       <label for="autor">Genero:</label>

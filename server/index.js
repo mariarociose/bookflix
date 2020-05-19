@@ -34,13 +34,13 @@ app.use("/autenticar",autenticar);
 var libros = require("./routes/libros");
 app.use("/libros",libros);
 
-var autores = require("./routes/autores")
+var autores = require("./routes/autores");
 app.use("/autores",autores);
 
-var generos = require ("./routes/generos")
+var generos = require ("./routes/generos");
 app.use("/generos",generos);
 
-var editoriales = require ("./routes/editoriales")
+var editoriales = require ("./routes/editoriales");
 app.use("/editoriales",editoriales);
 
 var novedadesAdmin = require("./routes/novedadesAdmin");
@@ -49,36 +49,39 @@ app.use("/novsAdmin",novedadesAdmin);
 var novedadesUser = require("./routes/novsUser");
 app.use("/novsUser",novedadesUser);
 
-var profileData = require("./routes/profileData")
+var profileData = require("./routes/profileData");
 app.use("/profileData",profileData);
 
-var tipoTarjeta = require("./routes/tipoTarjeta")
+var tipoTarjeta = require("./routes/tipoTarjeta");
 app.use("/tipoTarjeta",tipoTarjeta);
 
-var tiposTarjeta = require("./routes/tiposTarjeta")
+var tiposTarjeta = require("./routes/tiposTarjeta");
 app.use("/tiposTarjeta",tiposTarjeta);
 
-var editProfile = require("./routes/editProfile")
+var editProfile = require("./routes/editProfile");
 app.use("/editProfile",editProfile);
 
 
-var libro = require("./routes/libro_by_id")
+var libro = require("./routes/libro_by_id");
 app.use("/libro_by_id",libro);
 
-var editorial = require("./routes/editorial_insert")
+var editorial = require("./routes/editorial_insert");
 app.use("/editorial_insert",editorial);
 
-var genero = require("./routes/genero_insert")
+var genero = require("./routes/genero_insert");
 app.use("/genero_insert",genero);
 
-var createProfile = require("./routes/createProfile")
-app.use("/createProfile",genero);
-
-var autor = require("./routes/autor_insert")
+var autor = require("./routes/autor_insert");
 app.use("/autor_insert",autor);
 
-var libro_new = require ("./routes/libro_insert")
+var libro_new = require ("./routes/libro_insert");
 app.use("/libro_insert",libro_new);
+
+var user_new = require ("./routes/createProfile");
+app.use("/createProfile",user_new);
+
+var libroUpdate = require("./routes/libroUpdate");
+app.use("/libroUpdate",libroUpdate);
 
 app.listen(4000, () => (
 

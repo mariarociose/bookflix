@@ -24,11 +24,14 @@ class CreateProfile extends CommonDisplay{
           email:"",
           password:"",
           password2:"",
-          titular:"",
-          dni:"",
-          cardId:"",
-          cardCod:"",
-          vencimiento:"",
+          mensaje:"",
+          tarjeta_numero:"",
+          tarjeta_titular:"",
+          tarjeta_dni:"",
+          tarjeta_tipo_id:"",
+          tarjeta_ccv:"",
+          tarjeta_vencimiento:"",
+
           tarjetas:[],
         }
     }
@@ -55,111 +58,112 @@ class CreateProfile extends CommonDisplay{
         this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
     )
 
-   
-   
+
+
     handleSubmit = (e) => {
 
         e.preventDefault();
         let formData = new FormData();
-   
+
             formData.append("nombre",e.target.nombre.value);
             formData.append("apellido",e.target.apellido.value);
             formData.append("email",e.target.email.value);
             formData.append("password",e.target.password.value);
             formData.append("password2",e.target.password2.value);
-            formData.append("titular",e.target.titular.value);
-            formData.append("dni",e.target.dni.value);
-            formData.append("cardCod",e.target.cardCod.value);
-            formData.append("cardId",e.target.cardCod.value);
-            formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
-            formData.append("tipo",e.target.tipo.value);
+            //tarjeta
+            formData.append("tarjeta_titular",e.target.tarjeta_titular.value);
+            formData.append("tarjeta_dni",e.target.tarjeta_dni.value);
+            formData.append("tarjeta_numero",e.target.tarjeta_numero.value);
+            formData.append("tarjeta_tipo_id",e.target.tarjeta_tipo_id.value);
+            formData.append("tarjeta_ccv",e.target.tarjeta_ccv.value);
+            formData.append("tarjeta_vencimiento",e.target.tarjeta_vencimiento.value);
 
-            if(this.state.password === this.state.password2){
+          //  if(this.state.password === this.state.password2){
                 fetch("http://localhost:4000/createProfile",{
                 method:"POST",
                 body: formData
-               
+                  })
                 .then((res) => (res.json()))
-                .then((data) => (this.setState({user:data})))
+                .then((data) => (this.setState( {user:data} )))
                 .catch((err) => (console.log(err)))
-                })
 
+                this.props.history.push("/createProfile");
 
-                fetch("http://localhost:4000/createCard",{
-                method:"POST",
-                body: formData
-               
-                .then((res) => (res.json()))
-                .then((data) => (this.setState({editing: false})))
-                .catch((err) => (console.log(err)))
-                })
+              //  fetch("http://localhost:4000/createCard",{
+              //  method:"POST",
+              //  body: formData
 
+            //    .then((res) => (res.json()))
+            //    .then((data) => (this.setState({editing: false})))
+            //    .catch((err) => (console.log(err)))
+            //    })
 
-                this.props.history.push("/login");
-            }
-            else 
-                this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})        
+        //    }
+            // else
+          //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
     }
 
     handleCancel = () => {
         this.props.history.push("/login");
-        }
+    }
 
-    renderContent = () => {
+    renderContent = () =>{
         console.log(this.state)
-
+      //  let mensaje = <p>{this.state.user.mensaje} </p>
         let tarjetas_select = [];
                   console.log(this.state.tarjetas);
                   tarjetas_select = this.state.tarjetas.map((tarjeta) => (
                           //El map es como el collect de pharo
-                    <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.descripcion}>{tarjeta.descripcion} </option>
+                    <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.id_tarjeta_tipo}>{tarjeta.descripcion} </option>
                   ))
 
               return(
 
               <div>
-               
+
 
                 <div className="create_form">
                       <h1> Crear Usuario</h1>
+                    //  mensaje}
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>
-                            <input required minLength = "4"  type="text" id="nombre"  name="nombre"/> 
-                            
+                            <input required  type="text" id="nombre"  name="nombre"/>
+
                             <label htmlFor="lastname"> Apellido: </label>
                             <input required minLength = "4" type="text" id="apellido" name="apellido" />
-                            
+
                             <label htmlFor="email"> Email:</label>
                             <input required minLength = "6" type="email" id="email" name="email" />
 
                             <label for="password"> Constraseña:</label>
                             <input required minLength = "6" type="password" id="password" name="password" />
-                            
+
                             <label for="password2"> Repetir Constraseña:</label>
                             <input required minLength = "6" type="password" id="password2" name="password2" />
 
+
                             <label htmlFor="card"> Titular tarjeta</label>
-                            <input required minLength = "4" maxLength = "16" type="text" id="card" name="card" />
+                            <input required  type="text" id="card" name="tarjeta_titular" />
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required minLength = "8" maxLength = "8" type="number" id="card" name="card" />
+                            <input required min = "1000000" max = "999999999" type="number" id="card" name="tarjeta_dni" />
 
-                            <label htmlFor="card"> Numero tarjeta</label>
-                            <input required minLength = "16" maxLength = "16" type="number" id="card" name="card" />
-                            
-                            <label for="cardCod"> Código Tarjeta</label>
-                            <input required minLength = "3" maxLength = "3" type="number" id="cardCod" name="cardCod" />
+                            <label htmlFor="card"> Numero tarjeta (16 digitos)</label>
+                            <input required min="1000000000000000" max = "9999999999999999" type="number" id="number" name="tarjeta_numero" />
 
-                            <label for="tipo">Tipo tarjeta</label>
-                                <select id="tipo" name="tipo">
+                            <label for="cardCod"> Código Tarjeta (3 digitos)</label>
+                            <input required min = "001" max = "999" type="number" id="cardCod" name="tarjeta_ccv" />
+
+                            <label for="tarjeta">Tipo tarjeta</label>
+                                <select id="tarjeta" name="tarjeta_tipo_id">
                                     {tarjetas_select}
-                                </select> 
+                                </select>
 
                             <label for="vencimiento">Vencimiento:</label>
-                            <input type='date' required name="Fecha_vencimiento" id="Fecha_vencimiento"/>
-                    
+                            <input type='date' required name="tarjeta_vencimiento" id="tarjeta_vencimiento"/>
+
 
                         <input type="submit" value="Aceptar" class="saveButton" id="accept"></input>
 
@@ -171,5 +175,9 @@ class CreateProfile extends CommonDisplay{
 
 </div>
 )
-}}
+    }
+
+
+
+}
 export default CreateProfile;

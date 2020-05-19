@@ -20,10 +20,7 @@ import AltaNovedad from "./components/altaNovedad/AltaNovedad";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
-import CreateProfile from "./components/profileComponent/CreateProfile";
-import AltaNovedad from "./components/altaNovedad/AltaNovedad";
-import UserHome from "./components/UserHome";
-import AdminHome from "./components/AdminHome"
+
 
 function App() {
   return (

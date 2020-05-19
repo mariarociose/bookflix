@@ -79,7 +79,8 @@ class CreateProfile extends CommonDisplay{
             formData.append("tarjeta_numero",e.target.tarjeta_numero.value);
             formData.append("tarjeta_tipo_id",e.target.tarjeta_tipo_id.value);
             formData.append("tarjeta_ccv",e.target.tarjeta_ccv.value);
-            formData.append("tarjeta_vencimiento",e.target.tarjeta_vencimiento.value);
+            formData.append("mesVencimiento", e.target.mes.value);
+            formData.append("anioVencimiento",e.target.anio.value)
 
             if(e.target.password.value === e.target.password2.value){
 
@@ -158,32 +159,33 @@ class CreateProfile extends CommonDisplay{
                             <input required minLength = "6" type="email" id="email" name="email" />
 
                             <label for="password"> Constraseña:</label>
-                            <input required minLength = "6" type="text" id="password" name="password" />
+                            <input required minLength = "6" type="password" id="password" name="password" />
 
                             <label for="password2"> Repetir Constraseña:</label>
-                            <input required minLength = "6" type="text" id="password2" name="password2" />
+                            <input required minLength = "6" type="password" id="password2" name="password2" />
 
 
                             <label htmlFor="card"> Titular tarjeta</label>
                             <input required  type="text" id="card" name="tarjeta_titular" />
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required min = "1000000" max = "999999999" type="number" id="card" name="tarjeta_dni" />
+                            <input required minLength = "8" maxLength = "8" type="text" pattern="[0-9]*" id="card" name="tarjeta_dni" />
 
                             <label htmlFor="card"> Numero tarjeta (16 digitos)</label>
-                            <input required min="1000000000000000" max = "9999999999999999" type="number" id="number" name="tarjeta_numero" />
+                            <input required minLength = "16" maxLength = "16" pattern="[0-9]*" type="text" id="number" name="tarjeta_numero" />
 
                             <label for="cardCod"> Código Tarjeta (3 digitos)</label>
-                            <input required min = "001" max = "999" type="number" id="cardCod" name="tarjeta_ccv" />
+                            <input required minLength = "3" pattern="[0-9]*" maxLength = "3" type="text" id="cardCod" name="tarjeta_ccv" />
 
                             <label for="tarjeta">Tipo tarjeta</label>
                                 <select id="tarjeta" name="tarjeta_tipo_id">
                                     {tarjetas_select}
                                 </select>
 
-                            <label for="vencimiento">Vencimiento:</label>
-                            <input type='date' required name="tarjeta_vencimiento" id="tarjeta_vencimiento"/>
-
+                            <label for="mes">Mes:</label>
+                            <input type="number" name="mes" id="" min="1" max="12" required/>
+                            <label for="mes">Año:</label>
+                            <input type="number" name="anio" id="" min="2020" max="2023" required/>
 
                         <input type="submit" value="Aceptar" class="saveButton" id="accept"></input>
 

@@ -112,8 +112,11 @@ class Editprofile extends CommonDisplay{
                       <h3>Tipo tarjeta</h3>
                       <p>{this.state.tipo.descripcion}</p>
 
-                      <h3>Vencimiento tarjeta</h3>
-                      <p>{this.state.user.t_fecha_vencimiento}</p>
+                      <h3>Vencimiento mes</h3>
+                      <p>{this.state.user.tarjeta_mes}</p>
+                      
+                      <h3>Vencimiento año</h3>
+                      <p>{ this.state.user.tarjeta_anio }</p>
 
 
                   <button type="submit" value="Guardar" class="saveButton">

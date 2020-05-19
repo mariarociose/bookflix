@@ -18,7 +18,7 @@ router.post('/',(req,res) => {
     connection.query(query, function(err,result){
     if(err){
       if(err.errno==500){
-          res.status(500).send('Hubo un error');
+          res.status(500).send({mensaje:"El mail ya esta en uso"});
           // 1062 es el codigo de error de mysql para duplicate entry
           return;
         }

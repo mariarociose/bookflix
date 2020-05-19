@@ -15,7 +15,7 @@ var connection = db.connection;
         connection.query(query,function(err,rows,fields){
             if(err){
                 console.log(err)
-                res.status(500).send("Hubo un error")
+                res.status(500).send({mensaje: "El mail ya existe en el sistema"})
                 return;
             }
             console.log(rows);

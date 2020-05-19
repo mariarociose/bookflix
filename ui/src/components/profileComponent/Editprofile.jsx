@@ -34,7 +34,8 @@ class Editprofile extends CommonDisplay{
           mesVencimiento:"",
           anioVencimiento:"",
           tarjetas:[],
-          editing: false
+          editing: false, 
+          mensaje : null
         }
     }
 
@@ -119,13 +120,14 @@ class Editprofile extends CommonDisplay{
                 })
 
                 .then((res) => (res.json()))
-                .then((data) => (this.setState({editing: false})))
-                .catch((err) => (console.log(err)))
-
-                this.props.history.push("/profile");
+                .then((data) => (this.setState({editing: false, mensaje: data.mensaje})))
+                .catch((err) => (this.setState({mensaje: err.mensaje})))
+                
+                
             }
             else
                 this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
+
 
 
     }
@@ -168,7 +170,7 @@ class Editprofile extends CommonDisplay{
                       <h1> Editar mi perfil</h1>
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                         <fieldset className="create_field">
-
+                        {this.state.mensaje}
                         <label htmlFor="nombre">Nombre</label>
                             <input required disabled={!this.state.editing}  type="text"
                             name="nombre" id="" value={this.state.nombre} onChange={this.handleChange}/>

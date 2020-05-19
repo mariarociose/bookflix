@@ -148,6 +148,7 @@ class CreateProfile extends CommonDisplay{
                       <h1> Crear Usuario</h1>
 
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
+                      {this.state.mensaje}
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>
                             <input required  type="text" id="nombre"  name="nombre"/>

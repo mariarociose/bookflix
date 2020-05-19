@@ -185,7 +185,7 @@ class CreateProfile extends CommonDisplay{
                             <label for="mes">Mes:</label>
                             <input type="number" name="mes" id="" min="0" max="12" required/>
                             <label for="mes">Año:</label>
-                            <input type="number" name="anio" id="" min="0" max="99" required/>
+                            <input type="number" name="anio" id="" min="20" max="99" required/>
 
                         <input type="submit" value="Aceptar" class="saveButton" id="accept"></input>
 

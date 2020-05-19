@@ -33,10 +33,10 @@ class NovedadesContainer extends CommonDisplay{
     handleConfirm = (novedad) => {
          confirmAlert({
            title: 'Confirme para eliminar',
-           message: 'Esta seguro de que quiere eliminar la novedad?',
+           message: '¿Esta seguro de que quiere eliminar la novedad?',
            buttons: [
              {
-               label: 'Si,estoy seguro',
+               label: 'Si, estoy seguro',
                onClick: () => this.handleDelete(novedad)
              },
             {
@@ -101,6 +101,7 @@ class NovedadesContainer extends CommonDisplay{
                     news = this.state.novedades.map((novedad) => (
 
                         <tr key={novedad.id_novedad}>
+                            <td>{novedad.id_novedad}</td>
                             <td>{novedad.titulo}</td>
                             <td>{novedad.descripcion}</td>
                             <td><Link className="button mr-10" rep to={{
@@ -126,6 +127,7 @@ class NovedadesContainer extends CommonDisplay{
                         <thead>
 
                             <tr>
+                            <th className="text-center">Id</th>
                             <th className="text-center">Titulo</th>
                             <th className="text-center">Descripcion</th>
                             <th allign ="center"></th>

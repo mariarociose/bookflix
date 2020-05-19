@@ -56,7 +56,7 @@ router.delete("/",function(req,res){
 router.post("/",function(req,res){
 
     console.log(req.body);
-    let query = `insert into novedades (titulo, descripcion, habilitado) values ("${req.body.titulo}","${req.body.descripcion}",1)`
+    let query = `insert into novedades (titulo, descripcion, habilitado, fecha_publicacion) values ("${req.body.titulo}","${req.body.descripcion}",1,CURDATE())`
     connection.query(query,function(err,rows,fields){
         if(err){
             console.log(err);

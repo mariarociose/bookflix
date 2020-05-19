@@ -103,12 +103,12 @@ class CreateProfile extends CommonDisplay{
           //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
     }
-
+    }
     handleCancel = () => {
         this.props.history.push("/login");
-        }
+    }
 
-    renderContent = () => {
+    renderContent = () =>{
         console.log(this.state)
         let mensaje = <p>{this.state.user.mensaje} </p>
         let tarjetas_select = [];
@@ -175,5 +175,9 @@ class CreateProfile extends CommonDisplay{
 
 </div>
 )
-}}
+    }
+
+
+
+}
 export default CreateProfile;

@@ -16,10 +16,11 @@ import Libro_detail from "./components/libroViewDetail/Libro_detail";
 import EditorialCreate from "./components/editorialCreate/EditorialCreate";
 import GeneroCreate from "./components/generoCreate/GeneroCreate";
 import AutorCreate from "./components/autorCreate/AutorCreate";
-import CreateProfile from "./components/profileComponent/CreateProfile";
 import AltaNovedad from "./components/altaNovedad/AltaNovedad";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
+import CreateProfile from "./components/profileComponent/CreateProfile";
+
 
 function App() {
   return (

@@ -44,7 +44,7 @@ class Libro_detail extends CommonDisplay{
     componentDidMount(){
 
           if(Cookie.get("userId")!= null){
-
+              
                 let id_libro = this.props.location.state.id_libro
                 id_libro = JSON.parse(id_libro)
                 this.setState({id_libro:id_libro})
@@ -137,12 +137,16 @@ handleClick = (e) => {
 
           ))
 
+            /*
+            let convertedImage = btoa(String.fromCharCode(...new Uint8Array(this.state.portada_img.data)))
+            console.log("Converted : " + convertedImage)
+            let imgSrc = "data:image/jpg;base64,"+convertedImage;
+            */            
 
-
-
-        return(
+            return(
           <div>
             <h1>Detalle de Libro</h1>
+            
               <h1>{this.state.libro.titulo}</h1>
 
               <div className="create_form">
@@ -151,7 +155,7 @@ handleClick = (e) => {
 
                     <fieldset className="create_field">
 
-
+                      
                       <label for="titulo">Titulo:</label>
                       <input type="text" id="titulo"  required disabled={!this.state.editing} name="titulo" value= {this.state.titulo} onChange={this.handleChange}/>
 

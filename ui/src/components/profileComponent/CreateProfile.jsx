@@ -33,7 +33,6 @@ class CreateProfile extends CommonDisplay{
           tarjeta_vencimiento:"",
 
           tarjetas:[],
-          user: {}
         }
     }
 
@@ -71,15 +70,14 @@ class CreateProfile extends CommonDisplay{
             formData.append("email",e.target.email.value);
             formData.append("password",e.target.password.value);
             formData.append("password2",e.target.password2.value);
-            //tarjeta
-            formData.append("tarjeta_titular",e.target.tarjeta_titular.value);
-            formData.append("tarjeta_dni",e.target.tarjeta_dni.value);
-            formData.append("tarjeta_numero",e.target.tarjeta_numero.value);
-            formData.append("tarjeta_tipo_id",e.target.tarjeta_tipo_id.value);
-            formData.append("tarjeta_ccv",e.target.tarjeta_ccv.value);
-            formData.append("tarjeta_vencimiento",e.target.tarjeta_vencimiento.value);
+            formData.append("titular",e.target.titular.value);
+            formData.append("dni",e.target.dni.value);
+            formData.append("cardCod",e.target.cardCod.value);
+            formData.append("cardId",e.target.cardCod.value);
+            formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
+            formData.append("tipo",e.target.tipo.value);
 
-          //  if(this.state.password === this.state.password2){
+            if(this.state.password === this.state.password2){
                 fetch("http://localhost:4000/createProfile",{
                 method:"POST",
                 body: formData
@@ -104,12 +102,12 @@ class CreateProfile extends CommonDisplay{
           //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
     }
-
+    }
     handleCancel = () => {
         this.props.history.push("/login");
-        }
+    }
 
-    renderContent = () => {
+    renderContent = () =>{
         console.log(this.state)
         let mensaje = <p>{this.state.user.mensaje} </p>
         let tarjetas_select = [];
@@ -146,7 +144,7 @@ class CreateProfile extends CommonDisplay{
 
 
                             <label htmlFor="card"> Titular tarjeta</label>
-                            <input required  type="text" id="card" name="tarjeta_titular" />
+                            <input required minLength = "4" maxLength = "16" type="text" id="card" name="card" />
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
                             <input required minLength = "8" maxLength = "8" type="text" id="card" name="tarjeta_dni" />
@@ -157,8 +155,8 @@ class CreateProfile extends CommonDisplay{
                             <label for="cardCod"> Código Tarjeta</label>
                             <input required minLength = "3" maxLength = "3" type="number" id="cardCod" name="tarjeta_ccv" />
 
-                            <label for="tarjeta">Tipo tarjeta</label>
-                                <select id="tarjeta" name="tarjeta_tipo_id">
+                            <label for="tipo">Tipo tarjeta</label>
+                                <select id="tipo" name="tipo">
                                     {tarjetas_select}
                                 </select>
 
@@ -175,6 +173,10 @@ class CreateProfile extends CommonDisplay{
                 </div>
 
 </div>
-)
-}}
+)   
+    }
+
+    
+
+}
 export default CreateProfile;

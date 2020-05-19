@@ -71,7 +71,10 @@ app.use("/editorial_insert",editorial);
 var genero = require("./routes/genero_insert");
 app.use("/genero_insert",genero);
 
-var autor = require("./routes/autor_insert");
+var createProfile = require("./routes/createProfile")
+app.use("/createProfile",createProfile);
+
+var autor = require("./routes/autor_insert")
 app.use("/autor_insert",autor);
 
 var libro_new = require ("./routes/libro_insert");

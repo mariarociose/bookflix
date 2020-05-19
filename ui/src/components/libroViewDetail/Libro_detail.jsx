@@ -133,8 +133,7 @@ handleClick = (e) => {
 
       renderContent(){
         console.log(this.state)
-
-
+  
         let buttons;
 
         if(!this.state.editing){
@@ -182,6 +181,7 @@ handleClick = (e) => {
             return(
           <div>
             <h1>Detalle de Libro</h1>
+
 
               <h1>{this.state.libro.titulo}</h1>
 

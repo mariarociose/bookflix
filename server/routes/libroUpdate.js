@@ -8,13 +8,37 @@ router.put("/", function(req,res){
     console.log(req.body)
     console.log(query)
     connection.query(query,function(err,rows,fields){
-        if(err){
-            console.log(err);
-            res.status(500).send("error")
+      if(err){
+    if(err.errno==500){
+        res.status(500).send('Hubo un error');
+        // 1062 es el codigo de error de mysql para duplicate entry
+        return;
+      }
+    if(err.errno==1062){
+      // 1062 es el codigo de error de mysql para duplicate entry
+        console.log('Duplicado');
+        res.json(
+            {
+                mensaje1: "El codigo de ISBN ya se encuentra en el sistema"
+            }
+          )
+
+    }
+
+    }
+    else{
+
+    console.log('elemento modificado');
+    res.json(
+        {
+            mensaje1: "Libro actualizado con exito"
         }
-        console.log(rows)
-        res.json(rows);
-    })
+      )
+    }
+
+    }
+
+  )
 
 })
 

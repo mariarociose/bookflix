@@ -52,24 +52,27 @@ class DetalleNovedad extends CommonDisplay{
      let buttons;
 
      if(!this.state.editing){
-         buttons = <input type="button" value="Actualizar" id="update" onClick={this.handleClick}></input>
+         buttons = <input type="button" class="saveButton" value="Actualizar" id="update" onClick={this.handleClick}></input>
      }else{
          buttons = (
          <div>
-             <input type="submit" value="Aceptar" id="accept"></input>
-             <input type="button" value="Cancelar" id="cancel" onClick={this.handleClick}></input>
+             <input type="submit" class="saveButton" value="Aceptar" id="accept"></input>
+             <input type="button" class="resetButton" value="Cancelar" id="cancel" onClick={this.handleClick}></input>
          </div>
          )
      }
 
      return(
-     <div className="detalleNovedad">
-         <form onSubmit={this.handleSubmit}>
+     <div className="book_form">
+         <form  className="create_form" onSubmit={this.handleSubmit}>
+            <fieldset className="create_field">
              <h1>Detalle de Novedad</h1>
              <label htmlFor="titulo">Titulo</label>
-             <input required disabled={!this.state.editing} type="text" name="titulo" id="" value={this.state.titulo} onChange={this.handleChange}/>
+             <input required disabled={!this.state.editing} type="text"  name="titulo" id="" value={this.state.titulo} onChange={this.handleChange}/>
              <label htmlFor="descripcion">Descripción</label>
              <input required disabled={!this.state.editing} type="text" name="descripcion" id=""value={this.state.descripcion} onChange={this.handleChange}/>
+            </fieldset>
+
              {buttons}
 
          </form>

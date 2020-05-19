@@ -129,7 +129,7 @@ class CreateProfile extends CommonDisplay{
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>
-                            <input required minLength = "4"  type="text" id="nombre"  name="nombre"/>
+                            <input required  type="text" id="nombre"  name="nombre"/>
 
                             <label htmlFor="lastname"> Apellido: </label>
                             <input required minLength = "4" type="text" id="apellido" name="apellido" />
@@ -148,13 +148,13 @@ class CreateProfile extends CommonDisplay{
                             <input required  type="text" id="card" name="tarjeta_titular" />
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required minLength = "8" maxLength = "8" type="text" id="card" name="tarjeta_dni" />
+                            <input required min = "1000000" max = "999999999" type="number" id="card" name="tarjeta_dni" />
 
-                            <label htmlFor="card"> Numero tarjeta</label>
-                            <input required minLength = "16" maxLength = "16"  id="text" name="tarjeta_numero" />
+                            <label htmlFor="card"> Numero tarjeta (16 digitos)</label>
+                            <input required min="1000000000000000" max = "9999999999999999" type="number" id="number" name="tarjeta_numero" />
 
-                            <label for="cardCod"> Código Tarjeta</label>
-                            <input required minLength = "3" maxLength = "3" type="number" id="cardCod" name="tarjeta_ccv" />
+                            <label for="cardCod"> Código Tarjeta (3 digitos)</label>
+                            <input required min = "001" max = "999" type="number" id="cardCod" name="tarjeta_ccv" />
 
                             <label for="tarjeta">Tipo tarjeta</label>
                                 <select id="tarjeta" name="tarjeta_tipo_id">

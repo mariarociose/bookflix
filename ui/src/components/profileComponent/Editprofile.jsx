@@ -31,7 +31,8 @@ class Editprofile extends CommonDisplay{
           dni:"",
           cardId:"",
           cardCod:"",
-          vencimiento:"",
+          mesVencimiento:"",
+          anioVencimiento:"",
           tarjetas:[],
           editing: false
         }
@@ -55,7 +56,7 @@ class Editprofile extends CommonDisplay{
                     .then((res) => (res.json()))
                     .then((data) => {
                         this.setState({user:data,nombre:data.nombre,apellido:data.apellido,
-                        email:data.email,password:data.password, password2:data.password, id: data.id_usuario, titular:data.tarjeta_titular, dni:data.tarjeta_dni,cardId:data.tarjeta_numero, cardCod: data.tarjeta_ccv,tipo: data.tarjeta_tipo_id, vencimiento: data.tarjeta_fecha_vencimiento },
+                        email:data.email,password:data.password, password2:data.password, id: data.id_usuario, titular:data.tarjeta_titular, dni:data.tarjeta_dni,cardId:data.tarjeta_numero, cardCod: data.tarjeta_ccv,tipo: data.tarjeta_tipo_id, mesVencimiento: data.tarjeta_mes, anioVencimiento: data.tarjeta_anio },
                         () => (console.log(this.state)))
                 })
 
@@ -106,8 +107,9 @@ class Editprofile extends CommonDisplay{
         formData.append("titular",e.target.titular.value);
         formData.append("dni",e.target.dni.value);
         formData.append("cardCod",e.target.cardCod.value);
-        formData.append("cardId",e.target.cardCod.value);
-        formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
+        formData.append("cardId",e.target.cardId.value);
+        formData.append("mesVencimiento", e.target.mes.value);
+        formData.append("anioVencimiento", e.target.anio.value);
         formData.append("tipo",e.target.tipo.value);
 
             if(this.state.password === this.state.password2){
@@ -139,7 +141,7 @@ class Editprofile extends CommonDisplay{
         console.log(this.state.tarjetas);
         tarjetas_select = this.state.tarjetas.map((tarjeta) => (
                 //El map es como el collect de pharo
-          <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.descripcion}>{tarjeta.descripcion} </option>
+          <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.id_tarjeta_tipo}>{tarjeta.descripcion} </option>
         ))
 
 
@@ -180,11 +182,11 @@ class Editprofile extends CommonDisplay{
                              name="email" id="" value={this.state.email} onChange={this.handleChange}/>
 
                             <label htmlFor="password"> Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="password"
+                            <input required disabled={!this.state.editing} minLength = "6"  type="password"
                              name="password" id="" value={this.state.password} onChange={this.handleChange}/>
 
                             <label htmlFor="password2"> Repetir Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="password"
+                            <input required disabled={!this.state.editing} minLength = "6"  type="password"
                              name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
 
 
@@ -193,25 +195,26 @@ class Editprofile extends CommonDisplay{
                             name="titular" id="card" value={this.state.titular} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "8" maxLength = "8" type="number"
+                            <input required disabled={!this.state.editing} minLength = "8" maxLength = "8" type="text" pattern="[0-9]*"
                             name="dni" id="card" value={this.state.dni} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> Numero tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "16" maxLength = "16" type="number"
+                            <input required disabled={!this.state.editing} minLength = "16" maxLength = "16" type="text" pattern="[0-9]*"
                             name="cardId" id="card" value={this.state.cardId} onChange={this.handleChange}/>
 
                             <label for="cardCod"> Código Tarjeta</label>
-                            <input required disabled={!this.state.editing} type="number" minLength = "3" maxLength = "3"
+                            <input required disabled={!this.state.editing} type="text" minLength = "3" maxLength = "3" pattern="[0-9]*"
                             name="cardCod" id="card" value={this.state.cardCod} onChange={this.handleChange}/>
+
+                            <label for="mes">Mes</label>
+                            <input required disabled={!this.state.editing}  type="number" name="mes" id="mes" min="1" max="12"  value={this.state.mesVencimiento} onChange={this.handleChange}/>
+                            <label for="anio">Año</label>
+                            <input  required disabled={!this.state.editing} type="number" name="anio" id="anio" min="2020" max="2023" value={this.state.anioVencimiento} onChange={this.handleChange}/>
 
                             <label for="tipo">Tipo tarjeta</label>
                                 <select required disabled={!this.state.editing} id="tipo" name="tipo" onChange={this.handleChange}>
                                     {tarjetas_select}
                                 </select>
-
-                            <label for="vencimiento">Vencimiento:</label>
-                            <input required disabled={!this.state.editing} type='date'
-                            name="vencimiento" id="Fecha_vencimiento" value={this.state.vencimiento} onChange={this.handleChange}/>
 
                             {buttons}
 

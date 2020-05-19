@@ -42,7 +42,7 @@ class NovedadesContainer extends CommonDisplay{
             {
                label: 'No' ,
                onClick: () => this.closeModal
-             } 
+             }
            ]
          });
        }

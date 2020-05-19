@@ -96,10 +96,6 @@ class Editprofile extends CommonDisplay{
     handleSubmit = (e) => {
         console.log("HOOOOLA MAAAAAATI")
         e.preventDefault();
-
-
-
-
         let formData = new FormData();
         formData.append("nombre",e.target.nombre.value);
         formData.append("apellido",e.target.apellido.value);
@@ -110,8 +106,8 @@ class Editprofile extends CommonDisplay{
         formData.append("titular",e.target.titular.value);
         formData.append("dni",e.target.dni.value);
         formData.append("cardCod",e.target.cardCod.value);
-        formData.append("cardId",e.target.cardId.value);
-        formData.append("vencimiento",e.target.vencimiento.value);
+        formData.append("cardId",e.target.cardCod.value);
+        formData.append("Fecha_vencimiento",e.target.Fecha_vencimiento.value);
         formData.append("tipo",e.target.tipo.value);
 
             if(this.state.password === this.state.password2){
@@ -143,7 +139,7 @@ class Editprofile extends CommonDisplay{
         console.log(this.state.tarjetas);
         tarjetas_select = this.state.tarjetas.map((tarjeta) => (
                 //El map es como el collect de pharo
-                <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.id_tarjeta_tipo}>{tarjeta.descripcion} </option>
+          <option key={tarjeta.id_tarjeta_tipo} value={tarjeta.descripcion}>{tarjeta.descripcion} </option>
         ))
 
 
@@ -172,11 +168,11 @@ class Editprofile extends CommonDisplay{
                         <fieldset className="create_field">
 
                         <label htmlFor="nombre">Nombre</label>
-                            <input required disabled={!this.state.editing} minLength = "4" type="text"
+                            <input required disabled={!this.state.editing}  type="text"
                             name="nombre" id="" value={this.state.nombre} onChange={this.handleChange}/>
 
                             <label htmlFor="apellido"> Apellido: </label>
-                            <input required disabled={!this.state.editing} minLength = "4" type="text"
+                            <input required disabled={!this.state.editing}  type="text"
                             name="apellido" id="" value={this.state.apellido} onChange={this.handleChange}/>
 
                             <label htmlFor="email"> Email:</label>
@@ -184,29 +180,29 @@ class Editprofile extends CommonDisplay{
                              name="email" id="" value={this.state.email} onChange={this.handleChange}/>
 
                             <label htmlFor="password"> Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="text"
+                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="password"
                              name="password" id="" value={this.state.password} onChange={this.handleChange}/>
 
                             <label htmlFor="password2"> Repetir Constraseña:</label>
-                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="text"
+                            <input required disabled={!this.state.editing} minLength = "6" maxLength = "8" type="password"
                              name="password2" id="" value={this.state.password2} onChange={this.handleChange}/>
 
 
                             <label htmlFor="card"> Titular tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "5" maxLength = "8" type="text"
+                            <input required disabled={!this.state.editing}  type="text"
                             name="titular" id="card" value={this.state.titular} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> DNI Titular tarjeta</label>
-                            <input required disabled={!this.state.editing} type="text"
-                            pattern="[0-9]*"  name="dni" id="card" value={this.state.dni} minLength="8" maxLength="8" onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} minLength = "8" maxLength = "8" type="number"
+                            name="dni" id="card" value={this.state.dni} onChange={this.handleChange}/>
 
                             <label htmlFor="card"> Numero tarjeta</label>
-                            <input required disabled={!this.state.editing} minLength = "16" maxLength = "16" type="text"
-                            name="cardId" id="card" pattern="[0-9]*" value={this.state.cardId} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} minLength = "16" maxLength = "16" type="number"
+                            name="cardId" id="card" value={this.state.cardId} onChange={this.handleChange}/>
 
                             <label for="cardCod"> Código Tarjeta</label>
-                            <input required disabled={!this.state.editing} type="text" minLength = "3" maxLength = "3"
-                            name="cardCod" id="card" pattern="[0-9]*" value={this.state.cardCod} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing} type="number" minLength = "3" maxLength = "3"
+                            name="cardCod" id="card" value={this.state.cardCod} onChange={this.handleChange}/>
 
                             <label for="tipo">Tipo tarjeta</label>
                                 <select required disabled={!this.state.editing} id="tipo" name="tipo" onChange={this.handleChange}>

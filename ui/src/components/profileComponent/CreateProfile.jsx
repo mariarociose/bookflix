@@ -14,6 +14,9 @@ import Paper from '@material-ui/core/Paper';
 import CommonDisplay from "../CommonDisplay";
 import "./profile.css"
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 class CreateProfile extends CommonDisplay{
 
     constructor(props){
@@ -78,7 +81,7 @@ class CreateProfile extends CommonDisplay{
             formData.append("tarjeta_ccv",e.target.tarjeta_ccv.value);
             formData.append("tarjeta_vencimiento",e.target.tarjeta_vencimiento.value);
 
-          //  if(this.state.password === this.state.password2){
+          if(this.state.password === this.state.password2){
                 fetch("http://localhost:4000/createProfile",{
                 method:"POST",
                 body: formData
@@ -87,7 +90,9 @@ class CreateProfile extends CommonDisplay{
                 .then((data) => (this.setState( {user:data} )))
                 .catch((err) => (console.log(err)))
 
-                this.props.history.push("/createProfile");
+                this.handleConfirm();
+                this.props.history.push("/login");
+              //  this.props.history.push("/login");
 
               //  fetch("http://localhost:4000/createCard",{
               //  method:"POST",
@@ -98,9 +103,9 @@ class CreateProfile extends CommonDisplay{
             //    .catch((err) => (console.log(err)))
             //    })
 
-        //    }
-            // else
-          //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
+           }
+          else
+            this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
     }
 
@@ -108,9 +113,23 @@ class CreateProfile extends CommonDisplay{
         this.props.history.push("/login");
     }
 
+    handleConfirm = () => {
+         confirmAlert({
+           title: 'Usuario generado con exito',
+           message: 'Ahora podes ingresar',
+           buttons: [
+             {
+               label: 'OK',
+               onClick: () => this.props.history.push("/login")
+             },
+
+           ]
+         });
+       }
+
     renderContent = () =>{
         console.log(this.state)
-      //  let mensaje = <p>{this.state.user.mensaje} </p>
+    //  let mensaje = <p>{this.state.user.mensaje} </p>
         let tarjetas_select = [];
                   console.log(this.state.tarjetas);
                   tarjetas_select = this.state.tarjetas.map((tarjeta) => (

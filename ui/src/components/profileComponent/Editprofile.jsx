@@ -207,9 +207,9 @@ class Editprofile extends CommonDisplay{
                             name="cardCod" id="card" value={this.state.cardCod} onChange={this.handleChange}/>
 
                             <label for="mes">Mes</label>
-                            <input required disabled={!this.state.editing}  type="number" name="mes" id="mes" min="1" max="12"  value={this.state.mesVencimiento} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing}  type="number" name="mesVencimiento" id="mes" min="1" max="22" pattern="[0-9]*" value={this.state.mesVencimiento} onChange={this.handleChange}/>
                             <label for="anio">Año</label>
-                            <input  required disabled={!this.state.editing} type="number" name="anio" id="anio" min="2020" max="2023" value={this.state.anioVencimiento} onChange={this.handleChange}/>
+                            <input  required disabled={!this.state.editing} type="number" name="anioVencimiento" id="anio" min="0" max="99" pattern="[0-9]*" value={this.state.anioVencimiento} onChange={this.handleChange}/>
 
                             <label for="tipo">Tipo tarjeta</label>
                                 <select required disabled={!this.state.editing} id="tipo" name="tipo" onChange={this.handleChange}>

@@ -78,7 +78,8 @@ class CreateProfile extends CommonDisplay{
             formData.append("tarjeta_ccv",e.target.tarjeta_ccv.value);
             formData.append("tarjeta_vencimiento",e.target.tarjeta_vencimiento.value);
 
-          //  if(this.state.password === this.state.password2){
+            if(e.target.password.value === e.target.password2.value){
+                
                 fetch("http://localhost:4000/createProfile",{
                 method:"POST",
                 body: formData
@@ -88,20 +89,9 @@ class CreateProfile extends CommonDisplay{
                 .catch((err) => (console.log(err)))
 
                 this.props.history.push("/createProfile");
-
-              //  fetch("http://localhost:4000/createCard",{
-              //  method:"POST",
-              //  body: formData
-
-            //    .then((res) => (res.json()))
-            //    .then((data) => (this.setState({editing: false})))
-            //    .catch((err) => (console.log(err)))
-            //    })
-
-        //    }
-            // else
-          //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
-
+          }
+             else
+                alert("Contraseñas no coinciden");
     }
 
     handleCancel = () => {
@@ -125,7 +115,7 @@ class CreateProfile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Crear Usuario</h1>
-                    //  mensaje}
+                    
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>
@@ -138,10 +128,10 @@ class CreateProfile extends CommonDisplay{
                             <input required minLength = "6" type="email" id="email" name="email" />
 
                             <label for="password"> Constraseña:</label>
-                            <input required minLength = "6" type="password" id="password" name="password" />
+                            <input required minLength = "6" type="text" id="password" name="password" />
 
                             <label for="password2"> Repetir Constraseña:</label>
-                            <input required minLength = "6" type="password" id="password2" name="password2" />
+                            <input required minLength = "6" type="text" id="password2" name="password2" />
 
 
                             <label htmlFor="card"> Titular tarjeta</label>

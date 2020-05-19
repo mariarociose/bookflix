@@ -11,17 +11,40 @@ router.post('/',(req,res) => {
     //var query = "INSERT INTO editoriales SET desc_editorial='prueba'";
 
 
-    let query = `INSERT INTO usuarios SET nombre='${req.body.nombre}', apellido='${req.body.apellido}', password='${req.body.password}', email='${req.body.email}, tarjeta_titular='${req.body.titular}', tarjeta_dni='${req.body.dni}', tarjeta_numero='${req.body.cardId}', tarjeta_ccv='${req.body.cardCod}', tarjeta_tipo_id='${req.body.tipo}', tarjeta_fecha_vencimiento='${req.body.Fecha_vencimiento}'`; 
+    var query = `INSERT INTO usuarios SET nombre=('${req.body.nombre}'),apellido=('${req.body.apellido}'),password=('${req.body.password}'),email=('${req.body.email}'),tarjeta_titular='${req.body.tarjeta_titular}', tarjeta_dni='${req.body.tarjeta_dni}', tarjeta_numero='${req.body.tarjeta_numero}', tarjeta_ccv='${req.body.tarjeta_ccv}', tarjeta_tipo_id='${req.body.tarjeta_tipo_id}', tarjeta_fecha_vencimiento='${req.body.tarjeta_vencimiento}'`;
 
     console.log('insertando nuevo elemento');
     console.log(query)
     connection.query(query, function(err,result){
     if(err){
-        res.status(500).send('Hubo un error');
-        return;
-    }
+      if(err.errno==500){
+          res.status(500).send('Hubo un error');
+          // 1062 es el codigo de error de mysql para duplicate entry
+          return;
+        }
+      if(err.errno==1062){
+        // 1062 es el codigo de error de mysql para duplicate entry
+          console.log('Duplicado');
+          res.json(
+              {
+                  mensaje: "El email ya se encuentra en el sistema"
+              }
+            )
+
+      }
+
+      }
+      else{
+
         console.log('nuevo usuario insertado');
-    });
+        res.json(
+            {
+                mensaje: "Usuario cargado con exito"
+            }
+          )
+        }
+      })
+
 })
 
 module.exports = router;

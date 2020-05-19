@@ -39,9 +39,9 @@ class NovedadesContainer extends CommonDisplay{
                label: 'Si, estoy seguro',
                onClick: () => this.handleDelete(novedad)
              },
-           {
-               label: 'No',
-               onClick: () => (null)
+            {
+               label: 'No' ,
+               onClick: this.closeModal()
              }
            ]
          });

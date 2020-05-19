@@ -229,7 +229,7 @@ handleClick = (e) => {
                       <label for="imagen_portada" class="custom-file-upload">
                         Imagen Portada:
                       </label>
-                      <input id="imagen_portada" type="file" required disabled={!this.state.editing} />
+                      <input id="imagen_portada" type="file" disabled={!this.state.editing} />
 
 
                       </fieldset>

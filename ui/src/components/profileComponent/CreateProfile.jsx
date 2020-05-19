@@ -33,7 +33,6 @@ class CreateProfile extends CommonDisplay{
           tarjeta_vencimiento:"",
 
           tarjetas:[],
-          user: {}
         }
     }
 

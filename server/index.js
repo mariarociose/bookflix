@@ -80,7 +80,8 @@ app.use("/libro_insert",libro_new);
 var user_new = require ("./routes/createProfile");
 app.use("/createProfile",user_new);
 
-
+var libroUpdate = require("./routes/libroUpdate");
+app.use("/libroUpdate",libroUpdate);
 
 app.listen(4000, () => (
 

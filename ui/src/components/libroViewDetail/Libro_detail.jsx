@@ -70,36 +70,58 @@ class Libro_detail extends CommonDisplay{
             //////////////////////////RECUPERO AUTORES
 
           if(Cookie.get("token")!= null){
-              fetch("http://localhost:4000/autores",{
-                  method:"GET",
-                  headers:{
-                      "Content-Type": "application/json",
-                      "access-token": Cookie.get("token").toString()
-
-                  }
-              })
+              fetch("http://localhost:4000/autores")
               .then((res) => (res.json()))
               .then((autores) => {
                   console.log(autores)
                   console.log(autores.dato)
                   if(autores.length == 0) autores.mensaje = "No hay Autores";
                   this.setState({autores: autores,
-                  mensaje: autores.mensaje,granted: true});
+                  mensaje: autores.mensaje,granted: true}, console.log(this.state));
 
               })
               .catch(() => (this.setState({autores:[],mensaje: "Acceso denegado",granted: false})))
           }else this.setState({mensaje: "Acceso denegado"})
 
             /////////////////////////RECUPERO generos
+          fetch("http://localhost:4000/generos")
+          .then((res) => res.json())
+          .then((generos) => {
+            if(generos.length == 0) generos.mensaje = "No hay generos";
+                  this.setState({generos: generos,
+                  mensaje: generos.mensaje,granted: true}, console.log(this.state));
+            })
+          fetch("http://localhost:4000/editoriales")
+          .then((res) => res.json())
+         .then((editoriales) => {
+          if(editoriales.length == 0) editoriales.mensaje = "No hay editoriales";
+          this.setState({editoriales: editoriales,
+          mensaje: editoriales.mensaje,granted: true}, console.log(this.state));
+          })
+         }
+          
 
 
+handleSubmit = (e) => {
+  
+  let formData = new FormData(e.target);
+  formData.append("id",this.state.id_libro)
 
-
+  e.preventDefault();
+  fetch("http://localhost:4000/libroUpdate",{
+    method: "PUT",
+    body: formData
+  })
+  .then((res) => (res.json()))
+  .then(this.setState({mensaje: "Libro actualizado correctamente"}))
 }
+
+
 
 handleChange = (e) => (
     this.setState({[e.target.name]: e.target.value},()=>(console.log(this.state)))
 )
+
 
 handleClick = (e) => {
    this.setState({editing: !this.state.editing})
@@ -126,17 +148,27 @@ handleClick = (e) => {
           console.log(this.state.autores);
           autores_select = this.state.autores.map((autor) => (
                   //El map es como el collect de pharo
-
+                
 
 
                 //  if (this.state.libro.id_autor = autor.id_autor){
                 //      <option selected key={autor.id_autor} value={autor.id_autor}>  {autor.nombre} {autor.apellido} </option>
                 //  }else{
-                    <option key={autor.id_autor} value={autor.id_autor}>  {autor.nombre} {autor.apellido} </option>
+                    <option key={autor.id_autor} value={autor.id_autor}> {autor.nombre} {autor.apellido} </option>
                   //}
 
-          ))
+        ))
+            let generos_select = [];
+            generos_select = this.state.generos.map((genero) => (
+              <option key={genero.id_genero} value={genero.id_genero}> {genero.desc_genero} </option>
+            ))
 
+            let editoriales_select = [];
+            editoriales_select = this.state.editoriales.map((editorial) => (
+              <option key={editorial.genero} value={editorial.id_editorial}> {editorial.desc_editorial} </option>
+            ))
+
+            
             /*
             let convertedImage = btoa(String.fromCharCode(...new Uint8Array(this.state.portada_img.data)))
             console.log("Converted : " + convertedImage)
@@ -151,7 +183,7 @@ handleClick = (e) => {
 
               <div className="create_form">
 
-                  <form className="book_form" allign='center' >
+                  <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
 
                     <fieldset className="create_field">
 
@@ -170,20 +202,22 @@ handleClick = (e) => {
                       <fieldset className="create_field">
                       <label for="autor">Autor:</label>
                         <select id="autor" name="autor" required disabled={!this.state.editing} >
-                        //  <option value="{this.state.libro.id_autor}" selected disabled hidden>Choose here</option>
-                          <option selected disabled key={this.state.id_autor} value={this.state.id_autor}>  {this.state.nombre} {this.state.apellido} </option>
+                        <option selected disabled key={this.state.id_autor} value={this.state.id_autor}>  {this.state.nombre} {this.state.apellido} </option>
+                        {autores_select}
+                          
                         </select>
 
                       <label for="autor">Genero:</label>
                       <select id="genero" name="genero" required disabled={!this.state.editing}>
                       <option selected disabled key={this.state.id_genero} value={this.state.id_genero}>  {this.state.desc_genero} </option>
-
+                      {generos_select}
                       </select>
 
                       <label for="editorial">Editorial:</label>
 
                       <select id="editorial" name="editorial" required disabled={!this.state.editing}>
                       <option selected disabled key={this.state.id_editorial} value={this.state.id_editorial}> {this.state.desc_editorial} </option>
+                      {editoriales_select}
                       </select>
 
                       </fieldset>

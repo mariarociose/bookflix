@@ -24,7 +24,7 @@ class Editprofile extends CommonDisplay{
           tipo:[]
         }
     }
-    
+
     async componentDidMount(){
         if(Cookie.get("userType") == "1"){
             if(Cookie.get("userId")!= null){
@@ -44,8 +44,8 @@ class Editprofile extends CommonDisplay{
                     .then((data) => {
                         this.setState({user:data}, () => (console.log(this.state)))
                     })
-                
-            
+
+
                 fetch((`http://localhost:4000/tipoTarjeta?tipoId=${this.state.user.tarjeta_tipo_id}`),{
                             method:"GET",
                             headers:{
@@ -60,7 +60,7 @@ class Editprofile extends CommonDisplay{
                         console.log(this.state.tipo.descripcion)
                         console.log("probando tipo tarjeta")
 
-            
+
             }
             else
             this.props.history.push("/homeAdmin");
@@ -73,26 +73,26 @@ class Editprofile extends CommonDisplay{
         }
 
 
-    
+
     renderContent = () => {
 
               return(
 
               <div>
-               
+
 
                 <div className="create_form">
                       <h1> Mi perfil</h1>
                       <form onSubmit={this.handleGo} className="book_form" allign='center' >
-                  <fieldset className="create_field"> 
+                  <fieldset className="create_field">
                       <h3>Nombre</h3>
-                      <p>{this.state.user.nombre}</p> 
+                      <p>{this.state.user.nombre}</p>
 
                       <h3>Apellido</h3>
-                      <p>{this.state.user.apellido}</p> 
+                      <p>{this.state.user.apellido}</p>
 
                       <h3>Contraseña</h3>
-                      <p>{this.state.user.password}</p> 
+                      <p>{this.state.user.password}</p>
 
                       <h3>Email</h3>
                       <p>{this.state.user.email}</p>
@@ -113,9 +113,9 @@ class Editprofile extends CommonDisplay{
                       <p>{this.state.tipo.descripcion}</p>
 
                       <h3>Vencimiento tarjeta</h3>
-                      <p>{this.state.user.tarjeta_fecha_vencimiento}</p>
-                            
-            
+                      <p>{this.state.user.t_fecha_vencimiento}</p>
+
+
                   <button type="submit" value="Guardar" class="saveButton">
                       Editar Perfil
                       </button>

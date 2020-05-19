@@ -7,12 +7,12 @@ class StartComponent extends CommonDisplay{
 
     constructor(props){
         super(props)
-        
+
     }
 
     renderContent = () => (
 
-        <h1>SOY LA PANTALLA DE INICIO</h1>
+        <h1>HOME VISITANTES</h1>
 
     )
 

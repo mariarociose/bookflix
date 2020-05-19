@@ -24,7 +24,7 @@ class CreateProfile extends CommonDisplay{
           email:"",
           password:"",
           password2:"",
-
+          mensaje:"",
           tarjeta_numero:"",
           tarjeta_titular:"",
           tarjeta_dni:"",
@@ -103,14 +103,14 @@ class CreateProfile extends CommonDisplay{
           //      this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
     }
-    }
+
     handleCancel = () => {
         this.props.history.push("/login");
     }
 
     renderContent = () =>{
         console.log(this.state)
-        let mensaje = <p>{this.state.user.mensaje} </p>
+      //  let mensaje = <p>{this.state.user.mensaje} </p>
         let tarjetas_select = [];
                   console.log(this.state.tarjetas);
                   tarjetas_select = this.state.tarjetas.map((tarjeta) => (
@@ -125,7 +125,7 @@ class CreateProfile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Crear Usuario</h1>
-                      {mensaje}
+                    //  mensaje}
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>

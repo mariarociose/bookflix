@@ -27,7 +27,7 @@ class CreateProfile extends CommonDisplay{
           email:"",
           password:"",
           password2:"",
-          mensaje:"",
+          mensaje:null,
           tarjeta_numero:"",
           tarjeta_titular:"",
           tarjeta_dni:"",
@@ -92,7 +92,7 @@ class CreateProfile extends CommonDisplay{
                 .then((data) => (this.setState( {user:data} )))
                 .catch((err) => (console.log(err)))
 
-                this.handleConfirm();
+          //      this.handleConfirm();
                 this.props.history.push("/login");
               //  this.props.history.push("/login");
 
@@ -131,7 +131,7 @@ class CreateProfile extends CommonDisplay{
 
     renderContent = () =>{
         console.log(this.state)
-    //  let mensaje = <p>{this.state.user.mensaje} </p>
+    let mensaje = <p>{this.state.mensaje} </p>
         let tarjetas_select = [];
                   console.log(this.state.tarjetas);
                   tarjetas_select = this.state.tarjetas.map((tarjeta) => (
@@ -146,7 +146,7 @@ class CreateProfile extends CommonDisplay{
 
                 <div className="create_form">
                       <h1> Crear Usuario</h1>
-
+{mensaje}
                     <form className="book_form" allign='center' onSubmit={this.handleSubmit}>
                     <fieldset className="create_field">
                             <label htmlFor="nombre">Nombre</label>

@@ -20,6 +20,8 @@ import AltaNovedad from "./components/altaNovedad/AltaNovedad";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
+import Trailer from "./components/trailerComponent/Trailer";
+
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
+            <Route exact path="/trailer" component={Trailer}></Route>
           </Switch>
     </div>
   );

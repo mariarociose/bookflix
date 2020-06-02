@@ -34,11 +34,7 @@ class Editprofile extends CommonDisplay{
           mesVencimiento:"",
           anioVencimiento:"",
           tarjetas:[],
-<<<<<<< HEAD
-          editing: false, 
-=======
           editing: false,
->>>>>>> c0147852e5a7614465bae87093de4a96801c45d2
           mensaje : null
         }
     }
@@ -126,11 +122,6 @@ class Editprofile extends CommonDisplay{
                 .then((res) => (res.json()))
                 .then((data) => (this.setState({editing: false, mensaje: data.mensaje})))
                 .catch((err) => (this.setState({mensaje: err.mensaje})))
-<<<<<<< HEAD
-                
-                
-=======
->>>>>>> c0147852e5a7614465bae87093de4a96801c45d2
             }
             else
                 this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})

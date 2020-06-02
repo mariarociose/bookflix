@@ -79,6 +79,7 @@ class Login extends React.Component{
             <div className="loginbox">
                 <img src={AvatarLogo} alt="avatarPic" className="avatarLogo"/>
                 <h1 >Login</h1>
+                {mensaje}
                 <form onSubmit={this.handleSubmit}>
                     <label > Usuario</label>
                     <input required  type="radio" name="userType" value="1"/>

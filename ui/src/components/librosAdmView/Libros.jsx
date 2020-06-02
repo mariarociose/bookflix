@@ -47,7 +47,7 @@ class Libros extends CommonDisplay{
             .then((res) => (res.json()))
             .then((libros) => {
 
-                if(libros.datos.length == 0) libros.mensaje = "No hay libros";
+                if(libros.datos.length == 0) libros.mensaje = "No existen libros cargados en el sistema";
                 this.setState({libros: libros.datos,
                 mensaje: libros.mensaje,granted: true});
 
@@ -135,7 +135,7 @@ class Libros extends CommonDisplay{
                       <h1> {this.state.mensaje}</h1>
 
                       {tabla}
-                      
+
                     </div>
                   )
 

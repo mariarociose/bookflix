@@ -34,7 +34,11 @@ class Editprofile extends CommonDisplay{
           mesVencimiento:"",
           anioVencimiento:"",
           tarjetas:[],
+<<<<<<< HEAD
           editing: false, 
+=======
+          editing: false,
+>>>>>>> c0147852e5a7614465bae87093de4a96801c45d2
           mensaje : null
         }
     }
@@ -122,8 +126,11 @@ class Editprofile extends CommonDisplay{
                 .then((res) => (res.json()))
                 .then((data) => (this.setState({editing: false, mensaje: data.mensaje})))
                 .catch((err) => (this.setState({mensaje: err.mensaje})))
+<<<<<<< HEAD
                 
                 
+=======
+>>>>>>> c0147852e5a7614465bae87093de4a96801c45d2
             }
             else
                 this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
@@ -209,9 +216,9 @@ class Editprofile extends CommonDisplay{
                             name="cardCod" id="card" value={this.state.cardCod} onChange={this.handleChange}/>
 
                             <label for="mes">Mes</label>
-                            <input required disabled={!this.state.editing}  type="number" name="mes" id="mes" min="1" max="12"  value={this.state.mesVencimiento} onChange={this.handleChange}/>
+                            <input required disabled={!this.state.editing}  type="number" name="mesVencimiento" id="mes" min="1" max="12" pattern="[0-9]*" value={this.state.mesVencimiento} onChange={this.handleChange}/>
                             <label for="anio">Año</label>
-                            <input  required disabled={!this.state.editing} type="number" name="anio" id="anio" min="2020" max="2023" value={this.state.anioVencimiento} onChange={this.handleChange}/>
+                            <input  required disabled={!this.state.editing} type="number" name="anioVencimiento" id="anio" min="20" max="99" pattern="[0-9]*" value={this.state.anioVencimiento} onChange={this.handleChange}/>
 
                             <label for="tipo">Tipo tarjeta</label>
                                 <select required disabled={!this.state.editing} id="tipo" name="tipo" onChange={this.handleChange}>

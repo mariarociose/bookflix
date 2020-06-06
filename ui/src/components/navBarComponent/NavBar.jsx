@@ -55,7 +55,7 @@ class NavBar extends React.Component{
     }
 
     redirectToTrailer = () => {
-        this.props.history.push("/trailer");
+        this.props.history.push("/trailersContainer");
     }
 
     redirectToHome = () => {

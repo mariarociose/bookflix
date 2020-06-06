@@ -21,7 +21,7 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
 import Trailer from "./components/trailerComponent/Trailer";
-
+import TrailersContainer from "./components/trailerComponent/trailersContainer";
 
 
 function App() {
@@ -46,6 +46,8 @@ function App() {
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
             <Route exact path="/trailer" component={Trailer}></Route>
+            <Route exact path="/trailersContainer" component={TrailersContainer}></Route>
+
           </Switch>
     </div>
   );

@@ -83,6 +83,9 @@ app.use("/createProfile",user_new);
 var libroUpdate = require("./routes/libroUpdate");
 app.use("/libroUpdate",libroUpdate);
 
+var traerTrailers = require("./routes/traerTrailers");
+app.use("/traerTrailers",traerTrailers);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

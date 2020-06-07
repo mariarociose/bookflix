@@ -104,6 +104,9 @@ app.use("/altaTrailerSinLibro",altaTrailerLibre);
 var trailers = require("./routes/trailers");
 app.use("/trailers",trailers);
 
+var librosUser = require ("./routes/librosUser")
+app.use("/librosUser",librosUser);
+
 
 app.listen(4000, () => (
 

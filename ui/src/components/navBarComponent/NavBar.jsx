@@ -64,6 +64,11 @@ class NavBar extends React.Component{
         }
     }
 
+    redirectToLibrosUserView = () => {
+        this.props.history.push("/librosUserView")
+    }
+
+
     componentDidMount(){
         if(Cookie.get("token") != null){
             this.setState({buttonText : "Cerrar Sesion", redirectFunction: this.deleteCookiesAndRedirectToHome})
@@ -85,6 +90,7 @@ class NavBar extends React.Component{
         let botonAltaCapitulo;
         let botonAltaTrailer;
         let botonTrailers;
+        let botonLibrosUser;
 
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
@@ -94,7 +100,8 @@ class NavBar extends React.Component{
                 botonCreateGenero =<li><a href="#" onClick={this.redirectToCreateGeneroView}>Genero</a></li>
                 botonCreateEditorial = <li><a href="#" onClick={this.redirectToCreateEditorialView}>Editorial</a></li>
                 botonAltaCapitulo = <li> <Link to="/altaCapitulo">Alta Capitulo</Link>  </li>
-              
+                botonLibrosUser = null;
+
                 botonTrailers = <li> <Link to="/trailers">Trailers</Link>  </li>
             }else{
                 botonDeLibros = null
@@ -102,7 +109,8 @@ class NavBar extends React.Component{
                 botonMisDatos = <li><a href="#" onClick={this.redirectToProfile}>Mis Datos</a></li>
                 botonAltaCapitulo = null;
                 botonAltaTrailer = null;
-                botonTrailers = null
+                botonTrailers = null;
+                botonLibrosUser = <li><a href="#" onClick={this.redirectToLibrosUserView}>Libros!</a></li>
             }
         }
 
@@ -122,6 +130,7 @@ class NavBar extends React.Component{
                         {botonAltaCapitulo}
                         {botonAltaTrailer}
                         {botonTrailers}
+                        {botonLibrosUser}
                     </ul>
 
 

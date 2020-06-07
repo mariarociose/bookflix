@@ -83,6 +83,7 @@ class NavBar extends React.Component{
         let botonCreateGenero;
         let botonCreateEditorial;
         let botonAltaCapitulo;
+        let botonAltaTrailer;
 
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
@@ -92,11 +93,13 @@ class NavBar extends React.Component{
                 botonCreateGenero =<li><a href="#" onClick={this.redirectToCreateGeneroView}>Genero</a></li>
                 botonCreateEditorial = <li><a href="#" onClick={this.redirectToCreateEditorialView}>Editorial</a></li>
                 botonAltaCapitulo = <li> <Link to="/altaCapitulo">Alta Capitulo</Link>  </li>
+                botonAltaTrailer = <li> <Link to="/altaTrailerLibre">Alta Trailer</Link>  </li>
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
                 botonMisDatos = <li><a href="#" onClick={this.redirectToProfile}>Mis Datos</a></li>
                 botonAltaCapitulo = null;
+                botonAltaTrailer = null
             }
         }
 
@@ -114,6 +117,7 @@ class NavBar extends React.Component{
                         {botonCreateEditorial}
                         {botonMisDatos}
                         {botonAltaCapitulo}
+                        {botonAltaTrailer}
                     </ul>
 
 

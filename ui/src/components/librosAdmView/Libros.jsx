@@ -70,7 +70,7 @@ class Libros extends CommonDisplay{
     }
 
     renderContent = () => {
-          
+
             let table = null;
             let titulos = [];
             if(this.state.libros != undefined){
@@ -93,6 +93,12 @@ class Libros extends CommonDisplay{
                                 id_libro:libro.id_libro
                             }
                         }}>Agregar Capitulo</Link></td>
+                        <td><Link class='button' rep to={{
+                            pathname: `/altaTrailer`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Agregar Trailer</Link></td>
 
                         </tr>
                     ))

@@ -92,6 +92,16 @@ app.use("/countCapitulos",countCapitulos);
 var getMaxCapitulos = require("./routes/getMaxCapitulos");
 app.use("/maxCapitulos", getMaxCapitulos);
 
+var altaTrailer = require("./routes/altaTrailer");
+app.use("/altaTrailer",altaTrailer);
+
+var countTrailer = require("./routes/countTrailer");
+app.use("/countTrailer",countTrailer);
+
+var altaTrailerLibre = require("./routes/altaTrailerSinLibro");
+app.use("/altaTrailerSinLibro",altaTrailerLibre);
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

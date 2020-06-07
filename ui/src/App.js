@@ -21,6 +21,8 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
 import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
+import AltaTrailer from "./components/altaTrailer/AltaTrailer";
+import AltaTrailerLibre from "./components/altaTrailer/AltaTrailerLibre";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
             <Route exact path="/altaCapitulo" component={AltaCapitulo}></Route>
+            <Route exact path="/altaTrailer" component={AltaTrailer}></Route>
+            <Route exact path="/altaTrailerLibre" component={AltaTrailerLibre}></Route>
           </Switch>
     </div>
   );

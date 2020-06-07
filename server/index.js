@@ -101,6 +101,9 @@ app.use("/countTrailer",countTrailer);
 var altaTrailerLibre = require("./routes/altaTrailerSinLibro");
 app.use("/altaTrailerSinLibro",altaTrailerLibre);
 
+var trailers = require("./routes/trailers");
+app.use("/trailers",trailers);
+
 
 app.listen(4000, () => (
 

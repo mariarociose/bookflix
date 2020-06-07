@@ -23,7 +23,7 @@ import CreateProfile from "./components/profileComponent/CreateProfile";
 import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
 import AltaTrailer from "./components/altaTrailer/AltaTrailer";
 import AltaTrailerLibre from "./components/altaTrailer/AltaTrailerLibre";
-
+import Trailers from "./components/trailersAdminView/trailers";
 function App() {
   return (
     <div className="App">
@@ -48,6 +48,7 @@ function App() {
             <Route exact path="/altaCapitulo" component={AltaCapitulo}></Route>
             <Route exact path="/altaTrailer" component={AltaTrailer}></Route>
             <Route exact path="/altaTrailerLibre" component={AltaTrailerLibre}></Route>
+            <Route exact path="/trailers" component={Trailers}></Route>
           </Switch>
     </div>
   );

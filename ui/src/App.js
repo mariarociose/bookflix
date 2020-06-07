@@ -20,7 +20,7 @@ import AltaNovedad from "./components/altaNovedad/AltaNovedad";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
-
+import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
 
 function App() {
   return (
@@ -43,6 +43,7 @@ function App() {
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
+            <Route exact path="/altaCapitulo" component={AltaCapitulo}></Route>
           </Switch>
     </div>
   );

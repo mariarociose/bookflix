@@ -83,6 +83,15 @@ app.use("/createProfile",user_new);
 var libroUpdate = require("./routes/libroUpdate");
 app.use("/libroUpdate",libroUpdate);
 
+var altaCapitulo = require("./routes/altaCapitulo");
+app.use("/altaCapitulo",altaCapitulo);
+
+var countCapitulos = require("./routes/countCapitulos");
+app.use("/countCapitulos",countCapitulos);
+
+var getMaxCapitulos = require("./routes/getMaxCapitulos");
+app.use("/maxCapitulos", getMaxCapitulos);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

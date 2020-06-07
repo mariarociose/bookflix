@@ -70,7 +70,7 @@ class Libros extends CommonDisplay{
     }
 
     renderContent = () => {
-
+          
             let table = null;
             let titulos = [];
             if(this.state.libros != undefined){
@@ -87,6 +87,12 @@ class Libros extends CommonDisplay{
                                 id_libro:libro.id_libro
                             }
                         }}>Ver Detalle</Link></td>
+                        <td><Link class='button' rep to={{
+                            pathname: `/altaCapitulo`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Agregar Capitulo</Link></td>
 
                         </tr>
                     ))
@@ -103,6 +109,7 @@ class Libros extends CommonDisplay{
                         <th className="text-center">Autor</th>
                         <th className="text-center">Editorial</th>
                         <th className="text-center">Genero</th>
+                        <th allign ="center"></th>
                         <th allign ="center"></th>
 
                         </tr>

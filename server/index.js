@@ -107,6 +107,10 @@ app.use("/trailers",trailers);
 var librosUser = require ("./routes/librosUser")
 app.use("/librosUser",librosUser);
 
+var marcarLeido = require ("./routes/marcarLeido")
+app.use("/marcarLeido",marcarLeido);
+
+
 
 app.listen(4000, () => (
 

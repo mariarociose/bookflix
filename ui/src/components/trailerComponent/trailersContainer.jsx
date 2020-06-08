@@ -14,45 +14,83 @@ class TrailersContainer extends CommonDisplay{
 
         this.state = {
             trailers: [],
-            mensaje: "",
+            mensaje: "No hay trailers",
             granted : false
         }
 
     }
     
     componentDidMount(){
-        if(Cookie.get("userId") != null){
-            fetch("http://localhost:4000/traerTrailers",{
-                method:"GET",
-                headers:{
-                    "Content-Type": "application/json",
-                    "access-token": Cookie.get("token").toString()
-                }
-            })
+            fetch("http://localhost:4000/traerTrailers")
             
             .then((res) => (res.json()))
             .then((trailers) => {
-                if(trailers.datos.length == 0){
-                    trailers.mensaje = "No hay trailers";
-                }
-                this.setState({trailers: trailers.datos,
-                mensaje: trailers.mensaje,granted: true},() => (console.log(this.state.trailers)));
+                this.setState({trailers: trailers,
+                mensaje: "Trailers",granted: true},() => (console.log(this.state.trailers)));
+                console.log("tengo datos")
+                console.log(trailers)
             })
-            .catch(() => (this.setState({trailers:[],mensaje: "Acceso denegado",granted:false})))
-        }else this.setState({mensaje: "Acceso denegado"})
-
+            .then((data)=>{
+                if (this.state.trailers.length !==0) 
+                    this.setState({mensaje: "Trailers"})
+                })
+            .catch(() => (this.setState({trailers:[],mensaje: "Acceso denegado",granted:false})))    
     }
 
 
     renderContent = () => {
-        if(this.state.trailers.length !== 0){    
-            return(
-                <h1>Hay trailers para mostrar pero no se cómo</h1>
-            )
-        } else 
-            return(
-                <h1>No hay trailers para mostrar</h1>
-            )
-}}
+            console.log(this.state.trailers)
+                var news = [];
+                if(this.state.trailers != undefined){
+                        news = this.state.trailers.map((trailer) => (
+                            <tr key={trailer.id_trailer}>
+                                <td>{trailer.id_trailer}</td>
+                                <td>{trailer.titulo}</td>
+                                <td>{trailer.descripcion}</td>
+                                <td><Link className="button mr-10" rep to={{
+                                    pathname: `/detalleTrailer`,
+                                    state:{
+                                        id: trailer.id_trailer,
+                                        titulo: trailer.titulo,
+                                        descripcion: trailer.descripcion
+                                    }
+                                }}>Ver Trailer</Link>
+                                </td>
+                            </tr>)
+                    );
+                }
+                let table = null;
+                if(this.state.trailers.length != 0){
+                    table = ( <table  className="table table-bordered table-hover" >
+                                <thead>
+                                    <tr>
+                                    <th className="text-center">Id</th>
+                                    <th className="text-center">Titulo</th>
+                                    <th className="text-center">Descripcion</th>
+                                    <th allign ="center"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {news}
+                                    </tbody>
+                                </table>)
+                }
+                if(this.state.granted){
+                        var tabla = (
+                        <main>
+                                {table}
+                        </main>
+                    )
+                }else tabla = null;
+                    return(
+                    <div>
+                        <h1>{this.state.mensaje}</h1>
+                        {tabla}
+        
+                    </div>
+                )
+            }       
+        }
+
 
 export default TrailersContainer;

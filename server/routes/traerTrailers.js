@@ -16,7 +16,7 @@ router.get('/', function(req,res){
             res.status(500).send('Hubo un error');
             return;
         }
-            res.status(200).send(rows[0]);
+            res.status(200).send(rows);
         });
     })
 

@@ -21,6 +21,7 @@ import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome"
 import CreateProfile from "./components/profileComponent/CreateProfile";
 import Trailer from "./components/trailerComponent/Trailer";
+import DetalleTrailer from "./components/trailerComponent/detalleTrailer"
 import TrailersContainer from "./components/trailerComponent/trailersContainer";
 
 import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
@@ -50,9 +51,11 @@ function App() {
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
+
             
             <Route exact path="/trailer" component={Trailer}></Route>
             <Route exact path="/trailersContainer" component={TrailersContainer}></Route>
+            <Route exact path="/detalleTrailer" component={DetalleTrailer}></Route> 
 
             <Route exact path="/altaCapitulo" component={AltaCapitulo}></Route>
             <Route exact path="/altaTrailer" component={AltaTrailer}></Route>

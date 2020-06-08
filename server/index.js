@@ -86,6 +86,35 @@ app.use("/libroUpdate",libroUpdate);
 var traerTrailers = require("./routes/traerTrailers");
 app.use("/traerTrailers",traerTrailers);
 
+var altaCapitulo = require("./routes/altaCapitulo");
+app.use("/altaCapitulo",altaCapitulo);
+
+var countCapitulos = require("./routes/countCapitulos");
+app.use("/countCapitulos",countCapitulos);
+
+var getMaxCapitulos = require("./routes/getMaxCapitulos");
+app.use("/maxCapitulos", getMaxCapitulos);
+
+var altaTrailer = require("./routes/altaTrailer");
+app.use("/altaTrailer",altaTrailer);
+
+var countTrailer = require("./routes/countTrailer");
+app.use("/countTrailer",countTrailer);
+
+var altaTrailerLibre = require("./routes/altaTrailerSinLibro");
+app.use("/altaTrailerSinLibro",altaTrailerLibre);
+
+var trailers = require("./routes/trailers");
+app.use("/trailers",trailers);
+
+var librosUser = require ("./routes/librosUser")
+app.use("/librosUser",librosUser);
+
+var marcarLeido = require ("./routes/marcarLeido")
+app.use("/marcarLeido",marcarLeido);
+
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

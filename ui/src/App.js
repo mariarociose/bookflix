@@ -23,6 +23,11 @@ import CreateProfile from "./components/profileComponent/CreateProfile";
 import Trailer from "./components/trailerComponent/Trailer";
 import TrailersContainer from "./components/trailerComponent/trailersContainer";
 
+import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
+import AltaTrailer from "./components/altaTrailer/AltaTrailer";
+import AltaTrailerLibre from "./components/altaTrailer/AltaTrailerLibre";
+import Trailers from "./components/trailersAdminView/trailers";
+import LibroContainer from "./components/librosUserView/librosUserView";
 
 function App() {
   return (
@@ -45,9 +50,15 @@ function App() {
             <Route exact path="/createEditorial" component={EditorialCreate}></Route>
             <Route exact path="/createGenero" component={GeneroCreate}></Route>
             <Route exact path="/createAutor" component={AutorCreate}></Route>
+            
             <Route exact path="/trailer" component={Trailer}></Route>
             <Route exact path="/trailersContainer" component={TrailersContainer}></Route>
 
+            <Route exact path="/altaCapitulo" component={AltaCapitulo}></Route>
+            <Route exact path="/altaTrailer" component={AltaTrailer}></Route>
+            <Route exact path="/altaTrailerLibre" component={AltaTrailerLibre}></Route>
+            <Route exact path="/trailers" component={Trailers}></Route>
+            <Route exact path="/librosUserView" component={LibroContainer}></Route>
           </Switch>
     </div>
   );

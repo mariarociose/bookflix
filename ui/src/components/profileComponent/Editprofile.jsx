@@ -127,6 +127,7 @@ class Editprofile extends CommonDisplay{
                 this.setState({password:"Contraseñas no coinciden", password2:"Contraseñas no coinciden"})
 
 
+
     }
 
     handleCancel = () => {

@@ -87,6 +87,18 @@ class Libros extends CommonDisplay{
                                 id_libro:libro.id_libro
                             }
                         }}>Ver Detalle</Link></td>
+                        <td><Link class='button' rep to={{
+                            pathname: `/altaCapitulo`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Agregar Capitulo</Link></td>
+                        <td><Link class='button' rep to={{
+                            pathname: `/altaTrailer`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Agregar Trailer</Link></td>
 
                         </tr>
                     ))
@@ -103,6 +115,7 @@ class Libros extends CommonDisplay{
                         <th className="text-center">Autor</th>
                         <th className="text-center">Editorial</th>
                         <th className="text-center">Genero</th>
+                        <th allign ="center"></th>
                         <th allign ="center"></th>
 
                         </tr>

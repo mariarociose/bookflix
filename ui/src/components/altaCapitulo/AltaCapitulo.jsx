@@ -41,7 +41,7 @@ class AltaCapitulo extends CommonDisplay{
             form.append("descripcion",e.target.descripcion.value);
             form.append("archivo",this.parsePath(e.target.archivo.value));
             form.append("fecha",e.target.fecha.value);
-            form.append("numero", e.target.numero.value);
+            
 
 
             fetch("http://localhost:4000/altaCapitulo",{
@@ -75,9 +75,6 @@ class AltaCapitulo extends CommonDisplay{
                 
                 <label htmlFor="">Fecha de Vencimiento:</label>
                 <input required type="date" name="fecha" id="fecha"/>
-
-                <label htmlFor="">Numero de Capitulo: </label>
-                <input required type="number" min="1" max="10" name="numero" id="numero"/>
                 
                 <label htmlFor="">Archivo:</label>
                 <input type="file" name="archivo" id="archivo"/>

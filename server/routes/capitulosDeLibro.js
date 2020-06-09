@@ -5,7 +5,7 @@ var connection = db.connection;
 
 router.get("/", function(req,res){
 
-    let query = `select * from capitulos where id_libro=${req.query.id_libro} and fecha_vencimiento > DATE(CURRENT_DATE)`;
+    let query = `select * from capitulos where id_libro=${req.query.id_libro} and fecha > DATE(CURRENT_DATE) order by numero_capitulo`;
     console.log(query)
 
     connection.query(query, function(err,rows,fields){
@@ -13,6 +13,7 @@ router.get("/", function(req,res){
         res.status(500).send('Hubo un error');
         return;
     }
+        console.log(rows);
         res.status(200).send(rows);
     });
 })

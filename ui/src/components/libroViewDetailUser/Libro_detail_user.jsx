@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CommonDisplay from "../CommonDisplay";
 import Libro from "../libroComponent/Libro";
 import "./libroDetailUser.css";
+import {Link, Route, Switch} from "react-router-dom";
 
 class Libro_detail_user extends CommonDisplay{
 
@@ -103,6 +104,24 @@ class Libro_detail_user extends CommonDisplay{
           this.setState({editoriales: editoriales,
           mensaje: editoriales.mensaje,granted: true}, console.log(this.state));
           })
+
+
+          //trae capitulos de idlibro
+          fetch((`http://localhost:4000/capitulosDeLibro?id_libro=${this.props.location.state.id_libro}`),{
+              method:"GET",
+              headers:{
+                  "Content-Type": "application/json",
+                  "access-token": Cookie.get("token").toString()
+                  }
+              })
+          .then((res) => res.json())
+         .then((capitulos) => {
+          if(capitulos.length == 0) capitulos.mensaje = "No hay capitulos para este libro";
+          this.setState({capitulos: capitulos,
+          mensaje: capitulos.mensaje,granted: true}, console.log(this.state));
+          })
+
+
          }
 
 
@@ -149,12 +168,65 @@ handleClick = (e) => {
             )
         }
 
+        // Listado de Capitulos de libro.
+
+        let tableCapitulos = null;
+        let capitulos = [];
+
+        if(this.state.capitulos != undefined){
+            capitulos = this.state.capitulos.map((capitulo) => (
+                    //El map es como el collect de pharo
+                    <tr>
+                    <td data-title= 'id_capitulo' key={capitulo.id_capitulo}> {capitulo.numero_capitulo}</td>
+
+                    <td >{capitulo.titulo}  </td>
+                    <td> {capitulo.descripcion}  </td>
+                    <td><Link class='button' rep to={{
+                        pathname: `/libro_detail`,  //PONER PATH A LEER CAPITULO!!!!
+                        state:{
+                            id_libro:capitulo.id_capitulo
+                        }
+                    }}>Leer Capitulo</Link></td>
+
+                    </tr>
+                ))
+        };
+
+        if(this.state.capitulos.length != 0){
+          tableCapitulos =    <table  class="table table-bordered table-hover" >
+
+                  <thead>
+
+                    <tr>
+
+                    <th className="text-center">Nro Capitulo</th>
+                    <th className="text-center">Titulo</th>
+                    <th className="text-center">Descripcion</th>
+                    <th className="text-center"></th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {capitulos}
+
+                    </tbody>
+                </table>
+
+
+
+
+
+              }
+
+
 
             return(
           <div>
 
 
-
+            <main>
               <h1>{this.state.libro.titulo}</h1>
 
               <div className="create_form">
@@ -191,8 +263,25 @@ handleClick = (e) => {
                   </form>
                     <h3> Capitulos </h3>
 
+                    <fieldset>
+                      <h1> {this.state.mensaje}</h1>
+
+                      <div>
+                      {tableCapitulos}
+                      </div>
 
 
+
+
+
+
+
+
+
+
+
+
+                    </fieldset>
 
 
 
@@ -201,6 +290,7 @@ handleClick = (e) => {
 
 
 
+                                </main>
 
 
 

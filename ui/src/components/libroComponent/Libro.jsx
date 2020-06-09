@@ -17,7 +17,7 @@ function Libro(props){
             <p> Genero:{props.libro.desc_genero} </p>
             <input type="Button" value="Marcar como favorito - Proximamente" class="saveButton" id="cancel" ></input>
 
-      
+
                 <Link class='saveButton' rep to={{
                     pathname: `/libro_detail_user`,
                     state:{
@@ -27,14 +27,7 @@ function Libro(props){
 
 
 
-            <p> Ya lei este libro
-            <label class="switch">
-            <input type="checkbox"value="He leido este libro:"></input>
-            <span class="slider"></span>
-            </label>
-            </p>
-
-          </fieldset>
+                  </fieldset>
 
         </section>
         </div>

@@ -22,20 +22,34 @@ class LibroContainer extends CommonDisplay{
     componentDidMount(){
 
         fetch("http://localhost:4000/librosUser")
-        .then((res) => (res.json()))
-        .then((data) => (this.setState({news: data},() => (console.log(this.state)))));
+        .then((res) => res.json())
+        .then((news) => {
+          if(news.length == 0) news.mensaje = "No hay libros disponibles por el momento";
+        (this.setState({news: news},() => {
 
+         this.setState({mensaje: this.state.news,
+         mensaje: this.state.news.mensaje,granted: true}, console.log(this.state))
+       }
+     )
+   )
+} )
+}
 
-    }
 
     renderContent(){
         let news = this.state.news.map((libro) => (
             <Libro libro={libro}></Libro>
         ))
         return(
+<div>
+<p> aca va el filtro </p>
             <div className="nov-container">
+
+              <h1> {this.state.mensaje}</h1>
                 {news}
+
             </div>
+</div>
         )
     }
 

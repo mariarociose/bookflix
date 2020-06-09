@@ -27,11 +27,15 @@ export default class PDFDisplay extends CommonDisplay {
 
         <div style={{ width: 600 }}>
           <Document
-            file="https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf"
+            file="https://cors-anywhere.herokuapp.com/"
             onLoadSuccess={this.onDocumentLoadSuccess}
+            //<iframe src="https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf" width="640" height="480"></iframe>
           >
             <Page pageNumber={pageNumber} width={600} />
           </Document>
+          <iframe src="https://online.flippingbook.com/view/493920" width="1000" height="800"></iframe>
+          
+
         </div>
 
         <p>

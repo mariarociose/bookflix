@@ -23,7 +23,7 @@ import CreateProfile from "./components/profileComponent/CreateProfile";
 import Trailer from "./components/trailerComponent/Trailer";
 import DetalleTrailer from "./components/trailerComponent/detalleTrailer"
 import TrailersContainer from "./components/trailerComponent/trailersContainer";
-
+import PDFDisplay from "./components/pdfDisplay/displayPdf";
 import AltaCapitulo from "./components/altaCapitulo/AltaCapitulo";
 import AltaTrailer from "./components/altaTrailer/AltaTrailer";
 import AltaTrailerLibre from "./components/altaTrailer/AltaTrailerLibre";
@@ -62,6 +62,7 @@ function App() {
             <Route exact path="/altaTrailerLibre" component={AltaTrailerLibre}></Route>
             <Route exact path="/trailers" component={Trailers}></Route>
             <Route exact path="/librosUserView" component={LibroContainer}></Route>
+            <Route exact path="/capituloVista" component={PDFDisplay}></Route>
           </Switch>
     </div>
   );

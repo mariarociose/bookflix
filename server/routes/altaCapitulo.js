@@ -3,8 +3,11 @@ var router = express.Router();
 var db = require("../configs/db");
 var connection = db.connection;
 
+
+
+
+
 router.post("/", function(req,res){
-    
     let query = `insert into capitulos (titulo, descripcion, archivo, fecha, id_libro) values ("${req.body.titulo}", "${req.body.descripcion}", "${req.body.archivo}", "${req.body.fecha}", "${req.body.id_libro}")`
     console.log(query);
     connection.query(query, (err,rows,fields) => {

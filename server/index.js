@@ -83,6 +83,9 @@ app.use("/createProfile",user_new);
 var libroUpdate = require("./routes/libroUpdate");
 app.use("/libroUpdate",libroUpdate);
 
+var traerTrailers = require("./routes/traerTrailers");
+app.use("/traerTrailers",traerTrailers);
+
 var altaCapitulo = require("./routes/altaCapitulo");
 app.use("/altaCapitulo",altaCapitulo);
 

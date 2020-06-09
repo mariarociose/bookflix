@@ -25,6 +25,10 @@ class AltaCapitulo extends CommonDisplay{
 
     }
 
+     parsePath = (path) =>{
+        let aux = path.split("fakepath\\")
+        return aux[1];
+    }
 
     handleSubmit = (e) => {
         
@@ -35,7 +39,7 @@ class AltaCapitulo extends CommonDisplay{
             form.append("id_libro",this.props.location.state.id_libro);
             form.append("titulo",e.target.titulo.value);
             form.append("descripcion",e.target.descripcion.value);
-            form.append("archivo",e.target.archivo.value);
+            form.append("archivo",this.parsePath(e.target.archivo.value));
             form.append("fecha",e.target.fecha.value);
             
 

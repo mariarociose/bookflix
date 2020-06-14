@@ -30,6 +30,7 @@ import AltaTrailerLibre from "./components/altaTrailer/AltaTrailerLibre";
 import Trailers from "./components/trailersAdminView/trailers";
 import LibroContainer from "./components/librosUserView/librosUserView";
 import Libro_detail_user from "./components/libroViewDetailUser/Libro_detail_user";
+import BajaCapitulo from "./components/bajaCapitulo/bajaCapitulo";
 
 function App() {
   return (
@@ -65,6 +66,8 @@ function App() {
             <Route exact path="/librosUserView" component={LibroContainer}></Route>
             <Route exact path="/libro_detail_user" component={Libro_detail_user}></Route>
             <Route exact path="/capituloVista" component={PDFDisplay}></Route>
+            <Route exact path="/bajaCapitulo" component={BajaCapitulo}></Route>
+
           </Switch>
     </div>
   );

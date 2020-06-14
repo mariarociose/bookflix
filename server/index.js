@@ -116,6 +116,8 @@ app.use("/marcarLeido",marcarLeido);
 var capitulosDeLibro = require ("./routes/capitulosDeLibro")
 app.use("/capitulosDeLibro",capitulosDeLibro);
 
+var getCapitulos = require("./routes/getCapitulo")
+app.use("/getCapitulos", getCapitulos)
 
 app.listen(4000, () => (
 

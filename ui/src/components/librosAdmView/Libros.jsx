@@ -99,7 +99,12 @@ class Libros extends CommonDisplay{
                                 id_libro:libro.id_libro
                             }
                         }}>Agregar Trailer</Link></td>
-
+                        <td><Link class='button' rep to={{
+                            pathname: `/bajaCapitulo`,
+                            state:{
+                                id_libro:libro.id_libro
+                            }
+                        }}>Eliminar capítulo</Link></td>
                         </tr>
                     ))
             };
@@ -117,7 +122,8 @@ class Libros extends CommonDisplay{
                         <th className="text-center">Genero</th>
                         <th allign ="center"></th>
                         <th allign ="center"></th>
-
+                        <th allign ="center"></th>
+                        <th allign ="center"></th>
                         </tr>
                         </thead>
                         <tbody>

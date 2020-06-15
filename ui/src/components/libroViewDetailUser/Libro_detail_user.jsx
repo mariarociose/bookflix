@@ -43,7 +43,9 @@ class Libro_detail_user extends CommonDisplay{
           desc_genero:"",
           nombre_autor:"",
           apellido_autor:"",
-          editing: false
+          editing: false,
+          leido:false,
+          id_perfil:"1",
         }
     }
 
@@ -107,6 +109,7 @@ class Libro_detail_user extends CommonDisplay{
 
 
           //trae capitulos de idlibro
+
           fetch((`http://localhost:4000/capitulosDeLibro?id_libro=${this.props.location.state.id_libro}`),{
               method:"GET",
               headers:{
@@ -122,10 +125,32 @@ class Libro_detail_user extends CommonDisplay{
           })
 
 
+        //chequeo si el libro esta leido o // NOTE:
+        let id_perfil;
+        id_perfil= Cookie.get("perfilId");
+        console.log(id_perfil);
+        let id_libro = this.state.id_libro;
+
+        console.log(id_libro);
+        console.log(id_perfil);
+        fetch((`http://localhost:4000/marcarLeido?id_libro=${this.state.id_libro}`),{
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "access-token": Cookie.get("token").toString()
+                }
+            })
+        .then((res) => res.json())
+       .then((leido) => {
+        if(leido.length == 0) leido.mensaje = "No hay marca de leido";
+        this.setState({leido: leido,
+        mensaje: leido.mensaje,granted: true}, console.log(this.state));
+        })
+
+
+
+
          }
-
-
-
 
 handleSubmit = (e) => {
 
@@ -151,6 +176,21 @@ handleChange = (e) => (
 handleClick = (e) => {
    this.setState({editing: !this.state.editing})
 }
+
+
+//registro de visita a un libro cuando se accede al capitulo.
+handleVerCapitulo = (e) => {
+e.preventDefault();
+fetch("http://localhost:4000/registroVisita?id_libro=${this.state.id_libro}&id_perfil=${this.state.id_perfil",{
+  method: "POST",
+
+})
+.then((res) => (res.json()))
+.then(this.setState({mensaje: "Regitrado correctamente"}))
+}
+
+
+
 
       renderContent(){
         console.log(this.state)
@@ -181,10 +221,12 @@ handleClick = (e) => {
 
                     <td >{capitulo.titulo}  </td>
                     <td> {capitulo.descripcion}  </td>
-                    <td><Link class='button' rep to={{
+                    <td><Link class='button' onClick={this.handleVerCapitulo} rep to={{
                         pathname: `/libro_detail`,  //PONER PATH A LEER CAPITULO!!!!
                         state:{
-                            id_libro:capitulo.id_capitulo
+                            id_libro:capitulo.id_capitulo,
+                            id_perfil:this.state.id_perfil
+
                         }
                     }}>Leer Capitulo</Link></td>
 

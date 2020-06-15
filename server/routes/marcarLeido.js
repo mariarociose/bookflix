@@ -22,7 +22,7 @@ router.post("/", function(req,res){
 
 })
 
-module.exports = router;
+
 
 
 
@@ -42,3 +42,31 @@ router.delete("/",function(req,res){
 
 
 })
+
+
+router.get("/", function(req,res){
+      console.log("fetching si esta leido");
+      console.log(req.body.id_libro);
+      console.log(req.body);
+    let query = `(select * from libros_leidos where id_libro="${req.body.id_libro}")`;
+    console.log(query)
+    connection.query(query,function(err,rows,fields){
+
+
+        if(err){
+            console.log(err);
+            res.status(500).send("Hubo un error")
+
+            return;
+        }
+
+        res.json({datos: rows,mensaje:"Leido o no?"});
+
+    })
+
+} )
+
+
+
+
+module.exports = router;

@@ -16,10 +16,11 @@ router.get('/', function(req,res){
       inner join generos on (libros.id_genero = generos.id_genero) \
       inner join autores on (libros.id_autor = autores.id_autor)   \
       inner join editoriales on (libros.id_editorial = editoriales.id_editorial) \
-      where libros_leidos.id_perfil = ${req.query.id_perfil}  \
-      ORDER BY  leido asc, fecha_ingreso desc"
+      where libros_leidos.id_perfil=('"+req.query.idperfil+"') ORDER BY  leido asc, fecha_ingreso desc";
+
 
     console.log('Recuperando historial');
+    console.log(query);
     connection.query(query, function(err,rows,fields){
     if(err){
         res.status(500).send('Hubo un error');

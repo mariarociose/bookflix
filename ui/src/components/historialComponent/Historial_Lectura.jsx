@@ -29,15 +29,19 @@ class Historial_Lectura extends CommonDisplay{
         this.state = {
             libros: [],
             mensaje: "",
-            granted: true
+            granted: true,
+            idperfil:"",
         }
         console.log(this.state)
     }
 
     componentDidMount(){
-            let id_perfil =Cookie.get("perfilId");
-            console.log('${id_pefil}');
-            fetch("http://localhost:4000/historialLectura?${id_perfil}",{
+            let id_perfil = Cookie.get("perfilId")
+            id_perfil = JSON.parse(id_perfil)
+            console.log(id_perfil)
+            this.setState({idperfil: id_perfil});
+            console.log(this.state.idperfil)
+            fetch((`http://localhost:4000/historialLectura?idperfil=${id_perfil}`),{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json",

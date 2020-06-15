@@ -180,7 +180,7 @@ handleClick = (e) => {
 
 //registro de visita a un libro cuando se accede al capitulo.
 handleVerCapitulo = (e) => {
-e.preventDefault();
+
 let id_perfil = Cookie.get("perfilId")
 id_perfil = JSON.parse(id_perfil)
 console.log(id_perfil)
@@ -195,6 +195,8 @@ fetch(`http://localhost:4000/registroVisita?id_libro=${this.state.libro.id_libro
 })
 .then((res) => (res.json()))
 .then(this.setState({mensaje: "Regitrado correctamente"}))
+
+
 }
 
 
@@ -230,11 +232,12 @@ fetch(`http://localhost:4000/registroVisita?id_libro=${this.state.libro.id_libro
                     <td >{capitulo.titulo}  </td>
                     <td> {capitulo.descripcion}  </td>
                     <td><Link class='button' onClick={this.handleVerCapitulo} rep to={{
-                        pathname: `/libro_detail`,  //PONER PATH A LEER CAPITULO!!!!
+                        pathname: `/capituloVista`,  //PONER PATH A LEER CAPITULO!!!!
                         state:{
                             id_libro:capitulo.id_capitulo,
-                            id_perfil:this.state.id_perfil
-
+                            id_perfil:this.state.id_perfil,
+                            archivo: capitulo.archivo,
+                            titulo: capitulo.titulo
                         }
                     }}>Leer Capitulo</Link></td>
 

@@ -113,7 +113,16 @@ app.use("/librosUser",librosUser);
 var marcarLeido = require ("./routes/marcarLeido")
 app.use("/marcarLeido",marcarLeido);
 
+var capitulosDeLibro = require ("./routes/capitulosDeLibro")
+app.use("/capitulosDeLibro",capitulosDeLibro);
 
+var registroVisita = require ("./routes/registroVisita")
+app.use("/registroVisita",registroVisita);
+
+var historialLectura = require ("./routes/historialLectura")
+app.use("/historialLectura",historialLectura);
+var getCapitulos = require("./routes/getCapitulo")
+app.use("/getCapitulos", getCapitulos)
 
 app.listen(4000, () => (
 

@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CommonDisplay from "../CommonDisplay";
-import {Link} from "react-router-dom";
-import Novedad from "../novedadComponent/NovedadComponent";
 import Libro from "../libroComponent/Libro";
-import "../userHome.css"
+import "../userHome.css";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import BookFilter from "../bookFilter/bookFilter";
 
 class LibroContainer extends CommonDisplay{
 
@@ -14,7 +13,8 @@ class LibroContainer extends CommonDisplay{
         super(props);
 
         this.state = {
-            news: []
+            news: [],
+            mensaje: ""
         }
 
     }
@@ -22,20 +22,51 @@ class LibroContainer extends CommonDisplay{
     componentDidMount(){
 
         fetch("http://localhost:4000/librosUser")
-        .then((res) => (res.json()))
-        .then((data) => (this.setState({news: data},() => (console.log(this.state)))));
+        .then((res) => res.json())
+        .then((news) => {
+          if(news.length == 0) news.mensaje = "No hay libros disponibles por el momento";
+        (this.setState({news: news},() => {
 
+         this.setState({mensaje: this.state.news,
+         mensaje: this.state.news.mensaje,granted: true}, console.log(this.state))
+       }
+     )
+   )
+} )
+}
+  
+  
+  handleSubmit = (e) => {
+      e.preventDefault();
+      let form = new FormData();
+      form.append("filter",e.target.filter.value);
+      fetch("http://localhost:4000/librosUser",{
+        method: "POST",
+        body: form})
+      .then(res => res.json())
+      .then((res) => (this.setState({mensaje:res.mensaje,news: res.libros})))
+      .catch((res) => (this.setState({mensaje:res.mensaje})))
 
     }
+  
+  renderContent(){
+      let news = this.state.news.map( (libro) =>
+        <Libro libro={libro}></Libro>
+      )   
 
-    renderContent(){
-        let news = this.state.news.map((libro) => (
-            <Libro libro={libro}></Libro>
-        ))
         return(
+<div>
+          <form action="" onSubmit={this.handleSubmit}>
+              <input name="filter" id="filter" type="text" placeholder="Nombre, genero, autor, editorial, ..."/>
+              <input type="submit"value="Buscar"/>
+            </form>
             <div className="nov-container">
+
+              <h1> {this.state.mensaje}</h1>
                 {news}
+
             </div>
+</div>
         )
     }
 

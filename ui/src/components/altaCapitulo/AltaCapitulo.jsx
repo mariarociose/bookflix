@@ -25,6 +25,10 @@ class AltaCapitulo extends CommonDisplay{
 
     }
 
+     parsePath = (path) =>{
+        let aux = path.split("fakepath\\")
+        return aux[1];
+    }
 
     handleSubmit = (e) => {
         
@@ -35,9 +39,9 @@ class AltaCapitulo extends CommonDisplay{
             form.append("id_libro",this.props.location.state.id_libro);
             form.append("titulo",e.target.titulo.value);
             form.append("descripcion",e.target.descripcion.value);
-            form.append("archivo",e.target.archivo.value);
+            form.append("archivo",this.parsePath(e.target.archivo.value));
             form.append("fecha",e.target.fecha.value);
-            
+            form.append("numero", e.target.numero.value);
 
 
             fetch("http://localhost:4000/altaCapitulo",{
@@ -71,6 +75,9 @@ class AltaCapitulo extends CommonDisplay{
                 
                 <label htmlFor="">Fecha de Vencimiento:</label>
                 <input required type="date" name="fecha" id="fecha"/>
+
+                <label htmlFor="">Numero de Capitulo: </label>
+                <input required type="number" min="1" max="10" name="numero" id="numero"/>
                 
                 <label htmlFor="">Archivo:</label>
                 <input type="file" name="archivo" id="archivo"/>

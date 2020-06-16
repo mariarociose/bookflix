@@ -6,12 +6,12 @@ import '@phuocng/react-pdf-viewer/cjs/react-pdf-viewer.css';
 import "./pdf.css"
 
 //pdfjs.GlobalWorkerOptions.workerSrc = ``;
-export default class PDFDisplay extends CommonDisplay {
+export default class VistaTRailer extends CommonDisplay {
 
 
   renderContent() {
 
-    let url = `http://localhost:9000/http://127.0.0.1/capitulos/${this.props.location.state.titulo}`
+    let url = `http://localhost:9000/http://127.0.0.1/trailers/${this.props.location.state.archivo}`
     return (
       <div className="pdfDisplay">
         <h1>{this.props.location.state.titulo}</h1>

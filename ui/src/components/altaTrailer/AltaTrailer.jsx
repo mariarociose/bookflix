@@ -25,6 +25,10 @@ class AltaTrailer extends CommonDisplay{
 
     }
 
+    parsePath = (path) =>{
+        let aux = path.split("fakepath\\")
+        return aux[1];
+    }
 
     handleSubmit = (e) => {
 
@@ -35,8 +39,8 @@ class AltaTrailer extends CommonDisplay{
             form.append("id_libro",this.props.location.state.id_libro);
             form.append("titulo",e.target.titulo.value);
             form.append("descripcion",e.target.descripcion.value);
-            form.append("archivo",e.target.archivo.value);
-
+            form.append("archivo",this.parsePath(e.target.archivo.value));
+            form.append("tipo",e.target.vp.value)
 
 
 
@@ -72,6 +76,11 @@ class AltaTrailer extends CommonDisplay{
                 <label htmlFor="">Archivo:</label>
                 <input type="file" name="archivo" id="archivo"/>
 
+                <label htmlFor="">Video o pdf: </label>
+                <label htmlFor="">Video:</label>
+                <input required type="radio" name="vp" id="vp" value="video"/>
+                <label htmlFor="">PDF:</label>
+                <input required type="radio" name="vp" id="vp" value="pdf"/>
 
               </fieldset>
 

@@ -33,7 +33,7 @@ import Libro_detail_user from "./components/libroViewDetailUser/Libro_detail_use
 import Historial_Lectura from "./components/historialComponent/Historial_Lectura";
 import BajaCapitulo from "./components/bajaCapitulo/bajaCapitulo";
 import DisplayTrailer from "./components/displayTrailer/displayTrailer";
-
+import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
 
 function App() {
   return (
@@ -72,6 +72,7 @@ function App() {
             <Route exact path="/historial_lectura" component={Historial_Lectura}></Route>
             <Route exact path="/bajaCapitulo" component={BajaCapitulo}></Route>
             <Route exact path="/displayTrailer" component={DisplayTrailer}></Route>
+            <Route exact path = "/vistaTrailer" component={VistaTrailer}></Route>
           </Switch> 
     </div>
   );

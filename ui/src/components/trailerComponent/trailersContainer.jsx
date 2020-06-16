@@ -52,7 +52,9 @@ class TrailersContainer extends CommonDisplay{
                                     state:{
                                         id: trailer.id_trailer,
                                         titulo: trailer.titulo,
-                                        descripcion: trailer.descripcion
+                                        descripcion: trailer.descripcion,
+                                        tipo: trailer.tipo,
+                                        archivo: trailer.archivo
                                     }
                                 }}>Ver Trailer</Link>
                                 </td>

@@ -25,7 +25,7 @@ class DetalleTrailer extends CommonDisplay{
         <div className="book_form">
             <form  className="create_form" onSubmit={this.handleSubmit}>
                <fieldset className="create_field">
-                <h1>Detalle de Novedad</h1>
+                <h1>Trailer</h1>
                 <label htmlFor="titulo">Titulo</label>
                 <input required disabled={!this.state.editing} type="text"  name="titulo" id="" value={this.state.titulo} onChange={this.handleChange}/>
                 <label htmlFor="descripcion">Descripción</label>

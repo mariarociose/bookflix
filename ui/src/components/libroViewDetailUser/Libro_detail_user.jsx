@@ -327,8 +327,10 @@ handleLeido = (e) => {
 
                       </fieldset>
                       <fieldset className="create_field">
-                      <div> <input type="button" value="Ya lei este libro!" id="resetButton"  class="resetButton" onClick={this.handleLeido}></input> </div>
-                      
+
+
+
+                      <input type="button" value="Ya lei este libro!" id="updateButton"  class="updateButton" onClick={this.handleLeido}></input>
 
                       </fieldset>
 

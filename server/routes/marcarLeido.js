@@ -5,7 +5,7 @@ var connection = db.connection;
 
 router.post("/", function(req,res){
 
-    let query = `insert into libros_leidos (id_libro,id_perfil) values ("${req.body.id_libro}", "${req.body.id_perfil}")`
+    let query = `insert into libros_leidos (id_libro,id_perfil) values ("${req.query.id_libro}", "${req.query.id_perfil}")ON DUPLICATE KEY UPDATE leido=1`
     console.log(query);
     connection.query(query, (err,rows,fields) => {
         if(err){
@@ -22,13 +22,9 @@ router.post("/", function(req,res){
 
 })
 
-
-
-
-
 router.delete("/",function(req,res){
     console.log(req.body);
-    let query = `delete from libros_leidos WHERE id_libro="${req.body.id_libro}" and id_perfil="${req.body.id_perfil}"`;
+    let query = `update from libros_leidos WHERE id_libro="${req.body.id_libro}" and id_perfil="${req.body.id_perfil}"`;
     connection.query(query,function(err,rows,fields){
         if(err){
             console.log(err);

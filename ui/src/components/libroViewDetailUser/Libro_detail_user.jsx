@@ -318,13 +318,6 @@ handleLeido = (e) => {
                       </fieldset>
                       <fieldset className="create_field">
 
-                      <p> Ya lei este libro
-                      <label class="switch">
-                      <input type="checkbox"value="He leido este libro:"></input>
-                      <span class="slider"></span>
-                      </label>
-                      </p>
-
 
 
                       <input type="button" value="Ya lei este libro!" id="updateButton"  class="updateButton" onClick={this.handleLeido}></input>

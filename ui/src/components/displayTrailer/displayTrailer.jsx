@@ -25,7 +25,7 @@ class TrailerDisplay extends CommonDisplay{
                 <Player 
                 playsInline
                 fluid={false}
-                src="http://127.0.0.1/trailers/morgan.mp4"
+                src="http://127.0.0.1/trailers/quijote.mp4"
                 width={480}
                 height={272}></Player>
             </div>

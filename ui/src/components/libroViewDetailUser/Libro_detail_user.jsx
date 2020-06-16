@@ -197,7 +197,23 @@ fetch(`http://localhost:4000/registroVisita?id_libro=${this.state.libro.id_libro
 .then(this.setState({mensaje: "Regitrado correctamente"}))
 }
 
+handleLeido = (e) => {
+  e.preventDefault();
+  let id_perfil = Cookie.get("perfilId")
+  id_perfil = JSON.parse(id_perfil)
+  console.log(id_perfil)
+  this.setState({idperfil: id_perfil});
+  console.log(this.state.idperfil)
 
+
+
+  fetch(`http://localhost:4000/marcarLeido?id_libro=${this.state.libro.id_libro}&id_perfil=${id_perfil}`,{
+    method: "POST",
+
+  })
+  .then((res) => (res.json()))
+  .then(this.setState({mensaje: "Se registro que finalizo su libro."}))
+}
 
 
       renderContent(){
@@ -305,6 +321,10 @@ fetch(`http://localhost:4000/registroVisita?id_libro=${this.state.libro.id_libro
                       <span class="slider"></span>
                       </label>
                       </p>
+
+
+
+                      <input type="button" value="Ya lei este libro!" id="updateButton"  class="updateButton" onClick={this.handleLeido}></input>
 
                       </fieldset>
 

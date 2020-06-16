@@ -109,7 +109,6 @@ class NavBar extends React.Component{
                 botonCreateAutor = <li><a href="#" onClick={this.redirectToCreateAutorView}>Autor</a></li>
                 botonCreateGenero =<li><a href="#" onClick={this.redirectToCreateGeneroView}>Genero</a></li>
                 botonCreateEditorial = <li><a href="#" onClick={this.redirectToCreateEditorialView}>Editorial</a></li>
-                botonAltaCapitulo = <li> <Link to="/altaCapitulo">Alta Capitulo</Link>  </li>
                 botonLibrosUser = null;
                 botonHistorialLectura = null;
                 botonTrailers = <li> <Link to="/trailers">Trailers</Link>  </li>

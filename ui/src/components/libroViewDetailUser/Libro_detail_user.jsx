@@ -44,7 +44,8 @@ class Libro_detail_user extends CommonDisplay{
           nombre_autor:"",
           apellido_autor:"",
           editing: false,
-          leido:false,
+          leido:"",
+          leidobutton:"true",
           idperfil:"1",
         }
     }
@@ -204,7 +205,7 @@ handleLeido = (e) => {
   console.log(id_perfil)
   this.setState({idperfil: id_perfil});
   console.log(this.state.idperfil)
-
+  this.setState({leidobutton: !this.state.leidobutton})
 
 
   fetch(`http://localhost:4000/marcarLeido?id_libro=${this.state.libro.id_libro}&id_perfil=${id_perfil}`,{
@@ -220,6 +221,15 @@ handleLeido = (e) => {
         console.log(this.state)
 
         let buttons;
+        let leidobut;
+
+        console.log(this.state.leidobutton)
+        if(this.state.leidobutton){
+          leidobut =   <div> <input type="button" value="Ya lei este libro!" id="resetButton"  class="resetButton" onClick={this.handleLeido}></input> </div>
+        }else
+        {
+         leidobut = <div>  <input type="button" value="Ya terminaste de leer este libro!" id="updateButton"  class="updateButton"  ></input> </div>
+        }
 
         if(!this.state.editing){
             buttons = <input type="button" value="Actualizar" id="updateButton"  class="updateButton" onClick={this.handleClick}></input>
@@ -314,17 +324,8 @@ handleLeido = (e) => {
 
                       </fieldset>
                       <fieldset className="create_field">
-
-                      <p> Ya lei este libro
-                      <label class="switch">
-                      <input type="checkbox"value="He leido este libro:"></input>
-                      <span class="slider"></span>
-                      </label>
-                      </p>
-
-
-
-                      <input type="button" value="Ya lei este libro!" id="updateButton"  class="updateButton" onClick={this.handleLeido}></input>
+                      <div> <input type="button" value="Ya lei este libro!" id="resetButton"  class="resetButton" onClick={this.handleLeido}></input> </div>
+                      
 
                       </fieldset>
 

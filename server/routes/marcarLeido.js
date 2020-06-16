@@ -56,7 +56,7 @@ router.get("/", function(req,res){
             return;
         }
 
-        res.json({datos: rows,mensaje:"Leido o no?"});
+        res.json({datos: rows});
 
     })
 

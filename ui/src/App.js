@@ -32,6 +32,8 @@ import LibroContainer from "./components/librosUserView/librosUserView";
 import Libro_detail_user from "./components/libroViewDetailUser/Libro_detail_user";
 import Historial_Lectura from "./components/historialComponent/Historial_Lectura";
 import BajaCapitulo from "./components/bajaCapitulo/bajaCapitulo";
+import DisplayTrailer from "./components/displayTrailer/displayTrailer";
+
 
 function App() {
   return (
@@ -69,8 +71,8 @@ function App() {
             <Route exact path="/capituloVista" component={PDFDisplay}></Route>
             <Route exact path="/historial_lectura" component={Historial_Lectura}></Route>
             <Route exact path="/bajaCapitulo" component={BajaCapitulo}></Route>
-
-          </Switch>
+            <Route exact path="/displayTrailer" component={DisplayTrailer}></Route>
+          </Switch> 
     </div>
   );
 }

@@ -128,6 +128,10 @@ app.use("/getCapitulos", getCapitulos);
 var marcarFavorito = require("./routes/marcarFavorito")
 app.use("/marcarFavorito", marcarFavorito);
 
+var comentarios = require("./routes/getComentarios");
+app.use("/getComentarios", comentarios);
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

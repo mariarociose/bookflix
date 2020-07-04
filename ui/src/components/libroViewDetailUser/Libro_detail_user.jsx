@@ -13,6 +13,8 @@ import Libro from "../libroComponent/Libro";
 import "./libroDetailUser.css";
 import {Link, Route, Switch} from "react-router-dom";
 
+import DisplayComentario from "../displayComentarios/displayComentario";
+
 class Libro_detail_user extends CommonDisplay{
 
     constructor(props){
@@ -46,6 +48,7 @@ class Libro_detail_user extends CommonDisplay{
           editing: false,
           leido:false,
           idperfil:"1",
+          comentarios: []
         }
     }
 
@@ -147,6 +150,10 @@ class Libro_detail_user extends CommonDisplay{
         mensaje: leido.mensaje,granted: true}, console.log(this.state));
         })
 
+        fetch(`http://localhost:4000/getComentarios?id_libro=${this.props.location.state.id_libro}`)
+        .then((res) => (res.json()))
+        .then((res) => this.setState({comentarios: res.comentarios},()=> (console.log(this.state.comentarios))))
+        .catch((err) => (console.log(err))) 
 
 
 
@@ -293,6 +300,7 @@ handleLeido = (e) => {
 
             return(
           <div>
+          <div>
 
 
             <main>
@@ -317,13 +325,6 @@ handleLeido = (e) => {
 
                       </fieldset>
                       <fieldset className="create_field">
-
-                      <p> Ya lei este libro
-                      <label class="switch">
-                      <input type="checkbox"value="He leido este libro:"></input>
-                      <span class="slider"></span>
-                      </label>
-                      </p>
 
 
 
@@ -369,7 +370,9 @@ handleLeido = (e) => {
 
 
           </div>
-
+          
+          <DisplayComentario comentarios={this.state.comentarios}></DisplayComentario>
+          </div>
         )
         }
 

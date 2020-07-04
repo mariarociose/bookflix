@@ -26,7 +26,7 @@ class TrailersContainer extends CommonDisplay{
             .then((res) => (res.json()))
             .then((trailers) => {
                 this.setState({trailers: trailers,
-                mensaje: "Trailers",granted: true},() => (console.log(this.state.trailers)));
+                mensaje: "No hay trailers disponibles",granted: true},() => (console.log(this.state.trailers)));
                 console.log("tengo datos")
                 console.log(trailers)
             })
@@ -39,7 +39,7 @@ class TrailersContainer extends CommonDisplay{
 
 
     renderContent = () => {
-            console.log(this.state.trailers)
+            console.log(this.state.trailers != undefined)
                 var news = [];
                 if(this.state.trailers != undefined){
                         news = this.state.trailers.map((trailer) => (

@@ -11,7 +11,8 @@ export default class PDFDisplay extends CommonDisplay {
 
   renderContent() {
 
-    let url = `http://localhost:9000/http://127.0.0.1/capitulos/${this.props.location.state.titulo}`
+   let url = `http://localhost:9000/http://.0.0.1/capitulos/${this.props.location.state.archivo}`
+
     return (
       <div className="pdfDisplay">
         <h1>{this.props.location.state.titulo}</h1>

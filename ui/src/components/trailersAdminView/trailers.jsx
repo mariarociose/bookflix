@@ -42,7 +42,7 @@ class Trailers extends CommonDisplay{
       let index = array.indexOf(trailer);
       array.splice(index,1)
       if(array.length == 0){
-          this.setState({trailers: array,mensaje: "No hay trailers"})
+          this.setState({trailers: array,mensaje: "No hay trailers disponibles"})
       }else
           this.setState({trailers: array})
   }

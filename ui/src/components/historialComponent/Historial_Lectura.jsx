@@ -94,6 +94,7 @@ class Historial_Lectura extends CommonDisplay{
                                 id_libro:libro.id_libro
                             }
                         }}>Ver Detalle</Link></td>
+
                         <td> {libro.Disponible} </td>
                         <td> {libro.terminado} </td>
 

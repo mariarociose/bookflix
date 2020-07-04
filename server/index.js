@@ -121,8 +121,12 @@ app.use("/registroVisita",registroVisita);
 
 var historialLectura = require ("./routes/historialLectura")
 app.use("/historialLectura",historialLectura);
+
 var getCapitulos = require("./routes/getCapitulo")
-app.use("/getCapitulos", getCapitulos)
+app.use("/getCapitulos", getCapitulos);
+
+var marcarFavorito = require("./routes/marcarFavorito")
+app.use("/marcarFavorito", marcarFavorito);
 
 app.listen(4000, () => (
 

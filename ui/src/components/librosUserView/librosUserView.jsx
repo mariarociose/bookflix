@@ -6,7 +6,7 @@ import "../userHome.css";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import BookFilter from "../bookFilter/bookFilter";
-
+import Favorito from "../libroComponent/Favorito";
 class LibroContainer extends CommonDisplay{
 
     constructor(props){
@@ -34,8 +34,8 @@ class LibroContainer extends CommonDisplay{
    )
 } )
 }
-  
-  
+
+
   handleSubmit = (e) => {
       e.preventDefault();
       let form = new FormData();
@@ -48,23 +48,42 @@ class LibroContainer extends CommonDisplay{
       .catch((res) => (this.setState({mensaje:res.mensaje})))
 
     }
-  
+
   renderContent(){
       let news = this.state.news.map( (libro) =>
-        <Libro libro={libro}></Libro>
-      )   
+
+      <div className="create_form">
+       <section className="libro">
+          <fieldset className="create_field">
+
+        <Libro libro={libro}>
+
+
+        </Libro>
+
+                    </fieldset>
+
+          </section>
+          </div>
+
+      )
 
         return(
 <div>
+    <div className="create_field">
+      <fieldset>
           <form action="" onSubmit={this.handleSubmit}>
-              <input name="filter" id="filter" type="text" placeholder="Nombre, genero, autor, editorial, ..."/>
-              <input type="submit"value="Buscar"/>
+              <input name="filter" id="filter" type="text" class placeholder="Nombre, genero, autor, editorial, ..."/>
+              <input type="submit"value="Buscar" class="updateButton"/>
             </form>
+
+            </fieldset>
+        </div>
             <div className="nov-container">
 
               <h1> {this.state.mensaje}</h1>
                 {news}
-
+              
             </div>
 </div>
         )

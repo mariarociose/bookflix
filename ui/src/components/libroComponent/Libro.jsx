@@ -4,6 +4,38 @@ import "./libro.css"
 import {Link, Route, Switch} from "react-router-dom";
 
 function Libro(props){
+    let buttonfav;
+    let puntuacionProm;
+    let puntuacionPerfil;
+
+    console.log(props.libro.Promedio_Puntuacion);
+    if(!(props.libro.Promedio_Puntuacion == null)){
+            puntuacionProm =    <input type="submit" class="resetButton" value= {props.libro.Promedio_Puntuacion} id="puntuacionprom"></input>
+    }else{
+            puntuacionProm =
+            <input type="submit" class="resetButton" value="Sin calificar" id="puntuacionprom_empty"></input>
+          }
+;
+          if(!(props.libro.esta_puntuado == 0)){
+                  puntuacionPerfil =    <input type="submit" class="resetButton" value= {props.libro.esta_puntuado} id="puntuacionprom"></input>
+          }else{
+                  puntuacionPerfil =
+                  <input type="submit" class="resetButton" value="No calificaste este libro!" id="puntuacionprom_empty"></input>
+                }
+
+
+
+
+    if(!props.libro.es_fav){
+        buttonfav = <input type="button" class="saveButton" value="Agregar a Favoritos" id="marcar_favorito"></input>
+    }else{
+        buttonfav =
+            <input type="submit" class="resetButton" value="Quitar de Favoritos" id="quitar_favorito"></input>
+
+
+
+    }
+
 
     return(
       <div className="create_form">
@@ -15,10 +47,11 @@ function Libro(props){
             <p></p>
             <p>Publicado Por: {props.libro.desc_editorial}</p>
             <p> Genero:{props.libro.desc_genero} </p>
-            <input type="Button" value="Marcar como favorito - Proximamente" class="saveButton" id="cancel" ></input>
+            <p>Puntuacion promedio:   {puntuacionProm} </p>
+            <p> Tu calificacion: {puntuacionPerfil} </p>
+            <p> {buttonfav} </p>
 
-
-                <Link class='saveButton' rep to={{
+        <Link class='saveButton' rep to={{
                     pathname: `/libro_detail_user`,
                     state:{
                         id_libro:props.libro.id_libro

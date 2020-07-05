@@ -369,7 +369,7 @@ handleLeido = (e) => {
 
 
 
-
+                    <DisplayComentario comentarios={this.state.comentarios}></DisplayComentario>
               </div>
 
 
@@ -378,10 +378,10 @@ handleLeido = (e) => {
 
 
 
-
+                                
           </div>
           
-          <DisplayComentario comentarios={this.state.comentarios}></DisplayComentario>
+          
           </div>
         )
         }

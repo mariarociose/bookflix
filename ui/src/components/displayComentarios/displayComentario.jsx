@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import ComentarioComponent from "../comentarioComponent/comentarioComponent";
 
 class DisplayComentario extends React.Component {
 
@@ -17,7 +17,7 @@ class DisplayComentario extends React.Component {
         return(
             <div>
             {mensaje}
-            {this.props.comentarios.map((comentario) => (<p>Mensaje: {comentario.comentario}</p>))}
+            {this.props.comentarios.map((comentario) => (<ComentarioComponent comentario={comentario}></ComentarioComponent>))}
             </div>
         )
     }

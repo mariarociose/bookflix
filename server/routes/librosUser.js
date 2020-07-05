@@ -22,8 +22,8 @@ IF(lf.id_libro IS NULL, 0, puntuacion) as esta_puntuado , \
  from libros inner join generos on (libros.id_genero = generos.id_genero)  \
  inner join autores on libros.id_autor = autores.id_autor \
   inner join editoriales on libros.id_editorial = editoriales.id_editorial \
-  left join libros_favoritos lf ON libros.id_libro = lf.id_libro AND lf.id_perfil = 1 \
-  left join libros_puntuaciones lp ON libros.id_libro = lf.id_libro and lp.id_perfil = 1 \
+  left join libros_favoritos lf ON libros.id_libro = lf.id_libro AND lf.id_perfil = 2 \
+  left join libros_puntuaciones lp ON libros.id_libro = lp.id_libro and lp.id_perfil = 2 \
    where fecha_vencimiento > DATE(CURRENT_DATE)" ;
 
 

@@ -27,10 +27,28 @@ function Libro(props){
 
 
     if(!props.libro.es_fav){
-        buttonfav = <input type="button" class="saveButton" value="Agregar a Favoritos" id="marcar_favorito"></input>
+        buttonfav = <Link class='saveButton' rep to={{
+                    pathname: `/agregar_favorito`,
+                    state:{
+                        id_libro:props.libro.id_libro
+                    }
+                }}> Agregar a Favoritos</Link>
+
+
+//        <input type="button" class="saveButton" value="Agregar a Favoritos" id="marcar_favorito"></input>
     }else{
-        buttonfav =
-            <input type="submit" class="resetButton" value="Quitar de Favoritos" id="quitar_favorito"></input>
+      
+        buttonfav = <Link class='saveButton' rep to={{
+                    pathname: `/quitar_favorito`,
+                    state:{
+                        id_libro:props.libro.id_libro
+                    }
+                }}> Quitar de Favoritos</Link>
+
+
+
+
+          //  <input type="submit" class="resetButton" value="Quitar de Favoritos" id="quitar_favorito"></input>
 
 
 

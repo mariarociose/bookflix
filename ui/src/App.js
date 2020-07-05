@@ -34,6 +34,8 @@ import Historial_Lectura from "./components/historialComponent/Historial_Lectura
 import BajaCapitulo from "./components/bajaCapitulo/bajaCapitulo";
 import DisplayTrailer from "./components/displayTrailer/displayTrailer";
 import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
+import Agregar_favorito from "./components/favoritos/agregar_favorito";
+import Quitar_favorito from "./components/favoritos/quitar_favorito";
 
 function App() {
   return (
@@ -73,7 +75,9 @@ function App() {
             <Route exact path="/bajaCapitulo" component={BajaCapitulo}></Route>
             <Route exact path="/displayTrailer" component={DisplayTrailer}></Route>
             <Route exact path = "/vistaTrailer" component={VistaTrailer}></Route>
-          </Switch> 
+            <Route exact path = "/agregar_favorito" component={Agregar_favorito}></Route>
+            <Route exact path = "/quitar_favorito" component={Quitar_favorito}></Route>
+          </Switch>
     </div>
   );
 }

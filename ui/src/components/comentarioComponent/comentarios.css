@@ -1,0 +1,47 @@
+.comentario-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.comentario{
+
+    display: flex;
+    width: 80%;
+    height: 130px;
+    border: 2px black solid;
+    flex-direction: column;
+    margin-bottom: 20px;
+    
+    
+}
+
+.datos{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 20px
+}
+
+.comentario-texto{
+    display: flex;
+    justify-content: left;
+    height: 70px;
+    margin: 2px 5px;
+}
+
+.spoiler-button{
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.spoiler{
+    display: flex;
+    margin-left: 20px
+}

@@ -38,6 +38,8 @@ import Agregar_favorito from "./components/favoritos/agregar_favorito";
 import Quitar_favorito from "./components/favoritos/quitar_favorito";
 import Ranking_libros from "./components/ranking_leidos/ranking_leidos";
 import Usuarios_fecha from "./components/usuariosAdminView1/usuarios_fecha";
+import FileSelector from "./components/profileSelector/profileSelector"
+import ProfileSelector from './components/profileSelector/profileSelector';
 
 function App() {
   return (
@@ -82,6 +84,8 @@ function App() {
 
             <Route exact path = "/ranking_libros" component={Ranking_libros}></Route>
               <Route exact path = "/usuarios_fecha" component={Usuarios_fecha}></Route>
+      
+            <Route exact path= "/profileSelector" component={ProfileSelector}></Route>
           </Switch>
     </div>
   );

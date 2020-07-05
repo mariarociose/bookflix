@@ -138,6 +138,8 @@ app.use("/libros_ranking", libros_ranking);
 var usuarios_admin = require("./routes/usuarios_admin");
 app.use("/usuarios_admin",usuarios_admin);
 
+var getPerfiles = require("./routes/getPerfiles");
+app.use("/getPerfiles", getPerfiles);
 
 app.listen(4000, () => (
 

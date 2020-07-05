@@ -36,7 +36,8 @@ import DisplayTrailer from "./components/displayTrailer/displayTrailer";
 import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
 import Agregar_favorito from "./components/favoritos/agregar_favorito";
 import Quitar_favorito from "./components/favoritos/quitar_favorito";
-import Ranking_libros from "./components/ranking_leidos/ranking_leidos"
+import Ranking_libros from "./components/ranking_leidos/ranking_leidos";
+import Usuarios_fecha from "./components/usuariosAdminView/usuarios_fecha";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
             <Route exact path = "/quitar_favorito" component={Quitar_favorito}></Route>
 
             <Route exact path = "/ranking_libros" component={Ranking_libros}></Route>
+              <Route exact path = "/usuarios_fecha" component={Usuarios_fecha}></Route>
           </Switch>
     </div>
   );

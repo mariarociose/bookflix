@@ -135,6 +135,10 @@ var libros_ranking = require("./routes/libros_ranking");
 app.use("/libros_ranking", libros_ranking);
 
 
+var usuarios_admin = require("./routes/usuarios_admin");
+app.use("/usuarios_admin",usuarios_admin);
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

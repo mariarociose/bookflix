@@ -81,6 +81,9 @@ class NavBar extends React.Component{
             this.props.history.push("/ranking_libros")
         }
 
+        redirectToUsuariosFecha = () => {
+            this.props.history.push("/usuarios_fecha")
+        }
 
     componentDidMount(){
         if(Cookie.get("token") != null){
@@ -107,6 +110,7 @@ class NavBar extends React.Component{
         let botonLibrosUser;
         let botonHistorialLectura;
         let botonRanking;
+        let botonUsuariosFecha;
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
@@ -118,6 +122,7 @@ class NavBar extends React.Component{
                 botonHistorialLectura = null;
                 botonTrailers = <li> <Link to="/trailers">Trailers</Link>  </li>
                 botonRanking = <li><a href="#" onClick={this.redirectToRankingLeidos}>Ranking mas leidos</a></li>
+                botonUsuariosFecha = <li><a href="#" onClick={this.redirectToUsuariosFecha}>Usuarios Registrados</a></li>
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
@@ -129,6 +134,7 @@ class NavBar extends React.Component{
                 botonLibrosUser = <li><a href="#" onClick={this.redirectToLibrosUserView}>Libros!</a></li>
                 botonHistorialLectura = <li><a href="#" onClick={this.redirectToHistorialLectura}>Mis Lecturas</a></li>
                 botonRanking = null;
+                botonUsuariosFecha = null;
             }
         }
 
@@ -152,6 +158,7 @@ class NavBar extends React.Component{
                         {botonLibrosUser}
                         {botonHistorialLectura}
                         {botonRanking}
+                        {botonUsuariosFecha}
                     </ul>
 
 

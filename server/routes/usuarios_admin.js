@@ -8,7 +8,7 @@ var connection = db.connection;
 
 router.get('/', function(req,res){
 
-    var query = "Select * from usuarios";
+    var query = "SELECT `id_usuario`, `nombre`, `apellido`, `email`, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, DATE(fecha_alta) as fecha FROM usuarios";
     console.log('tratando de hacer fetch');
     console.log(query)
     connection.query(query, function(err,rows,fields){

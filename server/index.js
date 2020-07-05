@@ -131,6 +131,8 @@ app.use("/marcarFavorito", marcarFavorito);
 var comentarios = require("./routes/getComentarios");
 app.use("/getComentarios", comentarios);
 
+var getPerfiles = require("./routes/getPerfiles");
+app.use("/getPerfiles", getPerfiles);
 
 app.listen(4000, () => (
 

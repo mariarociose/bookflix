@@ -34,6 +34,8 @@ import Historial_Lectura from "./components/historialComponent/Historial_Lectura
 import BajaCapitulo from "./components/bajaCapitulo/bajaCapitulo";
 import DisplayTrailer from "./components/displayTrailer/displayTrailer";
 import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
+import FileSelector from "./components/profileSelector/profileSelector"
+import ProfileSelector from './components/profileSelector/profileSelector';
 
 function App() {
   return (
@@ -73,6 +75,7 @@ function App() {
             <Route exact path="/bajaCapitulo" component={BajaCapitulo}></Route>
             <Route exact path="/displayTrailer" component={DisplayTrailer}></Route>
             <Route exact path = "/vistaTrailer" component={VistaTrailer}></Route>
+            <Route exact path= "/profileSelector" component={ProfileSelector}></Route>
           </Switch> 
     </div>
   );

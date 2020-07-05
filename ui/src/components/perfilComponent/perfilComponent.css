@@ -1,0 +1,39 @@
+.perfil{
+    background-color: white;
+    color: black;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: red 2px solid;
+}
+
+.perfil p{
+    display: inline-block;
+    height: 25px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.imageContainer{
+    height: 100px;
+    width: 100%;
+    background-color: blue;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.imageContainer img{
+    width: 100%;
+    height: 100%;
+}
+
+.profileButton{
+    width: 100%;
+    margin-top: 2px; 
+}

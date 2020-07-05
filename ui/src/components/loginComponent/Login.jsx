@@ -47,7 +47,7 @@ class Login extends React.Component{
                 Cookie.set("userId",this.state.datos.user.id_usuario);
                 Cookie.set("perfilId", this.state.datos.user.id_usuario);
                 if(this.state.datos.userType == "1")
-                    this.props.history.push("/home");
+                    this.props.history.push("/profileSelector");
                 else
                     this.props.history.push("/homeAdmin");
         }}

@@ -21,7 +21,7 @@ class ComentarioComponent extends React.Component{
     }
 
     handleClick = () => {
-        this.setState({visible : true})
+        this.setState({visible : !this.state.visible})
     }
 
     
@@ -29,9 +29,14 @@ class ComentarioComponent extends React.Component{
 
         let content;
         if(this.state.visible){
+            let buttonS;
+            if(this.props.comentario.status_comentario == 2) {
+                buttonS = <button className="spoiler-button" onClick={this.handleClick}>ocultar spoiler</button>
+            }
             content = (
             <div className="comentario-texto">
-                <p>{this.props.comentario.comentario}</p>  
+                <p>{this.props.comentario.comentario}</p>
+                {buttonS}
             </div>)
         }else{
             

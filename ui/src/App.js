@@ -36,6 +36,7 @@ import DisplayTrailer from "./components/displayTrailer/displayTrailer";
 import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
 import Agregar_favorito from "./components/favoritos/agregar_favorito";
 import Quitar_favorito from "./components/favoritos/quitar_favorito";
+import Ranking_libros from "./components/ranking_leidos/ranking_leidos"
 
 function App() {
   return (
@@ -77,6 +78,8 @@ function App() {
             <Route exact path = "/vistaTrailer" component={VistaTrailer}></Route>
             <Route exact path = "/agregar_favorito" component={Agregar_favorito}></Route>
             <Route exact path = "/quitar_favorito" component={Quitar_favorito}></Route>
+
+            <Route exact path = "/ranking_libros" component={Ranking_libros}></Route>
           </Switch>
     </div>
   );

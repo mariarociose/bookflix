@@ -131,6 +131,9 @@ app.use("/marcarFavorito", marcarFavorito);
 var comentarios = require("./routes/getComentarios");
 app.use("/getComentarios", comentarios);
 
+var libros_ranking = require("./routes/libros_ranking");
+app.use("/libros_ranking", libros_ranking);
+
 
 app.listen(4000, () => (
 

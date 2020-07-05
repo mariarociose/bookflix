@@ -37,7 +37,7 @@ import VistaTrailer from "./components/vistaTrailer/vistaTrailer";
 import Agregar_favorito from "./components/favoritos/agregar_favorito";
 import Quitar_favorito from "./components/favoritos/quitar_favorito";
 import Ranking_libros from "./components/ranking_leidos/ranking_leidos";
-import Usuarios_fecha from "./components/usuariosAdminView/usuarios_fecha";
+import Usuarios_fecha from "./components/usuariosAdminView1/usuarios_fecha";
 
 function App() {
   return (

@@ -58,18 +58,23 @@ class Usuarios_fecha extends CommonDisplay{
 
 }
 
-    redirectNew = () => {
+handleSubmit = (e) => {
+    e.preventDefault();
+    let form = new FormData();
+    form.append("fecha_desde",e.target.fecha_desde.value);
+      form.append("fecha_hasta",e.target.fecha_hasta.value);
+    fetch("http://localhost:4000/usuarios_admin",{
+      method: "POST",
+      body: form})
+    .then(res => res.json())
+    .then((res) => (this.setState({mensaje:res.mensaje,usuarios: res.usuarios})))
+    .catch((res) => (this.setState({mensaje:res.mensaje})))
+
+  }
 
 
-                this.props.history.push("/libro_new");
 
-    }
-    redirectDetail = () => {
 
-                //Cookie.set("id_libro",libro.id_libro);
-                this.props.history.push("/libro_detail");
-
-    }
 
     renderContent = () => {
             let table = null;

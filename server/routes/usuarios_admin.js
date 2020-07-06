@@ -21,4 +21,27 @@ router.get('/', function(req,res){
     });
 })
 
+
+router.post("/", function(req,res){
+
+    let query = `SELECT id_usuario, nombre, apellido, email, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, DATE(fecha_alta) as fecha FROM usuarios where fecha_alta between '${req.body.fecha_desde}' and '${req.body.fecha_hasta}'`;
+    console.log(query);
+    connection.query(query, function(err, rows, fields){
+        if(err){
+            console.log(err)
+            res.status(500).send({mensaje:"hubo un error"});
+            return;
+        }
+        console.log(rows)
+        let mensaje;
+        if(rows.length == 0){
+            res.status(200).send({mensaje: "No hay usuarios registrados entre las fechas seleccionadas",usuarios: rows})
+        }else
+            res.status(200).send({mensaje: null,usuarios: rows})
+
+    })
+})
+
+
+
 module.exports = router;

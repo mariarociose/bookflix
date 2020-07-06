@@ -11,9 +11,16 @@ function Perfil(props){
 
     function handleClick() {
         
-        Cookie.set("perfil_Id",props.perfil.id_perfil);
+        Cookie.set("perfilId",props.perfil.id_perfil);
         history.push("/home");
 
+    }
+
+    let callback = React.useCallback(()=> {props.update(props.perfil)},[props.perfil])
+
+    let eraseButton = null;
+    if(props.cant > 1) {
+        eraseButton = <button onClick={callback} className="profileButton">Eliminar</button>;
     }
     return(
 
@@ -24,7 +31,7 @@ function Perfil(props){
             
             <p onClick={handleClick}>{props.perfil.nombre}</p>
             <button className="profileButton">Editar</button>
-            <button className="profileButton">Eliminar</button>
+            {eraseButton}
         </div>
 
     )

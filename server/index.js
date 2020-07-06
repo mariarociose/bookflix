@@ -141,6 +141,11 @@ app.use("/usuarios_admin",usuarios_admin);
 var getPerfiles = require("./routes/getPerfiles");
 app.use("/getPerfiles", getPerfiles);
 
+var borrarPerfiles = require("./routes/borrarPerfil");
+app.use("/borrarPerfil", borrarPerfiles);
+
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

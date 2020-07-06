@@ -45,7 +45,7 @@ class Login extends React.Component{
                 Cookie.set("token",this.state.datos.token);
                 Cookie.set("userType",this.state.datos.userType);
                 Cookie.set("userId",this.state.datos.user.id_usuario);
-                Cookie.set("perfilId", this.state.datos.user.id_usuario);
+                Cookie.set("tipo_suscripcion", this.state.datos.user.tipo_suscripcion);
                 if(this.state.datos.userType == "1")
                     this.props.history.push("/profileSelector");
                 else

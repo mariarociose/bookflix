@@ -63,6 +63,13 @@ class ProfileSelector extends React.Component{
             
     }
 
+    handleNewProfile = () => {
+        if(this.state.tipo == 0 && this.state.perfiles.length == 2){
+            
+        }
+    }
+
+
     renderNewProfile = () => {
         
        if((this.state.tipo == 1 && this.state.perfiles.length < 4) || (this.state.tipo == 0)){
@@ -70,7 +77,7 @@ class ProfileSelector extends React.Component{
             return(
                 <div className="newProfile">
 
-                        <div className="image-container">
+                        <div onClick={this.handleNewProfile} className="image-container">
                               
                         </div>   
 

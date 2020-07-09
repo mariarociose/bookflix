@@ -40,6 +40,7 @@ import Ranking_libros from "./components/ranking_leidos/ranking_leidos";
 import Usuarios_fecha from "./components/usuariosAdminView1/usuarios_fecha";
 import FileSelector from "./components/profileSelector/profileSelector"
 import ProfileSelector from './components/profileSelector/profileSelector';
+import ChangeSuscription from "./components/changeSuscription/changeSuscription";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
               <Route exact path = "/usuarios_fecha" component={Usuarios_fecha}></Route>
       
             <Route exact path= "/profileSelector" component={ProfileSelector}></Route>
+            <Route exact path="/changeSuscription/:ss" component={ChangeSuscription}></Route>
           </Switch>
     </div>
   );

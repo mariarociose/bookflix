@@ -12,6 +12,7 @@ function Perfil(props){
     function handleClick() {
         
         Cookie.set("perfilId",props.perfil.id_perfil);
+        Cookie.set("cantPerfiles", props.cant);
         history.push("/home");
 
     }

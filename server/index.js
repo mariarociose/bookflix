@@ -146,6 +146,9 @@ app.use("/borrarPerfil", borrarPerfiles);
 
 
 
+var cambiarSuscripcion = require("./routes/changeSuscription");
+app.use("/changeSuscription", cambiarSuscripcion);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

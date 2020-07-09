@@ -144,6 +144,9 @@ app.use("/getPerfiles", getPerfiles);
 var borrarPerfiles = require("./routes/borrarPerfil");
 app.use("/borrarPerfil", borrarPerfiles);
 
+var agregarPerfil = require("./routes/altaPerfil");
+app.use("/altaPerfil", agregarPerfil);
+
 
 
 var cambiarSuscripcion = require("./routes/changeSuscription");

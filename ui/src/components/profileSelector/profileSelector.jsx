@@ -66,7 +66,11 @@ class ProfileSelector extends React.Component{
     handleNewProfile = () => {
         if(this.state.tipo == 0 && this.state.perfiles.length == 2){
             
-        }
+            this.props.history.push("/changeSuscription/0");
+
+
+        }else
+            this.props.history.push("/newProfile")
     }
 
 

@@ -1,12 +1,12 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../configs/db");
-const { query } = require("express");
+
 var connection = db.connection;
 
 
 router.get("/", function(req,res){
-    let query = `select * from perfiles where id_usuario=${req.query.userId}`
+    let query = `select * from perfiles where id_usuario=${req.query.userId} and habilitado=1`
     console.log(query);
     connection.query(query,(err,rows,fields) => {
         if(err){

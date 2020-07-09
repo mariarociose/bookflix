@@ -143,6 +143,16 @@ app.use("/getPerfiles", getPerfiles);
 
 var comentariosAdmin = require("./routes/comentariosAdmin");
 app.use("/comentariosAdmin", comentariosAdmin);
+var borrarPerfiles = require("./routes/borrarPerfil");
+app.use("/borrarPerfil", borrarPerfiles);
+
+var agregarPerfil = require("./routes/altaPerfil");
+app.use("/altaPerfil", agregarPerfil);
+
+
+
+var cambiarSuscripcion = require("./routes/changeSuscription");
+app.use("/changeSuscription", cambiarSuscripcion);
 
 app.listen(4000, () => (
 

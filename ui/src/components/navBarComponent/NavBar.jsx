@@ -119,6 +119,8 @@ class NavBar extends React.Component{
         let botonUsuariosFecha;
         let botonComentariosValidacion;
 
+        let botonPerfiles = null;
+        let botonSuscripcion = null;
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
@@ -146,6 +148,13 @@ class NavBar extends React.Component{
                 botonRanking = null;
                 botonUsuariosFecha = null;
                   botonComentariosValidacion = null;
+                botonPerfiles = <Link to="/profileSelector">Ver Perfiles</Link>
+
+                if(Cookie.get("tipo_suscripcion") == 0){
+                    botonSuscripcion =  <Link to="/changeSuscription/0" >Cambiar a Premium!</Link>
+                }else {
+                    botonSuscripcion =  <Link to="/changeSuscription/1" >Cambiar a Estandar!</Link>
+                }
             }
         }
 
@@ -171,6 +180,9 @@ class NavBar extends React.Component{
                         {botonRanking}
                         {botonUsuariosFecha}
                         {botonComentariosValidacion}
+                        {botonPerfiles}
+                        <br/>
+                        {botonSuscripcion}
                     </ul>
 
 

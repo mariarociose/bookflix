@@ -141,6 +141,9 @@ app.use("/usuarios_admin",usuarios_admin);
 var getPerfiles = require("./routes/getPerfiles");
 app.use("/getPerfiles", getPerfiles);
 
+var comentariosAdmin = require("./routes/comentariosAdmin");
+app.use("/comentariosAdmin", comentariosAdmin);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

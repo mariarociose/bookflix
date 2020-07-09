@@ -87,6 +87,7 @@ class ChangeSuscription extends CommonDisplay{
                 <div className="change">
                     <p>Suscripcion: {this.state.typeSuscription}</p>
                     {this.state.mensaje}
+                    <br/>
                     <button onClick={this.handleClick} className="button">{this.state.botonContenido}</button>
                     {this.state.successMessage}
                 </div>

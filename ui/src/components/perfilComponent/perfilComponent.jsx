@@ -27,7 +27,7 @@ function Perfil(props){
 
         <div className="perfil">
             <div className="imageContainer" onClick={handleClick}>
-                <img src="http://127.0.0.1/avatars/shark.jfif" alt=""/>
+                <img src={`http://localhost/avatars/${props.perfil.avatar}`} alt=""/>
             </div>
             
             <p onClick={handleClick}>{props.perfil.nombre}</p>

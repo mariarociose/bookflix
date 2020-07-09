@@ -5,7 +5,7 @@ var connection = db.connection;
 
 router.post("/", function(req, res){
     
-    let query = `INSERT INTO perfiles set id_usuario=${req.body.userId}, nombre="${req.body.nombre}", avatar="${req.body.avatar}"`
+    let query = `INSERT INTO perfiles set id_usuario=${req.body.userId}, nombre="${req.body.nombre}", avatar="${req.body.avatar}" ON DUPLICATE KEY UPDATE habilitado=1`
     console.log(query);
     console.log(req.body)
     connection.query(query, (err, rows, fields) => {

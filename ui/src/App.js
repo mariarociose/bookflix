@@ -43,6 +43,7 @@ import ProfileSelector from './components/profileSelector/profileSelector';
 import ComentariosAdmin from './components/comentariosAdminView/comentariosAdmin';
 import ChangeSuscription from "./components/changeSuscription/changeSuscription";
 import NewProfile from "./components/newProfile/newProfile";
+import EditProfile from "./components/modificarPerfil/modificarPerfil";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
 
             <Route exact path="/changeSuscription/:ss" component={ChangeSuscription}></Route>
             <Route exact path="/newProfile" component={NewProfile}></Route>
+            <Route exact path="/editarPerfil" component={EditProfile}></Route>
           </Switch>
     </div>
   );

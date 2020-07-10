@@ -17,6 +17,11 @@ function Perfil(props){
 
     }
 
+    function handleUpdate(){
+        Cookie.set("perfilId",props.perfil.id_perfil);
+        history.push(`/editarPerfil?avatar=${props.perfil.avatar}&nombre=${props.perfil.nombre}`)
+    }
+
     let callback = React.useCallback(()=> {props.update(props.perfil)},[props.perfil])
 
     let eraseButton = null;
@@ -31,7 +36,7 @@ function Perfil(props){
             </div>
             
             <p onClick={handleClick}>{props.perfil.nombre}</p>
-            <button className="profileButton">Editar</button>
+            <button onClick={handleUpdate} className="profileButton">Editar</button>
             {eraseButton}
         </div>
 

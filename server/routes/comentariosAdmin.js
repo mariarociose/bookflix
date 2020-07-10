@@ -10,6 +10,7 @@ router.get("/", function(req,res){
     Select libros.id_libro,ev.estado_desc, libros_puntuaciones.id_perfil , perfiles.nombre as nombre_perfil, comentario, status_comentario , usuarios.nombre as nombre_usuario , puntuacion , titulo \
 from libros_puntuaciones INNER JOIN perfiles on perfiles.id_perfil=libros_puntuaciones.id_perfil inner join usuarios on usuarios.id_usuario = perfiles.id_usuario \
 inner join libros on libros.id_libro = libros_puntuaciones.id_libro \
+inner join estados_validaciones  ev on ev.id_estado_validacion = libros_puntuaciones.status_comentario \
 order by status_comentario `
 ;
     console.log(query);

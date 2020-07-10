@@ -20,6 +20,10 @@ import "./comentariosAdmin.css"
 
 import {Link, Route, Switch} from "react-router-dom";
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 class ComentariosAdmin extends CommonDisplay{
 
     constructor(props){
@@ -55,33 +59,111 @@ class ComentariosAdmin extends CommonDisplay{
             console.log(this.state.comentarios)
     }}
 
+    redirect = () => { console.log("prueba")};
 
 
+
+
+
+    handleValidate = (comentario) => {
+         confirmAlert({
+           title: 'Confirme nuevo estado de Validación',
+           message: '',
+           buttons: [
+             {
+               label: 'Valido',
+               onClick: () => this.handleValido(comentario)
+             },
+             {
+               label: 'Con Spoiler',
+               onClick: () => this.handleSpoiler(comentario)
+             },
+             {
+               label: 'Inválido',
+               onClick: () => this.handleInvalido(comentario)
+             },
+            {
+               label: 'Cancelar' ,
+               onClick: () => this.closeModal
+             }
+           ]
+         });
+       }
+
+       reload = () => {
+           window.location.reload(false);
+           this.props.history.push("/validacionComentarios");
+           }
+
+       handleValido = (comentario) => {
+           let form = new FormData;
+           form.append("id_libro", comentario.id_libro);
+           form.append("id_perfil",comentario.id_perfil);
+           form.append("status_comentario",'1');
+           fetch("http://localhost:4000/validar_comentario",{
+               method: "PUT",
+               body: form
+           })
+           .then(() => {
+               this.reload();
+           })
+           .catch((err) => (console.log(err)))
+       }
+
+       handleSpoiler = (comentario) => {
+           let form = new FormData;
+           form.append("id_libro", comentario.id_libro);
+           form.append("id_perfil",comentario.id_perfil);
+           form.append("status_comentario","2");
+           fetch("http://localhost:4000/validar_comentario",{
+               method: "PUT",
+               body: form
+           })
+           .then(() => {
+               this.reload();
+           })
+           .catch((err) => (console.log(err)))
+       }
+
+       handleInvalido = (comentario) => {
+           let form = new FormData;
+           form.append("id_libro", comentario.id_libro);
+           form.append("id_perfil",comentario.id_perfil);
+           form.append("status_comentario",3);
+           fetch("http://localhost:4000/validar_comentario",{
+               method: "PUT",
+               body: form
+           })
+           .then(() => {
+               this.reload();
+           })
+           .catch((err) => (console.log(err)))
+       }
 
     renderContent = () => {
-
             let table = null;
             let coments = [];
             if(this.state.comentarios != undefined){
                 coments = this.state.comentarios.map((comentario) => (
                         //El map es como el collect de pharo
                         <tr>
+
                         <td >{comentario.titulo}  </td>
                         <td >{comentario.nombre_usuario}  </td>
                         <td> {comentario.nombre_perfil}  </td>
                         <td> {comentario.comentario}  </td>
                         <td> {comentario.estado_desc}</td>
-                        <td>  </td>
-                        <td><Link class='button' rep to={{
-                            pathname: ``,
-                            state:{
+                        <td>
 
-                            }
-                        }}>Ver Detalle</Link></td>
+
+                        <input onClick={() => this.handleValidate(comentario)} class='button' className="button" type="button" value="Validar"/>
+
+                        </td>
 
 
 
                         </tr>
+
                     ))
             };
 

@@ -154,6 +154,9 @@ app.use("/altaPerfil", agregarPerfil);
 var cambiarSuscripcion = require("./routes/changeSuscription");
 app.use("/changeSuscription", cambiarSuscripcion);
 
+var validar_comentario = require("./routes/validar_comentario");
+app.use("/validar_comentario", validar_comentario);
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

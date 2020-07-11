@@ -24,7 +24,7 @@ router.post("/", function(req,res){
 
 router.delete("/",function(req,res){
     console.log(req.body);
-    let query = `delete from libros_favoritos WHERE id_libro="${req.body.id_libro}" and id_perfil="${req.body.id_perfil}"`;
+    let query = `delete from libros_favoritos WHERE id_libro="${req.query.id_libro}" and id_perfil="${req.query.id_perfil}"`;
       console.log(query);
     connection.query(query,function(err,rows,fields){
         if(err){

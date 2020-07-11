@@ -33,7 +33,7 @@ class Agregar_favorito extends CommonDisplay{
 
       })
       .then((res) => (res.json()))
-      .then(this.setState({mensaje: "Regitrado correctamente"}))
+      .then(this.setState({mensaje: "Registrado correctamente"}))
 
 
       }

@@ -160,6 +160,15 @@ app.use("/validar_comentario", validar_comentario);
 var libros_random = require("./routes/libros_random");
 app.use("/libros_random", libros_random);
 
+var leiLibro = require("./routes/leiLibro");
+app.use("/leiLibro", leiLibro);
+
+var comenteLibro = require("./routes/comenteLibro");
+app.use("/comenteLibro", comenteLibro);
+
+var agregarComentario = require("./routes/agregarComentario");
+app.use("/agregarComentario", agregarComentario);
+
 
 app.listen(4000, () => (
 

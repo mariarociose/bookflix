@@ -74,7 +74,7 @@ function FalseLibro(props){
             <p>Puntuacion promedio:   {puntuacionProm} </p>
 
         <Link class='saveButton' rep to={{
-                    pathname: `/login`,
+                    pathname: `/loginVisitante`,
                     state:{
                         mensajeFalse:"Inicia Sesión o Registrate para ver más!"
                     }

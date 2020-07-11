@@ -44,6 +44,7 @@ import ComentariosAdmin from './components/comentariosAdminView/comentariosAdmin
 import ChangeSuscription from "./components/changeSuscription/changeSuscription";
 import NewProfile from "./components/newProfile/newProfile";
 import EditProfile from "./components/modificarPerfil/modificarPerfil";
+import LoginVisitante from "./components/loginComponent/LoginVisitante";
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function App() {
             <Route exact path="/changeSuscription/:ss" component={ChangeSuscription}></Route>
             <Route exact path="/newProfile" component={NewProfile}></Route>
             <Route exact path="/editarPerfil" component={EditProfile}></Route>
+            <Route exact path="/loginVisitante" component={LoginVisitante}></Route>
           </Switch>
     </div>
   );

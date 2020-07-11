@@ -7,6 +7,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import BookFilter from "../bookFilter/bookFilter";
 import Favorito from "../libroComponent/Favorito";
+import Cookie from "js-cookie";
 class LibroContainer extends CommonDisplay{
 
     constructor(props){
@@ -20,8 +21,10 @@ class LibroContainer extends CommonDisplay{
     }
 
     componentDidMount(){
-
-        fetch("http://localhost:4000/librosUser")
+      let id_perfil;
+      id_perfil= Cookie.get("perfilId");
+      id_perfil = JSON.parse(id_perfil);
+        fetch(`http://localhost:4000/librosUser?id_perfil=${id_perfil}`)
         .then((res) => res.json())
         .then((news) => {
           if(news.length == 0) news.mensaje = "No hay libros disponibles por el momento";
@@ -83,7 +86,7 @@ class LibroContainer extends CommonDisplay{
 
               <h1> {this.state.mensaje}</h1>
                 {news}
-              
+
             </div>
 </div>
         )

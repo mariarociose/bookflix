@@ -11,7 +11,8 @@ class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            datos: {}
+            datos: {},
+            mensajeFalse:""
         }
     }
 
@@ -72,12 +73,18 @@ class Login extends React.Component{
         }
 
     render(){
-
+        let mensaje2 = '';
+        //if(this.props.location.state.mensajeFalse != undefined) {
+        //    mensaje2 = <p> {this.props.location.state.mensajeFalse} </p>
+      //    }
+        console.log(mensaje2);
 
         let mensaje = <p>{this.state.datos.mensaje} </p>
         return(
-
+            <div>
+                <h1> {mensaje2}  </h1>
             <div className="loginbox">
+
                 <img src={AvatarLogo} alt="avatarPic" className="avatarLogo"/>
                 <h1 >Login</h1>
                 {mensaje}
@@ -96,6 +103,8 @@ class Login extends React.Component{
                 </form>
             </div>
 
+
+            </div>
 
         )
     }

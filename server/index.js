@@ -157,6 +157,10 @@ app.use("/changeSuscription", cambiarSuscripcion);
 var validar_comentario = require("./routes/validar_comentario");
 app.use("/validar_comentario", validar_comentario);
 
+var libros_random = require("./routes/libros_random");
+app.use("/libros_random", libros_random);
+
+
 app.listen(4000, () => (
 
     console.log('Escuchando peticiones en el puerto 4000')

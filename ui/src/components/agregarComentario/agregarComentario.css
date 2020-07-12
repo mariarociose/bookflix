@@ -1,0 +1,31 @@
+.newCommentContainer{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.newComment{
+    display: flex;
+    width: 800px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.newComment input[type="number"]{
+    width: 300px;
+}
+
+.newComment input[type="submit"]{
+    width: 300px;
+    margin-top: 20px
+}
+
+.newComment textarea{
+    resize: none;
+    width: 980px;
+}
+

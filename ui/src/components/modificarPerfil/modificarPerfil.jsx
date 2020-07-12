@@ -52,7 +52,7 @@ class EditProfile extends CommonDisplay{
                     <div className="imgContainer">
                         <img src={`http://localhost/avatars/${this.state.currentImg}`} alt="avatar"/>
                     </div>
-                    <select required name="avatar" id="selectAvatar" onChange={this.handleChange}>
+                    <select value={this.state.currentImg} required name="avatar" id="selectAvatar" onChange={this.handleChange}>
                         <option value="shark.jfif">Tiburon</option>
                         <option value="astro.png">Astronauta</option>
                         <option value="pelota.png">Pelota</option>

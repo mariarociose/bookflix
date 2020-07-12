@@ -162,6 +162,15 @@ app.use("/libros_random", libros_random);
 
 var librosFavoritosUser = require("./routes/librosFavoritosUser");
 app.use("/librosFavoritosUser", librosFavoritosUser);
+var leiLibro = require("./routes/leiLibro");
+app.use("/leiLibro", leiLibro);
+
+var comenteLibro = require("./routes/comenteLibro");
+app.use("/comenteLibro", comenteLibro);
+
+var agregarComentario = require("./routes/agregarComentario");
+app.use("/agregarComentario", agregarComentario);
+
 
 app.listen(4000, () => (
 

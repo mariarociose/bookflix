@@ -14,6 +14,7 @@ import "./libroDetailUser.css";
 import {Link, Route, Switch} from "react-router-dom";
 
 import DisplayComentario from "../displayComentarios/displayComentario";
+import NewComment from "../agregarComentario/agregarComentario";
 
 class Libro_detail_user extends CommonDisplay{
 
@@ -49,7 +50,9 @@ class Libro_detail_user extends CommonDisplay{
           leido:"",
           leidobutton:"true",
           idperfil:"1",
-          comentarios: []
+          comentarios: [],
+          estaLeido: false,
+          yaComente: false
         }
     }
 
@@ -157,8 +160,40 @@ class Libro_detail_user extends CommonDisplay{
         .catch((err) => (console.log(err))) 
 
 
+        this.leiEsteLibro();
+        this.yaComenteEsteLibro();
 
          }
+
+      
+leiEsteLibro = async(e) => {
+
+  let form = new FormData();
+  form.append("idPerfil", Cookie.get("perfilId"));
+  form.append("idLibro", this.props.location.state.id_libro);
+  let response = await fetch("http://localhost:4000/leiLibro",{
+    method:"POST",
+    body: form
+  })
+  console.log("-------Response --------");
+  response.json().then( (res) => this.setState({estaLeido: res.yaLei}));
+  
+  
+
+}
+
+yaComenteEsteLibro = async(e) => {
+  let form = new FormData();
+  form.append("idPerfil", Cookie.get("perfilId"));
+  form.append("idLibro", this.props.location.state.id_libro);
+  let response = await fetch("http://localhost:4000/comenteLibro",{
+    method:"POST",
+    body: form
+  })
+  console.log("-------Response --------");
+  response.json().then( (res) => this.setState({yaComente: res.yaComente}, () => (console.log(this.state.yaComente))));
+}
+
 
 handleSubmit = (e) => {
 
@@ -305,6 +340,9 @@ handleLeido = (e) => {
 
 
               }
+              let newComment = <NewComment idLibro={this.props.location.state.id_libro}></NewComment>;
+              if(!this.state.estaLeido) newComment = "Debe leer este libro para poder comentar";
+              if(this.state.yaComente) newComment = "Ya puntuó este libro";
 
 
 
@@ -370,6 +408,9 @@ handleLeido = (e) => {
 
 
                     <DisplayComentario comentarios={this.state.comentarios}></DisplayComentario>
+                    
+                    
+                    {newComment}
               </div>
 
 

@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import BookFilter from "../bookFilter/bookFilter";
 import Favorito from "../libroComponent/Favorito";
-class Quitar_favorito extends CommonDisplay{
+class Quitar_favorito_fav extends CommonDisplay{
 
     constructor(props){
         super(props);
@@ -41,7 +41,7 @@ class Quitar_favorito extends CommonDisplay{
       renderContent(){
 
         console.log(this.state.mensaje)
-        this.props.history.push("/librosUserView")
+        this.props.history.push("/misFavoritos")
       }
 }
 
@@ -51,4 +51,4 @@ class Quitar_favorito extends CommonDisplay{
 
 
 
-  export default Quitar_favorito;
+  export default Quitar_favorito_fav;

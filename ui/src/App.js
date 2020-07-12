@@ -45,7 +45,8 @@ import ChangeSuscription from "./components/changeSuscription/changeSuscription"
 import NewProfile from "./components/newProfile/newProfile";
 import EditProfile from "./components/modificarPerfil/modificarPerfil";
 import LoginVisitante from "./components/loginComponent/LoginVisitante";
-
+import LibroFavContainer from "./components/favoritosUser/favoritosUser";
+import Quitar_favorito_fav from "./components/favoritos/quitar_favorito_fav";
 function App() {
   return (
     <div className="App">
@@ -98,6 +99,8 @@ function App() {
             <Route exact path="/newProfile" component={NewProfile}></Route>
             <Route exact path="/editarPerfil" component={EditProfile}></Route>
             <Route exact path="/loginVisitante" component={LoginVisitante}></Route>
+            <Route exact path="/misFavoritos" component={LibroFavContainer}></Route>
+              <Route exact path = "/quitar_favorito_fav" component={Quitar_favorito_fav}></Route>
           </Switch>
     </div>
   );

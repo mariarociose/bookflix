@@ -4,7 +4,7 @@ var db = require("../configs/db");
 var connection = db.connection;
 
 router.put("/", function(req,res){
-    var query = `update libros_puntuaciones set status_validacion="${req.body.status_comentarion}" WHERE id_libro="${req.body.id_libro}" AND id_perfil="${req.body.id_perfil}"`
+    var query = `update libros_puntuaciones set status_validacion="${req.body.status_comentario}" WHERE id_libro="${req.body.id_libro}" AND id_perfil="${req.body.id_perfil}"`
     console.log(req.body)
     console.log(query)
     connection.query(query,function(err,rows,fields){

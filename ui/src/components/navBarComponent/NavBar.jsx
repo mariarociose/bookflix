@@ -89,7 +89,9 @@ class NavBar extends React.Component{
             this.props.history.push("/validacionComentarios")
         }
 
-
+        redirectToMisFavoritos = () => {
+            this.props.history.push("/misFavoritos")
+        }
 
     componentDidMount(){
         if(Cookie.get("token") != null){
@@ -121,6 +123,9 @@ class NavBar extends React.Component{
 
         let botonPerfiles = null;
         let botonSuscripcion = null;
+
+        let botonMisFavoritos = null;
+
         if(Cookie.get("token") != null){
             if(Cookie.get("userType") == 2){
                 botonDeLibros = <li><a href="#" onClick={this.redirectToLibrosAdmView}>Libros</a></li>
@@ -134,7 +139,7 @@ class NavBar extends React.Component{
                 botonRanking = <li><a href="#" onClick={this.redirectToRankingLeidos}>Ranking mas leidos</a></li>
                 botonUsuariosFecha = <li><a href="#" onClick={this.redirectToUsuariosFecha}>Usuarios Registrados</a></li>
                 botonComentariosValidacion = <li><a href="#" onClick={this.redirectToComentarios}>Validacion Comentarios</a></li>
-
+                botonMisFavoritos = null;
             }else{
                 botonDeLibros = null
                 botonDeNovedades = null
@@ -149,7 +154,7 @@ class NavBar extends React.Component{
                 botonUsuariosFecha = null;
                   botonComentariosValidacion = null;
                 botonPerfiles = <Link to="/profileSelector">Ver Perfiles</Link>
-
+                botonMisFavoritos = <li><a href="#" onClick={this.redirectToMisFavoritos}>Mis Favoritos</a></li>
                 if(Cookie.get("tipo_suscripcion") == 0){
                     botonSuscripcion =  <Link to="/changeSuscription/0" >Cambiar a Premium!</Link>
                 }else {
@@ -183,6 +188,7 @@ class NavBar extends React.Component{
                         {botonPerfiles}
                         <br/>
                         {botonSuscripcion}
+                        {botonMisFavoritos}
                     </ul>
 
 

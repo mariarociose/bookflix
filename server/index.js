@@ -160,6 +160,8 @@ app.use("/validar_comentario", validar_comentario);
 var libros_random = require("./routes/libros_random");
 app.use("/libros_random", libros_random);
 
+var librosFavoritosUser = require("./routes/librosFavoritosUser");
+app.use("/librosFavoritosUser", librosFavoritosUser);
 
 app.listen(4000, () => (
 

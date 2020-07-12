@@ -71,15 +71,15 @@ class ComentariosAdmin extends CommonDisplay{
            message: '',
            buttons: [
              {
-               label: 'Valido',
+               label: 'Válido',
                onClick: () => this.handleValido(comentario)
              },
              {
-               label: 'Con Spoiler',
+               label: 'Contiene Spoilers',
                onClick: () => this.handleSpoiler(comentario)
              },
              {
-               label: 'Inválido',
+               label: 'Inapropiado',
                onClick: () => this.handleInvalido(comentario)
              },
             {

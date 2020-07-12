@@ -171,6 +171,9 @@ app.use("/comenteLibro", comenteLibro);
 var agregarComentario = require("./routes/agregarComentario");
 app.use("/agregarComentario", agregarComentario);
 
+var getNombrePerfil = require("./routes/getNombrePerfil");
+app.use("/getNombrePerfil", getNombrePerfil);
+
 
 app.listen(4000, () => (
 

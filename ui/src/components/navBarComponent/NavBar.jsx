@@ -11,6 +11,7 @@ class NavBar extends React.Component{
         super(props);
         this.state = {
             buttonText: "Iniciar Sesion",
+            
             redirectFunction: this.redirectToLoginForm
         }
 
@@ -100,6 +101,12 @@ class NavBar extends React.Component{
         }else{
             this.setState({buttonText: "Iniciar Sesion", redirectFunction: this.redirectToLoginForm});
         }
+
+
+
+
+
+
     }
 
 //Los a anchor se deben reemplazar luego por links de React router.
@@ -194,6 +201,7 @@ class NavBar extends React.Component{
 
 
                 </nav>
+
                 <button className="cta" onClick={this.state.redirectFunction}>{this.state.buttonText}</button>
 
 

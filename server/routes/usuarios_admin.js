@@ -8,7 +8,7 @@ var connection = db.connection;
 
 router.get('/', function(req,res){
 
-    var query = "SELECT `id_usuario`, `nombre`, `apellido`, `email`, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, DATE(fecha_alta) as fecha FROM usuarios";
+    var query = `SELECT id_usuario, nombre, apellido, email, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, (DATE_FORMAT(fecha_alta, "%d / %M / %Y")) as fecha FROM usuarios`;
     console.log('tratando de hacer fetch');
     console.log(query)
     connection.query(query, function(err,rows,fields){
@@ -24,7 +24,7 @@ router.get('/', function(req,res){
 
 router.post("/", function(req,res){
 
-    let query = `SELECT id_usuario, nombre, apellido, email, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, DATE(fecha_alta) as fecha FROM usuarios where fecha_alta between '${req.body.fecha_desde}' and '${req.body.fecha_hasta}'`;
+    let query = `SELECT id_usuario, nombre, apellido, email, IF(tipo_suscripcion = 1, 'Premium', 'Basico') as suscripcion, (DATE_FORMAT(fecha_alta, "%d / %M / %Y")) as fecha FROM usuarios where fecha_alta between '${req.body.fecha_desde}' and '${req.body.fecha_hasta}'`;
     console.log(query);
     connection.query(query, function(err, rows, fields){
         if(err){

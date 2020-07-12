@@ -85,13 +85,15 @@ class LoginVisitante extends React.Component{
 
 
             <div >
-            <h1> Registrate o inicia sesion para poder seguir viendo libros!  </h1>
+
             </div>
+
             <div className="loginbox">
 
                 <img src={AvatarLogo} alt="avatarPic" className="avatarLogo"/>
                 <h1 >Login</h1>
                 {mensaje}
+                  <label> Registrate o inicia sesion para poder seguir leyendo libros!  </label>
                 <form onSubmit={this.handleSubmit}>
 
                     <label > Usuario</label>
